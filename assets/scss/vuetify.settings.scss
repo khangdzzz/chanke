@@ -1,0 +1,16 @@
+@use 'vuetify/settings' with (
+  // Reference vuetify/lib/settings
+  $font-size-root: 14px,
+  $button-text-transform: capitalize
+);
+
+// change height dropdown v-select
+.v-overlay-container > .v-overlay > .v-select__content {
+  // Limit height of dropdown v-select
+  max-height: 300px !important;
+}
+
+// reset padding v-tooltip
+.v-tooltip > .v-overlay__content {
+  padding: 0;
+}

@@ -1,0 +1,51 @@
+// color
+$color-gray: #cccccc;
+$color-gray-1: #959595;
+$color-gray-2: #fafafa;
+$color-gray-3: #e0e0e0;
+$color-gray-4: #fbfbfb;
+$color-gray-5: #757575;
+$color-gray-6: #f7f8fa;
+$color-gray-7: #6f6f6f;
+$color-gray-8: #eeeeee;
+$color-white: #ffffff;
+$color-green: #1ea755;
+$color-green-2: #329736;
+$color-green-3: #51c81a;
+$color-black: #000;
+$color-black-secondary: #666;
+$color-red: #e42a1d;
+$color-amber: #f39100;
+$color-blue: #1867c0;
+$color-purple: #9c27b0;
+
+$color-status-setting: $color-red;
+$color-status-evaluating: $color-amber;
+$color-status-self-evaluating: $color-green-2;
+$color-status-supervisor-evaluating: $color-blue;
+$color-status-complete: $color-purple;
+$color-status-finish: $color-gray-5;
+
+$strength-color: #10d80c;
+$strength-bg-color: rgb(33 238 29 / 20%);
+$weakness-color: #d80c0c;
+$weakness-bg-color: rgb(216 12 12 / 20%);
+$objective-card-bg-color: rgb(33 150 243 / 18%);
+$evaluation-sheet-header-color: #e0eef9;
+$salary-increment-color: #43a047;
+$salary-decrement-color: #d80c0c;
+
+// primary style
+$primary-color: #3fb7d5;
+$border-radius: 2px;
+$secondary-color: #f4f4f4;
+$color-text-primary: #3e3e3e;
+$color-border-gray: $color-gray;
+
+// global size
+$header-height: 64px;
+$footer-height: 44px;
+$font-sm: 0.875rem;
+
+$z-index-header: 1006;
+$z-index-drawer: $z-index-header + 1;

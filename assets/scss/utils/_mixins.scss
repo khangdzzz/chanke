@@ -1,0 +1,34 @@
+/*
+ * Breakpoints setting
+ * Reference: https://getbootstrap.com/docs/5.0/layout/breakpoints
+ */
+
+ $breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px
+) !default;
+
+@mixin mediaquery-down($breakpoint: sm) {
+  @media only screen and (max-width: #{map-get($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}
+
+@mixin mediaquery-up($breakpoint: sm) {
+  @media only screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}
+
+@mixin mediaquery-between($breakpoint1: xs, $breakpoint2: lg) {
+  @media only screen and (min-width: #{map-get($breakpoints, $breakpoint1)}) and
+    (max-width: #{map-get($breakpoints, $breakpoint2)}) {
+    @content;
+  }
+}
+
+@function theme-color($colorName, $opacity: 1) {
+  @return rgba(var(--v-theme-#{$colorName}), $opacity)
+}
