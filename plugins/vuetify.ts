@@ -5,7 +5,7 @@ import { createVuetify, ThemeDefinition } from 'vuetify'
 const defaultTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: '#2196f3',
+    primary: '#3fb7d5;',
     background: '#f7f8fa',
     'text-primary': '#3e3e3e',
     'link-hyperlink': '#2196f3',
@@ -31,7 +31,7 @@ export default defineNuxtPlugin(nuxtApp => {
       VBtn: {
         color: 'primary',
         minWidth: 40,
-        minHeight: 32,
+        minHeight: 38,
       },
       VTextField: {
         hideDetails: 'auto',

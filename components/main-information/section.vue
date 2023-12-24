@@ -1,69 +1,79 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const LIST_GAME = [
+  {
+    id: 1,
+    name: 'Chẵn Lẻ',
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: 'Tài Xỉu',
+    isActive: false,
+  },
+  {
+    id: 3,
+    name: '1 Phần 3',
+    isActive: false,
+  },
+  {
+    id: 4,
+    name: 'Xiên',
+    isActive: false,
+  },
+  {
+    id: 5,
+    name: 'Đoán Số',
+    isActive: false,
+  },
+]
+
+const ACTION = [
+  {
+    id: 1,
+    name: 'Điểm Danh',
+    icon: 'mdi-account-plus ',
+  },
+  {
+    id: 2,
+    name: 'Nhiệm Vụ Hàng Ngày',
+    icon: 'mdi-format-list-checkbox ',
+  },
+  {
+    id: 3,
+    name: 'Mã Quà Tặng',
+    icon: 'mdi-gift ',
+  },
+  {
+    id: 4,
+    name: 'Tạo Nick Name',
+    icon: 'mdi-play ',
+  },
+]
+</script>
 <template>
   <div class="daily-action">
-    Since .htaccess files will not be viewable once you change the name with
-    Terminal (without some annoying searching) it is simpler to just drag an
-    empty text file into the directory of choice using FTP and then rename away.
-    Both filename and extensions can be change/removed once inside FTP.Since
-    .htaccess files will not be viewable once you change the name with Terminal
-    (without some annoying searching) it is simpler to just drag an empty text
-    file into the directory of choice using FTP and then rename away. Both
-    filename and extensions can be change/removed once inside FTP.Since
-    .htaccess files will not be viewable once you change the name with Terminal
-    (without some annoying searching) it is simpler to just drag with Terminal
-    (without some annoying searching) it is simpler to just drag an empty text
-    file into the directory of choice using FTP and then rename away. Both
-    filename and extensions can be change/removed once inside FTP.Since
-    .htaccess files will not be viewable once you change the name with Terminal
-    (without some annoying searching) it is simpler to just drag an empty text
-    file into the directory of choice using FTP and then rename away. Both
-    filename and extensions can be change/removed once inside FTP.Since
-    .htaccess files will not be viewable once you change the name with Terminal
-    (without some annoying searching) it is simpler to just drag an empty text
-    file into the directory of choice using FTP and then rename away. Both
-    filename and extensions can be change/removed once inside FTP. filename and
-    extensions can be change/removed once inside FTP.Since .htaccess files will
-    not be viewable once you change the name with Terminal (without some
-    annoying searching) it is simpler to just drag with Terminal (without some
-    annoying searching) it is simpler to just drag an empty text file into the
-    directory of choice using FTP and then rename away. Both filename and
-    extensions can be change/removed once inside FTP.Since .htaccess files will
-    not be viewable once you change the name with Terminal (without some
-    annoying searching) it is simpler to just drag an empty text file into the
-    directory of choice using FTP and then rename away. Both filename and
-    extensions can be change/removed once inside FTP.Since .htaccess files will
-    not be viewable once you change the name with Terminal (without some
-    annoying searching) it is simpler to just drag an empty text file into the
-    directory of choice using FTP and then rename away. Both filename and
-    extensions can be change/removed once inside FTP. filename and extensions
-    can be change/removed once inside FTP.Since .htaccess files will not be
-    viewable once you change the name with Terminal (without some annoying
-    searching) it is simpler to just drag with Terminal (without some annoying
-    searching) it is simpler to just drag an empty text file into the directory
-    of choice using FTP and then rename away. Both filename and extensions can
-    be change/removed once inside FTP.Since .htaccess files will not be viewable
-    once you change the name with Terminal (without some annoying searching) it
-    is simpler to just drag an empty text file into the directory of choice
-    using FTP and then rename away. Both filename and extensions can be
-    change/removed once inside FTP.Since .htaccess files will not be viewable
-    once you change the name with Terminal (without some annoying searching) it
-    is simpler to just drag an empty text file into the directory of choice
-    using FTP and then rename away. Both filename and extensions can be
-    change/removed once inside FTP. filename and extensions can be
-    change/removed once inside FTP.Since .htaccess files will not be viewable
-    once you change the name with Terminal (without some annoying searching) it
-    is simpler to just drag with Terminal (without some annoying searching) it
-    is simpler to just drag an empty text file into the directory of choice
-    using FTP and then rename away. Both filename and extensions can be
-    change/removed once inside FTP.Since .htaccess files will not be viewable
-    once you change the name with Terminal (without some annoying searching) it
-    is simpler to just drag an empty text file into the directory of choice
-    using FTP and then rename away. Both filename and extensions can be
-    change/removed once inside FTP.Since .htaccess files will not be viewable
-    once you change the name with Terminal (without some annoying searching) it
-    is simpler to just drag an empty text file into the directory of choice
-    using FTP and then rename away. Both filename and extensions can be
-    change/removed once inside FTP.
+    <h1 class="title">
+      <b class="bold">Chẵn Lẻ Bank</b>
+      - Auto Trả Tiền Thắng Trong 3s
+    </h1>
+    <div class="games">
+      <button
+        v-for="game in LIST_GAME"
+        :key="game.id"
+        variant="outlined"
+        class="button"
+        :class="{ '-active': game.isActive }"
+      >
+        {{ game.name }}
+      </button>
+    </div>
+    <button class="note">Xem Lưu ý</button>
+    <div class="actions">
+      <button v-for="action in ACTION" :key="action.id" class="button">
+        <v-icon class="icon" :icon="action.icon" />
+        {{ action.name }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -72,5 +82,81 @@
   background-color: white;
   border-radius: 5px 5px 5px;
   padding: 60px 25px 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  > .title {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-align: center;
+    > .bold {
+      font-weight: 900;
+    }
+  }
+
+  > .games {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 0.75rem;
+  }
+
+  > .games > .button {
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    padding: 6px 10px;
+    height: 38px;
+    min-width: 80px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
+  > .games > .-active {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  > .note {
+    color: #fff;
+    height: 38px;
+    width: 100px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+  }
+
+  > .actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 0.75rem;
+  }
+
+  > .actions > .button {
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    padding: 6px 10px;
+    height: 38px;
+    min-width: 80px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
 }
 </style>

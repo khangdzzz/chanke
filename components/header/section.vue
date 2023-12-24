@@ -12,8 +12,6 @@ const openCartIcon = ref(openCart)
   </div>
 </template>
 
-<script lang="ts" setup></script>
-
 <style lang="scss" scoped>
 .container-header {
   position: fixed;
@@ -25,6 +23,7 @@ const openCartIcon = ref(openCart)
   > .header {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     margin: 0 auto;
     gap: 5px;
     z-index: 10;
