@@ -5,7 +5,7 @@ import { createVuetify, ThemeDefinition } from 'vuetify'
 const defaultTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: '#3fb7d5;',
+    primary: '#3fb7d5',
     background: '#f7f8fa',
     'text-primary': '#3e3e3e',
     'link-hyperlink': '#2196f3',

@@ -6,6 +6,15 @@
       <div class="content">
         <slot />
       </div>
+      <div class="footer">
+        <div class="label">
+          <b>chanlebank.cz</b>
+          ©
+          {{ new Date().getFullYear() }}
+          -
+          {{ new Date().getFullYear() + 2 }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +23,7 @@
 
 <style lang="scss" scoped>
 .spacer-background {
-  height: 230px;
+  height: 160px;
   background: $primary-color;
   width: 100%;
   position: relative;
@@ -24,10 +33,7 @@
     width: 100%;
     max-width: 564px;
     margin: 0 auto;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
+    margin-top: 50px;
     padding: 0 16px;
     @media (min-width: 769px) {
       max-width: 660px;
@@ -39,9 +45,23 @@
     }
     @media (min-width: 1281px) {
       max-width: 1200px;
-      top: 70.4px;
+      margin-top: 70.4px;
       padding: 0;
     }
   }
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-top: 1px solid #eaeaea;
+  font-size: 0.875rem;
+  padding: 1.25rem 0;
+  color: #898989;
+  width: 100% !important;
+  position: relative;
+  z-index: 1;
 }
 </style>

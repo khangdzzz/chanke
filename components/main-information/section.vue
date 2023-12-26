@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+
 const LIST_GAME = [
   {
     id: 1,
@@ -32,23 +34,63 @@ const ACTION = [
     id: 1,
     name: 'Điểm Danh',
     icon: 'mdi-account-plus ',
+    method: () => showDialogCheckIn(),
   },
   {
     id: 2,
     name: 'Nhiệm Vụ Hàng Ngày',
     icon: 'mdi-format-list-checkbox ',
+    method: () => scrollToTasks(),
   },
   {
     id: 3,
     name: 'Mã Quà Tặng',
     icon: 'mdi-gift ',
+    method: () => showDialogGift(),
   },
   {
     id: 4,
     name: 'Tạo Nick Name',
     icon: 'mdi-play ',
+    method: () => scrollToCreateNickname(),
   },
 ]
+
+const listGame = ref(LIST_GAME)
+
+const chooseGame = (game: { id: number }) => {
+  listGame.value = listGame.value.map(item => {
+    if (item.id === game.id) {
+      return {
+        ...item,
+        isActive: true,
+      }
+    }
+    return {
+      ...item,
+      isActive: false,
+    }
+  })
+}
+
+const dialogConfirmStore = useDialogConfirmStore()
+const { showDialog, showDialogGift, showDialogCheckIn } = dialogConfirmStore
+
+const scrollStore = useScrollStore()
+const { tasksSection, nickNameSection, scrollOpenCreateNickName } =
+  storeToRefs(scrollStore)
+
+const scrollToTasks = () => {
+  tasksSection.value.$el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+}
+
+const scrollToCreateNickname = () => {
+  scrollOpenCreateNickName.value = true
+  nickNameSection.value.$el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+  })
+}
 </script>
 <template>
   <div class="daily-action">
@@ -58,23 +100,32 @@ const ACTION = [
     </h1>
     <div class="games">
       <button
-        v-for="game in LIST_GAME"
+        v-for="game in listGame"
         :key="game.id"
         variant="outlined"
         class="button"
         :class="{ '-active': game.isActive }"
+        @click="chooseGame(game)"
       >
         {{ game.name }}
       </button>
     </div>
-    <button class="note">Xem Lưu ý</button>
+    <button class="note" @click="showDialog">Xem Lưu ý</button>
     <div class="actions">
-      <button v-for="action in ACTION" :key="action.id" class="button">
+      <button
+        v-for="action in ACTION"
+        :key="action.id"
+        class="button"
+        @click="action.method"
+      >
         <v-icon class="icon" :icon="action.icon" />
         {{ action.name }}
       </button>
     </div>
   </div>
+  <DialogNote />
+  <DialogGift />
+  <DialogCheckin />
 </template>
 
 <style lang="scss" scoped>
