@@ -20,7 +20,11 @@ const login = async () => {
   }
   await userStore.login(body)
   isLoading.value = false
-  if (isLoginSuccess.value) router.push('/dashboard')
+  if (isLoginSuccess.value) {
+    router.push('/dashboard')
+    userStore.isLoginSuccess = false
+    userStore.isLoginFail = false
+  }
 }
 </script>
 <template>

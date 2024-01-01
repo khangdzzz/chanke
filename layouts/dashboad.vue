@@ -22,6 +22,13 @@ const menus = ref([
     ],
   },
 ])
+
+const router = useRouter()
+const logout = () => {
+  localStorage.removeItem('accessToken')
+
+  router.push('/login')
+}
 </script>
 <template>
   <v-layout class="main-container">
@@ -87,7 +94,7 @@ const menus = ref([
             ></v-img>
           </v-avatar>
         </v-btn>
-        <v-btn icon>
+        <v-btn icon @click="logout">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </v-toolbar>
