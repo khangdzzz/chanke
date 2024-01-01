@@ -1,135 +1,127 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const drawer = ref(true)
+const rail = ref(false)
+
+const menus = ref([
+  {
+    key: 'admin',
+    value: 'Admin',
+    title: 'Admin',
+    icon: 'mdi-account-circle',
+    submenu: [
+      {
+        title: 'Management',
+        icon: 'mdi-account-multiple-outline',
+        url: '/',
+      },
+      {
+        title: 'Settings',
+        icon: 'mdi-cog-outline',
+        url: '/',
+      },
+    ],
+  },
+])
+</script>
 <template>
-  <div class="main-container">
-    <HeaderSection />
-    <div class="spacer-background">
-      <div class="content">
-        <slot />
+  <v-layout class="main-container">
+    <v-navigation-drawer
+      v-model="drawer"
+      :rail="rail"
+      permanent
+      class="side-bar"
+      @click="rail = false"
+    >
+      <v-list-item
+        class="title"
+        prepend-avatar="http://66.42.54.207:8000/images/dashboard.png"
+        title="DashBoard"
+      ></v-list-item>
+
+      <v-list class="menu">
+        <nuxt-link to="/" class="nuxt-link">
+          <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item>
+        </nuxt-link>
+
+        <v-list-group
+          v-for="item in menus"
+          :key="item.key"
+          :value="item.value"
+          class="submenu"
+        >
+          <template #activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              :title="item.title"
+              prepend-icon="mdi-account-circle"
+              class="header"
+            ></v-list-item>
+          </template>
+
+          <nuxt-link
+            v-for="(submenu, i) in item.submenu"
+            :key="i"
+            :to="submenu.url"
+            class="nuxt-link"
+          >
+            <v-list-item
+              :title="submenu.title"
+              :value="`${item.key}/${submenu.title}`"
+            ></v-list-item>
+          </nuxt-link>
+        </v-list-group>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main class="main-content">
+      <v-toolbar density="compact" class="nav-bar">
+        <v-app-bar-nav-icon @click.stop="rail = !rail"></v-app-bar-nav-icon>
+
+        <v-spacer></v-spacer>
+
+        <span>Hi, Admin</span>
+        <v-btn icon>
+          <v-avatar>
+            <v-img
+              src="http://66.42.54.207:8000/images/admin.png"
+              rounded
+            ></v-img>
+          </v-avatar>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
+      </v-toolbar>
+      <div class="container">
+        <slot></slot>
       </div>
-      <div class="footer">
-        <div class="label">
-          <b>chanlebank.cz</b>
-          ©
-          {{ new Date().getFullYear() }}
-          -
-          {{ new Date().getFullYear() + 2 }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="jackpot">
-    <div class="jackpot-content">
-      <a
-        class="content"
-        href="#"
-        data-toggle="modal"
-        data-target="#modalJackpot"
-      >
-        <img src="~/assets/images/jackpot.png" alt="" />
-        <div class="jackpot-value">
-          <span>47,939</span>
-          đ
-        </div>
-      </a>
-    </div>
-  </div>
+    </v-main>
+  </v-layout>
 </template>
-
-<script lang="ts" setup></script>
-
 <style lang="scss" scoped>
-.spacer-background {
-  height: 160px;
-  background: $primary-color;
-  width: 100%;
-  position: relative;
-  z-index: 1;
+.side-bar {
+  > .v-navigation-drawer__content > .title {
+    padding: 4px 10px;
+  }
 
-  > .content {
-    width: 100%;
-    max-width: 564px;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 0 16px;
-    @media (min-width: 769px) {
-      max-width: 660px;
-      padding: 0;
-    }
-    @media (min-width: 981px) {
-      max-width: 960px;
-      padding: 0;
-    }
-    @media (min-width: 1281px) {
-      max-width: 1200px;
-      margin-top: 70.4px;
-      padding: 0;
-    }
+  // > .v-navigation-drawer__content > .menu > .submenu {
+  //   // --parent-padding: -16px;
+  // }
+}
+
+.main-content {
+  > .nav-bar {
+    background-color: $color-white;
+  }
+
+  > .container {
+    background-color: white;
+    height: 100vh;
+    padding: 20px;
   }
 }
 
-.footer {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  background: #fff;
-  border-top: 1px solid #eaeaea;
-  font-size: 0.875rem;
-  padding: 1.25rem 0;
-  color: #898989;
-  width: 100% !important;
-  position: relative;
-  z-index: 1;
-}
-
-.jackpot {
-  position: fixed;
-  z-index: 100;
-  bottom: 80px;
-  width: 120px;
-  left: 20px;
-  @media (max-width: 769px) {
-    width: 90px;
-  }
-}
-
-.jackpot-content {
-  > .content {
-    text-decoration: none;
-  }
-  > .content img {
-    animation: wiggle 1.3s linear infinite;
-  }
-  > .content > .jackpot-value {
-    font-size: 18px;
-    color: #28a745;
-    font-weight: 700;
-  }
-}
-
-@keyframes wiggle {
-  0%,
-  7% {
-    transform: rotateZ(0);
-  }
-  15% {
-    transform: rotateZ(-15deg);
-  }
-  20% {
-    transform: rotateZ(10deg);
-  }
-  25% {
-    transform: rotateZ(-10deg);
-  }
-
-  30% {
-    transform: rotateZ(6deg);
-  }
-  35% {
-    transform: rotateZ(-4deg);
-  }
-  40%,
-  100% {
-    transform: rotateZ(0);
-  }
+.nuxt-link {
+  text-decoration: none;
+  color: #000;
 }
 </style>
