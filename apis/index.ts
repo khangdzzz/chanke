@@ -2,11 +2,11 @@ import ky from 'ky-universal'
 import type { KyInstance } from 'ky/distribution/types/ky'
 
 interface API {
-  evazoomApi: null | KyInstance
+  chanle: null | KyInstance
 }
 
 export const apis: API = {
-  evazoomApi: null,
+  chanle: null,
 }
 export function createAPI(baseURL: string) {
   return ky.create({

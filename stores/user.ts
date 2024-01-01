@@ -1,26 +1,32 @@
-// import { StaffResource } from '@/types'
-// import { apis } from '@/apis'
+import { apis } from '@/apis'
+import { IResponse } from '~~/utils'
+interface LoginBody {
+  username: string
+  password: string
+}
 
-// export const useUserStore = defineStore('user', () => {
-//   const currentUser = ref<StaffResource>()
+export const useUserStore = defineStore('user', () => {
+  const isLoginSuccess = ref(false)
+  const isLoginFail = ref(false)
+  const login = async (body: LoginBody) => {
+    const res: IResponse | null = await apis
+      .chanle!.post('user/login', {
+        json: body,
+      })
+      .json<IResponse>()
+      .catch(() => null)
 
-//   const fetchAuthUser = async () => {
-//     const me: StaffResource | null | undefined = await apis.evazoomApi
-//       ?.get('me', {
-//         retry: INITIATION_RETRY_OPTIONS,
-//       })
-//       .json<StaffResource>()
-//       .catch(() => null)
-//     if (me) currentUser.value = me
-//   }
+    isLoginSuccess.value = res?.success ? true : false
+    isLoginFail.value = res?.success ? false : true
 
-//   const isAdmin = computed(() =>
-//     ADMIN_EMAILS.some(email => currentUser.value?.email === email)
-//   )
+    if (res?.success) {
+      window.localStorage.setItem('accessToken', res?.data)
+    }
+  }
 
-//   return {
-//     isAdmin,
-//     currentUser,
-//     fetchAuthUser,
-//   }
-// })
+  return {
+    isLoginSuccess,
+    isLoginFail,
+    login,
+  }
+})
