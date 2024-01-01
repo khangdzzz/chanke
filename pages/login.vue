@@ -26,7 +26,7 @@ const login = async () => {
 <template>
   <div class="login-container">
     <div v-if="isLoginSuccess" class="status">Đang Nhập Thành Công</div>
-    <div v-if="isLoginFail" class="fail">Đang Nhập Thành Công</div>
+    <div v-if="isLoginFail" class="fail">Đang Nhập Không Thành Công</div>
     <div class="card">
       <h2 class="title">Login</h2>
       <div class="form">
@@ -102,6 +102,8 @@ const login = async () => {
     padding: 10px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
+    border-radius: 4px;
+    color: $color-black;
   }
 
   > .card > .form > .btn {

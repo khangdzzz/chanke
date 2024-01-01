@@ -21,5 +21,8 @@ export default defineNuxtRouteMiddleware(() => {
     } else {
       console.log('Token is valid.')
     }
+  } else {
+    console.log('Token not found.')
+    return navigateTo('/login')
   }
 })
