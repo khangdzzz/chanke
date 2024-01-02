@@ -78,6 +78,15 @@ const joinToPlay = async () => {
 
 const isCreateSuccess = computed(() => playerStore.isCreateSuccess)
 const isCreateFail = computed(() => playerStore.isCreateFail)
+
+const isNumber = (evt: { keyCode: number; preventDefault: () => void }) => {
+  const charCode = evt.keyCode
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    evt.preventDefault()
+  } else {
+    return true
+  }
+}
 </script>
 <template>
   <div class="container-create-account">
@@ -112,6 +121,7 @@ const isCreateFail = computed(() => playerStore.isCreateFail)
           variant="outlined"
           type="number"
           dense
+          @keypress="isNumber($event)"
         ></v-text-field>
       </div>
 
