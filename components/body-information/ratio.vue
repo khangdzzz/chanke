@@ -1,9 +1,37 @@
 <script lang="ts" setup>
+import { on } from 'events'
+
 const codes = [1, 2, 3, 4, 5, 5]
 const formatCode = (codes: number[]) => {
   const joinCodes = codes.join('-')
   return joinCodes.split('') || []
 }
+
+const gameStore = useGameStore()
+
+const gameMiddleTitle = computed(() => {
+  const endTwoNumber = ['CL_Game', 'TX_Game', '1/3_Game', 'X_Game', 'DS_Game']
+  const threeEndNumber = ['G3_Game']
+  const endNumber = ['T3_Game']
+
+  if(endTwoNumber.includes(gameStore.gameType)) return 'TỔNG 2 SỐ CUỐI'
+  else if(threeEndNumber.includes(gameStore.gameType)) return 'TỔNG 3 SỐ CUỐI'
+  else if(endNumber.includes(gameStore.gameType)) return 'TỔNG SỐ'
+})
+
+const rewards = computed(() => gameStore.reward)
+
+onMounted(async () => {
+  gameStore.gameType = 'CL_Game'
+  await gameStore.getReward(gameStore.gameType)
+})
+
+watch(
+  () => gameStore.gameType,
+  async () => {
+    await gameStore.getReward(gameStore.gameType)
+  }
+)
 </script>
 <template>
   <div class="container-table">
@@ -11,40 +39,25 @@ const formatCode = (codes: number[]) => {
       <thead class="head">
         <tr class="row">
           <th class="cell">NỘI DUNG</th>
-          <th class="cell">TỔNG HAI SỐ CUỐ</th>
+          <th class="cell">{{ gameMiddleTitle }}</th>
           <th class="cell">TỈ LỆ</th>
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row">
+        <tr class="row" v-for="reward in rewards" :key="reward?._id">
           <td class="cell">
-            <v-chip variant="flat" color="green">nickname L</v-chip>
+            <v-chip variant="flat" color="green">fdsfaf2323e32fsaf {{ reward.content }}</v-chip>
           </td>
           <td class="cell">
             <span
-              v-for="(code, index) in formatCode(codes)"
+              v-for="(code, index) in formatCode(reward.numberTLS)"
               :key="index"
               :class="{ code: Number(code) }"
             >
               {{ code }}
             </span>
           </td>
-          <td class="cell">PHAN VAN KHAI</td>
-        </tr>
-        <tr class="row">
-          <td class="cell">
-            <v-chip variant="flat" color="green">nickname L</v-chip>
-          </td>
-          <td class="cell">
-            <span
-              v-for="(code, index) in formatCode(codes)"
-              :key="index"
-              :class="{ code: Number(code) }"
-            >
-              {{ code }}
-            </span>
-          </td>
-          <td class="cell">PHAN VAN KHAI</td>
+          <td class="cell">{{ reward.amount }}</td>
         </tr>
       </tbody>
     </table>

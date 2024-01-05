@@ -6,27 +6,45 @@ const LIST_GAME = [
     id: 1,
     name: 'Chẵn Lẻ',
     isActive: true,
+    gameType: "CL_Game"
+
   },
   {
     id: 2,
     name: 'Tài Xỉu',
     isActive: false,
+    gameType: "TX_Game"
   },
   {
     id: 3,
     name: '1 Phần 3',
     isActive: false,
+    gameType: "1/3_Game"
   },
   {
     id: 4,
     name: 'Xiên',
     isActive: false,
+    gameType: "X_Game"
   },
   {
     id: 5,
     name: 'Đoán Số',
     isActive: false,
+    gameType: "DS_Game"
   },
+  {
+    id: 6,
+    name: 'Gấp 3',
+    isActive: false,
+    gameType: "G3_Game"
+  },
+  {
+    id: 7,
+    name: 'Tổng 3 Số',
+    isActive: false,
+    gameType: "T3_Game"
+  }
 ]
 
 const ACTION = [
@@ -57,8 +75,10 @@ const ACTION = [
 ]
 
 const listGame = ref(LIST_GAME)
+const gameStore = useGameStore()
 
-const chooseGame = (game: { id: number }) => {
+const chooseGame = (game: { id: number, gameType: string }) => {
+  gameStore.gameType = game.gameType
   listGame.value = listGame.value.map(item => {
     if (item.id === game.id) {
       return {
@@ -71,6 +91,8 @@ const chooseGame = (game: { id: number }) => {
       isActive: false,
     }
   })
+
+
 }
 
 const dialogConfirmStore = useDialogConfirmStore()
