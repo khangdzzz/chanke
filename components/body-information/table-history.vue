@@ -1,4 +1,13 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { formatDate } from '~~/utils/formatters'
+
+const playerStore = usePlayerStore()
+const playerData = computed(() => playerStore.player)
+
+onMounted(async () => {
+  await playerStore.getPlayerData()
+})
+</script>
 <template>
   <div class="container-history">
     <table class="table">
@@ -11,21 +20,13 @@
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row">
-          <td class="cell">19:09:40 24/12/2023</td>
+        <tr class="row" v-for="player in playerData">
+          <td class="cell">{{ formatDate(player.createdAt as string) }}</td>
           <td class="cell">
             <img src="https://api.vietqr.io/img/MB.png" width="100" />
           </td>
-          <td class="cell">***********8389</td>
-          <td class="cell">hieudeptrai</td>
-        </tr>
-        <tr class="row">
-          <td class="cell">19:09:40 24/12/2023</td>
-          <td class="cell">
-            <img src="https://api.vietqr.io/img/MB.png" width="100" />
-          </td>
-          <td class="cell">***********8389</td>
-          <td class="cell">hieudeptrai</td>
+          <td class="cell">{{ player.accountNumber }}</td>
+          <td class="cell">{{ player.userid }}</td>
         </tr>
       </tbody>
     </table>

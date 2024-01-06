@@ -10,6 +10,7 @@ onMounted(() => {
     nickNameSection.value = instance.refs.nickNameSection
   }
 })
+
 </script>
 <template>
   <div class="body-information">

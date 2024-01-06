@@ -19,5 +19,17 @@ export interface Game {
 
 
 export interface GameResponse extends IResponse {
-  data: Game;
+  data: Game[];
+}
+
+export interface IPlayer {
+  amount?: number
+  bankcode: string
+  accountNumber: string
+  userid: string
+  createdAt?: string
+}
+
+export interface PlayerResponse extends IResponse {
+  data: IPlayer[]
 }

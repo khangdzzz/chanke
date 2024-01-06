@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
+import { BANKS } from '~/utils/constants'
 
 const scrollStore = useScrollStore()
 const { scrollOpenCreateNickName } = storeToRefs(scrollStore)
@@ -15,46 +16,6 @@ const openCreateNickName = () => {
   isShowCreateNickName.value = true
 }
 
-const banks = [
-  { value: '970415', label: '(970415) VietinBank' },
-  { value: '970436', label: '(970436) Vietcombank' },
-  { value: '970418', label: '(970418) BIDV' },
-  { value: '970405', label: '(970405) Agribank' },
-  { value: '970448', label: '(970448) OCB' },
-  { value: '970422', label: '(970422) MBBank' },
-  { value: '970407', label: '(970407) Techcombank' },
-  { value: '970416', label: '(970416) ACB' },
-  { value: '970432', label: '(970432) VPBank' },
-  { value: '970423', label: '(970423) TPBank' },
-  { value: '970403', label: '(970403) Sacombank' },
-  { value: '970437', label: '(970437) HDBank' },
-  { value: '970454', label: '(970454) VietCapitalBank' },
-  { value: '970429', label: '(970429) SCB' },
-  { value: '970441', label: '(970441) VIB' },
-  { value: '970443', label: '(970443) SHB' },
-  { value: '970431', label: '(970431) Eximbank' },
-  { value: '970426', label: '(970426) MSB' },
-  { value: '546034', label: '(546034) CAKE' },
-  { value: '963388', label: '(963388) Timo' },
-  { value: '971005', label: '(971005) ViettelMoney' },
-  { value: '971011', label: '(971011) VNPTMoney' },
-  { value: '970400', label: '(970400) SaigonBank' },
-  { value: '970409', label: '(970409) BacABank' },
-  { value: '970412', label: '(970412) PVcomBank' },
-  { value: '970414', label: '(970414) Oceanbank' },
-  { value: '970419', label: '(970419) NCB' },
-  { value: '970424', label: '(970424) ShinhanBank' },
-  { value: '970425', label: '(970425) ABBANK' },
-  { value: '970427', label: '(970427) VietABank' },
-  { value: '970428', label: '(970428) NamABank' },
-  { value: '970430', label: '(970430) PGBank' },
-  { value: '970433', label: '(970433) VietBank' },
-  { value: '970438', label: '(970438) BaoVietBank' },
-  { value: '970440', label: '(970440) SeABank' },
-  { value: '970446', label: '(970446) COOPBANK' },
-  { value: '970449', label: '(970449) LienVietPostBank' },
-  { value: '970452', label: '(970452) KienLongBank' },
-]
 const selectedBank = ref({ value: '970415', label: '(970415) VietinBank' })
 const accountNumber = ref('')
 const accountName = ref('')
@@ -70,7 +31,7 @@ const joinToPlay = async () => {
   const body = {
     amount: 0,
     bankcode: selectedBank.value.value,
-    phone: accountNumber.value,
+    accountNumber: accountNumber.value,
     userid: accountName.value,
   }
   await playerStore.create(body)
@@ -87,6 +48,11 @@ const isNumber = (evt: { keyCode: number; preventDefault: () => void }) => {
     return true
   }
 }
+
+watch(accountName, newVal => {
+  accountName.value = newVal.replace(/\s/g, '')
+})
+
 </script>
 <template>
   <div class="container-create-account">
@@ -104,7 +70,7 @@ const isNumber = (evt: { keyCode: number; preventDefault: () => void }) => {
         <span class="label">Ngân hàng nhận thưởng</span>
         <v-combobox
           v-model="selectedBank"
-          :items="banks"
+          :items="BANKS"
           item-value="value"
           item-title="label"
           variant="outlined"
