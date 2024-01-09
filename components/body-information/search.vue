@@ -1,13 +1,27 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { formatDate } from "~/utils/formatters";
+
+const nickname = ref("");
+const adminStore = useAdminStore();
+
+const historyTransaction = computed(() => adminStore.historyTransaction);
+
+const searchHistoryByNickName = async () => {
+  if (nickname.value) {
+    await adminStore.getHistoryTransaction(nickname.value)
+  }
+};
+</script>
 <template>
   <div class="container-search">
     <div class="search-user">
       <input
+        v-model="nickname"
         class="input"
         type="text"
         placeholder="Nhập Nickname để kiểm tra"
       />
-      <v-icon class="icon" icon="mdi-magnify"></v-icon>
+      <v-icon class="icon" icon="mdi-magnify" @click="searchHistoryByNickName()"></v-icon>
     </div>
     <table class="table">
       <thead class="head">
@@ -22,30 +36,20 @@
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row">
-          <td class="cell">19:09:40 24/12/2023</td>
-          <td class="cell">***********8389</td>
-          <td class="cell">***********517</td>
-          <td class="cell">10000</td>
-          <td class="cell">Chẳn Lẻ</td>
+        <tr class="row" v-for="item in historyTransaction" :key="item._id">
+          <td class="cell">{{ formatDate(item.createdAt as string)}}</td>
+          <td class="cell">{{ item.accountNumber }}</td>
+          <td class="cell">{{ item.transId }}</td>
+          <td class="cell">{{ item.amount }}</td>
+          <td class="cell">{{ item.gameName }}</td>
           <td class="cell">
-            <span class="betName">L</span>
+            <span class="betName">{{  item.betValue }}</span>
           </td>
           <td class="cell">
-            <span class="result -lose">Thua</span>
-          </td>
-        </tr>
-        <tr class="row">
-          <td class="cell">19:09:40 24/12/2023</td>
-          <td class="cell">***********8389</td>
-          <td class="cell">***********517</td>
-          <td class="cell">10000</td>
-          <td class="cell">Chẳn Lẻ</td>
-          <td class="cell">
-            <span class="betName">L</span>
-          </td>
-          <td class="cell">
-            <span class="result -lose">Thua</span>
+            <span 
+              class="result -lose"
+              :class="{'-win': item.status === 'win'}"
+            >{{ item.status }}</span>
           </td>
         </tr>
       </tbody>

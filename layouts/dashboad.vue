@@ -29,6 +29,10 @@ const logout = () => {
 
   router.push('/login')
 }
+
+const openHome = () => {
+  router.push('/')
+}
 </script>
 <template>
   <v-layout class="main-container">
@@ -43,11 +47,18 @@ const logout = () => {
         class="title"
         prepend-avatar="http://66.42.54.207:8000/images/dashboard.png"
         title="DashBoard"
+        @click="openHome()"
       ></v-list-item>
 
       <v-list class="menu">
-        <nuxt-link to="/" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item>
+        <nuxt-link to="/dashboard" class="nuxt-link">
+          <v-list-item prepend-icon="mdi-home" title="Trang Chủ"></v-list-item>
+        </nuxt-link>
+        <nuxt-link to="/transaction" class="nuxt-link">
+          <v-list-item prepend-icon="mdi-cash-marker" title="Giao Dịch"></v-list-item>
+        </nuxt-link>
+        <nuxt-link to="/games" class="nuxt-link">
+          <v-list-item prepend-icon="mdi-gamepad-variant-outline" title="Quản Lí Games"></v-list-item>
         </nuxt-link>
 
         <v-list-group
@@ -60,7 +71,7 @@ const logout = () => {
             <v-list-item
               v-bind="props"
               :title="item.title"
-              prepend-icon="mdi-account-circle"
+              :prepend-icon="item.icon"
               class="header"
             ></v-list-item>
           </template>

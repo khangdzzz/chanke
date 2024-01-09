@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { BANKS } from '~/utils/constants'
+import { isNumber } from '~/utils/formatters'
 
 const scrollStore = useScrollStore()
 const { scrollOpenCreateNickName } = storeToRefs(scrollStore)
@@ -39,15 +40,6 @@ const joinToPlay = async () => {
 
 const isCreateSuccess = computed(() => playerStore.isCreateSuccess)
 const isCreateFail = computed(() => playerStore.isCreateFail)
-
-const isNumber = (evt: { keyCode: number; preventDefault: () => void }) => {
-  const charCode = evt.keyCode
-  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-    evt.preventDefault()
-  } else {
-    return true
-  }
-}
 
 watch(accountName, newVal => {
   accountName.value = newVal.replace(/\s/g, '')

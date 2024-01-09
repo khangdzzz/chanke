@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const adminStore = useAdminStore()
+const bankAdminClient = computed(() => adminStore.bankAdminClient)
+
+onMounted(async () => {
+  await adminStore.getBankAdminClient()
+})
+
+</script>
 <template>
   <div class="table-gift">
     <table class="table">
@@ -11,47 +19,21 @@
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row">
+        <tr class="row" v-for="item in bankAdminClient" :key="item.accountNumber">
           <td class="cell">
-            <v-chip variant="flat" color="green">Hoạt động</v-chip>
+            <v-chip variant="flat" :color="item.active ? 'green' : ' '">
+              {{ item.active ? "Hoạt động" : "Bảo trì" }}
+            </v-chip>
           </td>
           <td class="cell">
             <img src="https://api.vietqr.io/img/MB.png" width="100" />
           </td>
           <td class="cell">
-            0829040148
+            {{ item.accountNumber }}
             <v-icon class="icon-copy" icon="mdi-content-copy" />
             <v-icon class="icon-qr" icon="mdi-qrcode" />
           </td>
-          <td class="cell">PHAN VAN KHAI</td>
-        </tr>
-        <tr class="row">
-          <td class="cell">
-            <v-chip variant="flat" color="green">Hoạt động</v-chip>
-          </td>
-          <td class="cell">
-            <img src="https://api.vietqr.io/img/MB.png" width="100" />
-          </td>
-          <td class="cell">
-            0829040148
-            <v-icon class="icon-copy" icon="mdi-content-copy" />
-            <v-icon class="icon-qr" icon="mdi-qrcode" />
-          </td>
-          <td class="cell">PHAN VAN KHAI</td>
-        </tr>
-        <tr class="row">
-          <td class="cell">
-            <v-chip variant="flat" color="green">Hoạt động</v-chip>
-          </td>
-          <td class="cell">
-            <img src="https://api.vietqr.io/img/MB.png" width="100" />
-          </td>
-          <td class="cell">
-            0829040148
-            <v-icon class="icon-copy" icon="mdi-content-copy" />
-            <v-icon class="icon-qr" icon="mdi-qrcode" />
-          </td>
-          <td class="cell">PHAN VAN KHAI</td>
+          <td class="cell">{{ item.name }}</td>
         </tr>
       </tbody>
     </table>

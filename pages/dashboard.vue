@@ -5,6 +5,6 @@ definePageMeta({
 })
 </script>
 <template>
-  <h1>hello dash board</h1>
+  <AdminBankSection />
 </template>
 <style lang="scss" scoped></style>
