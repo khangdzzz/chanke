@@ -10,16 +10,25 @@ export interface Game {
   gameType: string;
   content: string;
   betName: string;
+  name?: string;
   numberTLS: number[];
   amount: number;
   resultType: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IListGame {
   _id?: string;
   games: Game[];
+}
+
+
+export interface IListGameDetail {
+  _id?: string;
+  name: string;
+  gameType: string;
+  status: boolean;
 }
 
 
@@ -41,6 +50,7 @@ export interface PlayerResponse extends IResponse {
 
 export interface IBankAdmin {
   accountNumber: string
+  qr?: string
   binBank: string
   name: string
   status: boolean
@@ -67,7 +77,10 @@ export interface ITransaction {
 export interface ITransactionHistory {
   _id?: string;
   transId: string;
-  accountNumber: string;
+  accountNumberClient: string;
+  bankClient: string;
+  accountNumberAdmin: string;
+  bankAdmin: string;
   amount: number;
   bonus: number;
   betValue: string;
@@ -83,4 +96,19 @@ export interface ITransactionHistory {
 
 export interface TransactionHistoryResponse extends IResponse {
   data: ITransactionHistory[]
+}
+
+
+interface Bank {
+  name: string;
+  code: string;
+  bin: string;
+  shortName: string;
+  logo: string | null;
+  transferSupported: number;
+  lookupSupported: number;
+  short_name: string;
+  support: number;
+  isTransfer: number;
+  swift_code: string | null;
 }

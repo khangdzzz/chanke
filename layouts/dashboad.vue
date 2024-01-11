@@ -60,6 +60,9 @@ const openHome = () => {
         <nuxt-link to="/games" class="nuxt-link">
           <v-list-item prepend-icon="mdi-gamepad-variant-outline" title="Quản Lí Games"></v-list-item>
         </nuxt-link>
+         <nuxt-link to="/games/detail" class="nuxt-link">
+          <v-list-item prepend-icon="mdi-gamepad-variant" title="Chi Tiết Games"></v-list-item>
+        </nuxt-link>
 
         <v-list-group
           v-for="item in menus"

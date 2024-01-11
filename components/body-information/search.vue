@@ -38,7 +38,7 @@ const searchHistoryByNickName = async () => {
       <tbody class="body">
         <tr class="row" v-for="item in historyTransaction" :key="item._id">
           <td class="cell">{{ formatDate(item.createdAt as string)}}</td>
-          <td class="cell">{{ item.accountNumber }}</td>
+          <td class="cell">{{ item.accountNumberClient }}</td>
           <td class="cell">{{ item.transId }}</td>
           <td class="cell">{{ item.amount }}</td>
           <td class="cell">{{ item.gameName }}</td>

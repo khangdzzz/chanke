@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { on } from 'events'
-
-const codes = [1, 2, 3, 4, 5, 5]
 const formatCode = (codes: number[]) => {
   const joinCodes = codes.join('-')
   return joinCodes.split('') || []
@@ -10,16 +7,13 @@ const formatCode = (codes: number[]) => {
 const gameStore = useGameStore()
 
 const gameMiddleTitle = computed(() => {
-  const endTwoNumber = ['CL_Game', 'TX_Game', '1/3_Game', 'X_Game', 'DS_Game']
-  const threeEndNumber = ['G3_Game']
-  const endNumber = ['T3_Game']
-
-  if(endTwoNumber.includes(gameStore.gameType)) return 'TỔNG 2 SỐ CUỐI'
-  else if(threeEndNumber.includes(gameStore.gameType)) return 'TỔNG 3 SỐ CUỐI'
-  else if(endNumber.includes(gameStore.gameType)) return 'TỔNG SỐ'
+  if(resultType.value == 'count_2') return 'TỔNG 2 SỐ CUỐI'
+  else if(resultType.value == 'count_3') return 'TỔNG 3 SỐ CUỐI'
+  else if(resultType.value == 'end') return 'TỔNG SỐ'
 })
 
 const rewards = computed(() => gameStore.reward)
+const resultType = computed(() => gameStore.reward[0]?.resultType)
 
 onMounted(async () => {
   gameStore.gameType = 'CL_Game'
@@ -52,7 +46,7 @@ watch(
             <span
               v-for="(code, index) in formatCode(reward.numberTLS)"
               :key="index"
-              :class="{ code: Number(code) }"
+              :class="{ code: Number(code) || code == '0' }"
             >
               {{ code }}
             </span>

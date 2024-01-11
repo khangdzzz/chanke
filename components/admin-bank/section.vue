@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { isNumber } from '~/utils/formatters'
-import { BANKS } from '~/utils/constants'
+import { BANKS, BANKS_MAP } from '~/utils/constants'
 import { IBankAdmin } from '@/utils'
+
 const status = [
   { label: 'Bật', value: '1' },
   { label: 'Tắt', value: '0' },
@@ -24,6 +25,7 @@ const adminStore = useAdminStore()
 const isCreateSuccess = computed(() => adminStore.isCreateSuccess)
 const isCreateFail = computed(() => adminStore.isCreateFail)
 const isLoading = ref(false)
+
 const addBankAdmin = async () => {
   isLoading.value = true
   const body = {
@@ -35,13 +37,23 @@ const addBankAdmin = async () => {
   }
 
   await adminStore.createBankAdmin(body)
+  await adminStore.getBankAdmin()
+  
   setTimeout(() => {
     isLoading.value = false
     isActiveForm.value = false
   }, 1000);
 }
 
-const bankAdmin = computed(() => adminStore.bankAdmin)
+const bankAdmin = computed(() => {
+  return adminStore.bankAdmin.map(item => {
+    const bank = BANKS_MAP.find(bank => bank.bin === item.binBank)
+    return {
+      ...item,
+      logo: bank?.logo,
+    }
+  })
+})
 
 onMounted(async () => {
   await adminStore.getBankAdmin()
@@ -121,7 +133,7 @@ const updateActive  = async (infor: IBankAdmin) => {
         <tr class="row" v-for="infor in bankAdmin">
           <td class="cell">{{ infor.accountNumber }}</td>
           <td class="cell">
-            <img src="https://api.vietqr.io/img/MB.png" width="100" />
+            <img :src="infor.logo" width="100" />
           </td>
           <td class="cell">{{ infor.name }}</td>
           <td class="cell status" @click="updateStatus(infor)">

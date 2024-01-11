@@ -1,8 +1,17 @@
 <script lang="ts" setup>
+import { BANKS_MAP } from '~~/utils/constants'
 import { formatDate } from '~~/utils/formatters'
 
 const playerStore = usePlayerStore()
-const playerData = computed(() => playerStore.player)
+const playerData = computed(() => {
+  return playerStore.player.map(item => {
+    const bank = BANKS_MAP.find(bank => bank.bin === item.bankcode)
+    return {
+      ...item,
+      logo: bank?.logo,
+    }
+  })
+})
 
 onMounted(async () => {
   await playerStore.getPlayerData()
@@ -13,17 +22,17 @@ onMounted(async () => {
     <table class="table">
       <thead class="head">
         <tr class="row">
-          <th class="cell">THỜI GIAN</th>
+          <th class="cell">Thời Gian</th>
           <th class="cell">Ngân Hàng</th>
           <th class="cell">Số Tài Khoản</th>
-          <th class="cell">NICKNAME</th>
+          <th class="cell">Nick Name</th>
         </tr>
       </thead>
       <tbody class="body">
         <tr class="row" v-for="player in playerData">
           <td class="cell">{{ formatDate(player.createdAt as string) }}</td>
           <td class="cell">
-            <img src="https://api.vietqr.io/img/MB.png" width="100" />
+            <img :src="player.logo" width="100" />
           </td>
           <td class="cell">{{ player.accountNumber }}</td>
           <td class="cell">{{ player.userid }}</td>

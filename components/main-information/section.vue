@@ -1,51 +1,33 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
+import { IListGameDetail } from '~~/utils'
 
-const LIST_GAME = [
-  {
-    id: 1,
-    name: 'Chẵn Lẻ',
-    isActive: true,
-    gameType: "CL_Game"
+const gameStore = useGameStore()
 
-  },
-  {
-    id: 2,
-    name: 'Tài Xỉu',
-    isActive: false,
-    gameType: "TX_Game"
-  },
-  {
-    id: 3,
-    name: '1 Phần 3',
-    isActive: false,
-    gameType: "1/3_Game"
-  },
-  {
-    id: 4,
-    name: 'Xiên',
-    isActive: false,
-    gameType: "X_Game"
-  },
-  {
-    id: 5,
-    name: 'Đoán Số',
-    isActive: false,
-    gameType: "DS_Game"
-  },
-  {
-    id: 6,
-    name: 'Gấp 3',
-    isActive: false,
-    gameType: "G3_Game"
-  },
-  {
-    id: 7,
-    name: 'Tổng 3 Số',
-    isActive: false,
-    gameType: "T3_Game"
-  }
-]
+onMounted(async () => {
+  await gameStore.getListGameDetail('true')
+})
+
+const LISTGAME = computed(() => {
+  return gameStore.listGamesDetail.map((game, index) => {
+    if (index === 0) {
+      return {
+        ...game,
+        isActive: true,
+      }
+    }
+    return {
+      ...game,
+      isActive: false,
+    }
+  })
+})
+
+const listGame = ref(LISTGAME.value)
+
+watch(LISTGAME, () => {
+  listGame.value = LISTGAME.value
+})
 
 const ACTION = [
   {
@@ -74,13 +56,10 @@ const ACTION = [
   },
 ]
 
-const listGame = ref(LIST_GAME)
-const gameStore = useGameStore()
-
-const chooseGame = (game: { id: number, gameType: string }) => {
+const chooseGame = (game: IListGameDetail) => {
   gameStore.gameType = game.gameType
   listGame.value = listGame.value.map(item => {
-    if (item.id === game.id) {
+    if (item._id == game._id) {
       return {
         ...item,
         isActive: true,
@@ -123,7 +102,7 @@ const scrollToCreateNickname = () => {
     <div class="games">
       <button
         v-for="game in listGame"
-        :key="game.id"
+        :key="game._id"
         variant="outlined"
         class="button"
         :class="{ '-active': game.isActive }"

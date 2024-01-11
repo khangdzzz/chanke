@@ -2,6 +2,11 @@ export const useDialogConfirmStore = defineStore('dialog-confirm', () => {
   const isVisible = ref(true)
   const isVisibleGift = ref(false)
   const isVisibleCheckIn = ref(false)
+  const isVisibleQrCode = ref(false)
+
+  const showQrCode = () => {
+    isVisibleQrCode.value = true
+  }
 
   const showDialog = () => {
     isVisible.value = true
@@ -31,6 +36,8 @@ export const useDialogConfirmStore = defineStore('dialog-confirm', () => {
     isVisible,
     isVisibleGift,
     isVisibleCheckIn,
+    isVisibleQrCode,
+    showQrCode,
     showDialog,
     hideDialog,
     showDialogGift,
