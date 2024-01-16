@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
+    "@vuepic/vue-datepicker": "^7.4.1",
     "clipboard-copy": "^4.0.1",
     "date-fns": "^2.29.3",
     "jsonwebtoken": "^9.0.2",

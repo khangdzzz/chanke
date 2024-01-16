@@ -38,7 +38,7 @@ const addBankAdmin = async () => {
 
   await adminStore.createBankAdmin(body)
   await adminStore.getBankAdmin()
-  
+
   setTimeout(() => {
     isLoading.value = false
     isActiveForm.value = false
@@ -65,56 +65,91 @@ const updateStatus = async (infor: IBankAdmin) => {
   await adminStore.getBankAdmin()
 }
 
-const updateActive  = async (infor: IBankAdmin) => {
+const updateActive = async (infor: IBankAdmin) => {
   infor.active = !infor.active
   await adminStore.updateBankAdmin(infor)
   await adminStore.getBankAdmin()
+}
+
+const idEditBank = ref('')
+const isEditBank = ref(false)
+
+const accountNumberEdit = ref('')
+const selectedBankEdit = ref()
+const nameAdminEdit = ref('')
+const defaultStatusEdit = ref({ label: 'Bật', value: '1' })
+const defaultActiveEdit = ref({ label: 'Hoạt động', value: '1' })
+
+
+const isActiveEditBank = (id: string) => {
+  return isEditBank.value && idEditBank.value == id
+}
+
+const handleEditBank = (infor: IBankAdmin) => {
+  accountNumberEdit.value = infor.accountNumber
+  selectedBankEdit.value = BANKS.find(bank => bank.value == infor.binBank)
+  nameAdminEdit.value = infor.name
+  defaultStatusEdit.value = { label: infor.status ? 'Bật' : 'Tắt', value: infor.status ? '1' : '0' }
+  defaultActiveEdit.value = { label: infor.active ? 'Hoạt động' : 'Bảo trì', value: infor.active ? '1' : '0' }
+
+  isEditBank.value = true
+  idEditBank.value = infor._id as string
+}
+
+const cancelEditBank = () => {
+  isEditBank.value = false
+  idEditBank.value = ''
+}
+
+const isUpdate = ref('')
+
+const updateBankInfor = async (infor: IBankAdmin) => {
+  isUpdate.value = infor._id as string
+
+  infor.accountNumber = accountNumberEdit.value
+  infor.binBank = selectedBankEdit.value.value
+  infor.name = nameAdminEdit.value
+  infor.status = defaultStatusEdit.value.value == '1' ? true : false
+  infor.active = defaultActiveEdit.value.value == '1' ? true : false
+
+  await adminStore.updateBankAdmin(infor)
+  await adminStore.getBankAdmin()
+
+  isEditBank.value = false
+  idEditBank.value = ''
+  isUpdate.value = ''
+}
+
+const isActiveLoadingUpdate = (id: string) => {
+  return isUpdate.value == id && isEditBank.value
+}
+
+const idDeleteBank = ref('')
+const isActiveDeleteBank = (id: string) => {
+  return idDeleteBank.value == id
+}
+const deleteBankAdmin = async (id: string) => {
+  idDeleteBank.value = id
+  await adminStore.deleteBankAdmin(id)
+  await adminStore.getBankAdmin()
+
+  isEditBank.value = false
+  idEditBank.value = ''
 }
 </script>
 <template>
   <div class="container-admin-bank">
     <v-btn class="add" append-icon="mdi-plus" @click="() => isActiveForm = !isActiveForm">Tạo mới ngân hàng</v-btn>
     <div class="form" v-if="isActiveForm">
-      <v-text-field 
-        v-model="accountNumber" 
-        class="row -account-number" 
-        label="Số Tài khoản" outlined 
-        @keypress="isNumber($event)"
-      ></v-text-field>
-      <v-select
-          v-model="selectedBank"
-          :items="BANKS"
-          item-value="value"
-          item-title="label"
-          variant="outlined"
-          class="row"
-          dense
-          :clearable="false"
-          return-object
-      ></v-select>
+      <v-text-field v-model="accountNumber" class="row -account-number" label="Số Tài khoản" outlined
+        @keypress="isNumber($event)"></v-text-field>
+      <v-select v-model="selectedBank" :items="BANKS" item-value="value" item-title="label" variant="outlined" class="row"
+        dense :clearable="false" return-object></v-select>
       <v-text-field v-model="nameAdmin" class="row -name-admin" label="Tên Admin" outlined></v-text-field>
-      <v-select 
-        v-model="defaultStatus"
-        class="row -status"  
-        variant="outlined"  
-        chips  
-        item-value="value"
-        item-title="label"
-        :items="status"
-        :clearable="false"
-        return-object
-      ></v-select>
-      <v-select 
-        v-model="defaultActive"
-        class="row -active"  
-        variant="outlined"  
-        chips  
-        item-value="value"
-        item-title="label"
-        :items="active"
-        :clearable="false"
-        return-object
-      ></v-select>
+      <v-select v-model="defaultStatus" class="row -status" variant="outlined" chips item-value="value" item-title="label"
+        :items="status" :clearable="false" return-object></v-select>
+      <v-select v-model="defaultActive" class="row -active" variant="outlined" chips item-value="value" item-title="label"
+        :items="active" :clearable="false" return-object></v-select>
       <v-btn class="add" @click="addBankAdmin">Thêm</v-btn>
       <span class="success" v-if="isCreateSuccess">Thêm Thành Công</span>
       <span class="fail" v-if="isCreateFail">Thêm Thất Bại</span>
@@ -127,25 +162,111 @@ const updateActive  = async (infor: IBankAdmin) => {
           <th class="cell">Tên Admin</th>
           <th class="cell">Status (bật / tắt)</th>
           <th class="cell">Active (hoạt động / không)</th>
+          <th class="cell">Thao Tác</th>
         </tr>
       </thead>
       <tbody class="body">
         <tr class="row" v-for="infor in bankAdmin">
-          <td class="cell">{{ infor.accountNumber }}</td>
-          <td class="cell">
-            <img :src="infor.logo" width="100" />
-          </td>
-          <td class="cell">{{ infor.name }}</td>
-          <td class="cell status" @click="updateStatus(infor)">
-            <v-chip class="status" variant="flat" :color="infor.status ? 'primary' : 'red'">
-              {{ infor.status  ? "Bật" : "Tắt"}}
-            </v-chip>
-          </td>
-          <td class="cell">
-            <v-chip class="active" @click="updateActive(infor)" variant="flat" :color="infor.active ? 'green' : ' '">
-              {{ infor.active  ? "Hoạt động" : "Bảo trì"}}
-            </v-chip>
-          </td>
+          <template v-if="!isActiveEditBank(infor._id as string)">
+            <td class="cell">{{ infor.accountNumber }}</td>
+            <td class="cell">
+              <img :src="infor.logo" width="100" />
+            </td>
+            <td class="cell">{{ infor.name }}</td>
+            <td class="cell status" @click="updateStatus(infor)">
+              <v-chip class="status" variant="flat" :color="infor.status ? 'primary' : 'red'">
+                {{ infor.status ? "Bật" : "Tắt" }}
+              </v-chip>
+            </td>
+            <td class="cell">
+              <v-chip class="active" @click="updateActive(infor)" variant="flat" :color="infor.active ? 'green' : ' '">
+                {{ infor.active ? "Hoạt động" : "Bảo trì" }}
+              </v-chip>
+            </td>
+            <td class="cell -text">
+              <v-btn class="button -edit" variant="text" @click="handleEditBank(infor)">
+                Edit
+              </v-btn>
+              <span>|</span>
+              <v-btn 
+                class="button -delete" 
+                variant="text" 
+                @click="deleteBankAdmin(infor._id as string)" 
+                :loading="isActiveDeleteBank(infor._id as string)">
+                Delete
+              </v-btn>
+            </td>
+          </template>
+            <template v-else>
+            <td class="cell">
+              <v-text-field 
+                v-model="accountNumberEdit" 
+                class="row -account-number" 
+                label="Số Tài khoản" outlined
+                @keypress="isNumber($event)"
+              ></v-text-field>
+            </td>
+            <td class="cell">
+              <v-select 
+                v-model="selectedBankEdit" 
+                :items="BANKS" 
+                item-value="value" 
+                item-title="label" 
+                variant="outlined" 
+                class="row"
+                dense 
+                :clearable="false" 
+                return-object
+              ></v-select>
+            </td>
+            <td class="cell">
+              <v-text-field 
+                v-model="nameAdminEdit" 
+                class="row -name-admin" 
+                label="Tên Admin" 
+                outlined
+              ></v-text-field>
+            </td>
+            <td class="cell status">
+              <v-select 
+                v-model="defaultStatusEdit" 
+                class="row -status" 
+                variant="outlined" 
+                chips 
+                item-value="value" 
+                item-title="label"
+                :items="status" 
+                :clearable="false" 
+                return-object
+              ></v-select>
+            </td>
+            <td class="cell">
+              <v-select 
+                v-model="defaultActiveEdit"
+                class="row -active" 
+                variant="outlined" 
+                chips 
+                item-value="value" 
+                item-title="label"
+                :items="active" 
+                :clearable="false" 
+                return-object
+              ></v-select>
+            </td>
+            <td class="cell -text">
+              <v-btn 
+                class="button -edit" 
+                variant="text" 
+                @click="updateBankInfor(infor)" 
+                :loading="isActiveLoadingUpdate(infor._id as string)">
+                Update
+              </v-btn>
+              <span>|</span>
+              <v-btn class="button -delete" variant="text" @click="cancelEditBank()">
+                Cancel
+              </v-btn>
+            </td>
+          </template>
         </tr>
       </tbody>
     </table>
@@ -178,7 +299,7 @@ const updateActive  = async (infor: IBankAdmin) => {
       width: 100px;
     }
 
-    > .success {
+    >.success {
       color: green;
       font-size: 0.9rem;
       font-weight: 900;
@@ -186,7 +307,7 @@ const updateActive  = async (infor: IBankAdmin) => {
       margin: 12px 0;
     }
 
-    > .fail {
+    >.fail {
       color: red;
       font-size: 0.9rem;
       font-weight: 900;
@@ -235,11 +356,31 @@ const updateActive  = async (infor: IBankAdmin) => {
     white-space: nowrap;
   }
 
-  >.table tbody>.row>.cell >.status {
+  >.table tbody>.row>.cell>.status {
     cursor: pointer;
   }
 
-  >.table tbody>.row>.cell >.active {
+  >.table tbody>.row>.cell>.active {
+    cursor: pointer;
+  }
+
+  >.table>.body>.row>.cell>.button.-edit {
+    color: $color-blue !important;
+    cursor: pointer;
+  }
+
+  >.table>.body>.row>.cell>.button.-delete {
+    color: $color-red !important;
+    cursor: pointer;
+  }
+
+  >.table>.body>.row>.cell>.button.-update {
+    color: $color-blue !important;
+    cursor: pointer;
+  }
+
+  >.table>.body>.row>.cell>.button.-cancel {
+    color: $color-black !important;
     cursor: pointer;
   }
 }

@@ -1,16 +1,33 @@
 <script lang="ts" setup>
-import { formatDate } from "~/utils/formatters";
+import { formatDate } from "~/utils/formatters"
 
-const nickname = ref("");
-const adminStore = useAdminStore();
+const nickname = ref("")
+const adminStore = useAdminStore()
 
-const historyTransaction = computed(() => adminStore.historyTransaction);
+const transactions = computed(() => adminStore.historyTransaction?.transactions)
+const totalPage = computed(() => adminStore.historyTransaction?.totalPages)
+
+const isShowPagination = computed(() => {
+  return totalPage.value ? totalPage.value > 1 : false
+})
+
+const page = ref(1)
+const limit = 10
 
 const searchHistoryByNickName = async () => {
   if (nickname.value) {
-    await adminStore.getHistoryTransaction(nickname.value)
+    await adminStore.getHistoryTransaction(nickname.value, page.value, limit)
   }
 };
+
+watch(page,
+  async () => {
+    if (nickname.value) {
+      await adminStore.getHistoryTransaction(nickname.value, page.value, limit)
+    }
+  }
+)
+
 </script>
 <template>
   <div class="container-search">
@@ -36,12 +53,12 @@ const searchHistoryByNickName = async () => {
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row" v-for="item in historyTransaction" :key="item._id">
+        <tr class="row" v-for="item in transactions" :key="item._id">
           <td class="cell">{{ formatDate(item.createdAt as string)}}</td>
           <td class="cell">{{ item.accountNumberClient }}</td>
           <td class="cell">{{ item.transId }}</td>
           <td class="cell">{{ item.amount }}</td>
-          <td class="cell">{{ item.gameName }}</td>
+          <td class="cell">{{ item.detailGameName }}</td>
           <td class="cell">
             <span class="betName">{{  item.betValue }}</span>
           </td>
@@ -54,6 +71,16 @@ const searchHistoryByNickName = async () => {
         </tr>
       </tbody>
     </table>
+     <div class="text-center">
+    <v-pagination
+      v-if="isShowPagination"
+      v-model="page"
+      :length="totalPage"
+       rounded="circle"
+      prev-icon="mdi-menu-left"
+      next-icon="mdi-menu-right"
+    ></v-pagination>
+  </div>
   </div>
 </template>
 

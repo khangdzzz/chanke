@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 const formatCode = (codes: number[]) => {
-  const joinCodes = codes.join('-')
-  return joinCodes.split('') || []
+  return codes.flatMap((code, index) => index < codes.length - 1 ? [Number(code), '-'] : Number(code))
 }
 
 const gameStore = useGameStore()
@@ -9,7 +8,7 @@ const gameStore = useGameStore()
 const gameMiddleTitle = computed(() => {
   if(resultType.value == 'count_2') return 'TỔNG 2 SỐ CUỐI'
   else if(resultType.value == 'count_3') return 'TỔNG 3 SỐ CUỐI'
-  else if(resultType.value == 'end') return 'TỔNG SỐ'
+  else if(resultType.value == 'end') return 'SỐ CUỐI'
 })
 
 const rewards = computed(() => gameStore.reward)
@@ -40,7 +39,7 @@ watch(
       <tbody class="body">
         <tr class="row" v-for="reward in rewards" :key="reward?._id">
           <td class="cell">
-            <v-chip variant="flat" color="green">fdsfaf2323e32fsaf {{ reward.content }}</v-chip>
+            <v-chip variant="flat" color="green">nickname {{ reward.content }}</v-chip>
           </td>
           <td class="cell">
             <span

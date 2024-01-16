@@ -37,6 +37,10 @@ const handleFakeTransaction = async () => {
   }
  
   await adminStore.handleTransaction(body)
+  setTimeout(() => {
+    adminStore.isHandleTransactionSuccess = false
+    adminStore.isHandleTransactionFail = false
+  }, 1000);
 }
 
 </script>

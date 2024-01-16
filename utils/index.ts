@@ -49,6 +49,7 @@ export interface PlayerResponse extends IResponse {
 }
 
 export interface IBankAdmin {
+  _id?: string
   accountNumber: string
   qr?: string
   binBank: string
@@ -86,6 +87,7 @@ export interface ITransactionHistory {
   betValue: string;
   betName: string;
   gameName: string;
+  detailGameName: string;
   content: string;
   status: string;
   time: string;
@@ -94,10 +96,28 @@ export interface ITransactionHistory {
   nickname: string;
 }
 
-export interface TransactionHistoryResponse extends IResponse {
-  data: ITransactionHistory[]
+export interface ITransactionHistoryPagination extends IResponse {
+  totalRecords: number,
+  totalPages: number,
+  transactions: ITransactionHistory[]
 }
 
+export interface TransactionHistoryResponse extends IResponse {
+  data: ITransactionHistoryPagination
+}
+
+
+export interface IMaintain {
+  _id?: string
+  start: string
+  end: string
+  content: string
+  status: boolean
+}
+
+export interface MaintainResponse extends IResponse {
+  data: IMaintain[]
+}
 
 interface Bank {
   name: string;
