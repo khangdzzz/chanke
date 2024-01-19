@@ -84,7 +84,7 @@ watch(accountName, newVal => {
       </div>
 
       <div class="nick">
-        <span class="label">Tên tài khoản</span>
+        <span class="label">Nick name</span>
         <v-text-field
           v-model="accountName"
           class="text"

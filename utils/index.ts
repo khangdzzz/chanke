@@ -65,14 +65,8 @@ export interface BankAdminResponse extends IResponse {
 
 export interface ITransaction {
   content: string;
-  accountNumberClient: string;
-  bankClient: string;
-  accountNumberAdmin: string;
-  bankAdmin: string;
-  money: number;
-  transactionId: string;
-  transactionDetail: string;
-  time: string;
+  amount: number;
+  bank_type: string;
 }
 
 export interface ITransactionHistory {

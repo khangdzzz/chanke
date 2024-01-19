@@ -39,6 +39,21 @@ export const BANKS = [
     { value: '970452', label: '(970452) KienLongBank' },
 ]
 
+export const BANK_USED = [
+    {
+        code: 'VCB',
+        shortName: '(970436) Vietcombank',
+    },
+    {
+        code: 'SHB',
+        shortName: '(970443) SHB',
+    },
+    {
+        code: 'ACB',
+        shortName: '(970416) ACB',
+    },
+]
+
 export const BANKS_MAP = [
     {
         id: 17,
