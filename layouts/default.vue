@@ -43,7 +43,7 @@ const isMaintain = computed(() => {
       </div>
     </div>
   </div>
-  <div class="jackpot" v-if="isMaintain">
+  <!-- <div class="jackpot" v-if="isMaintain">
     <div class="jackpot-content">
       <a class="content" href="#" data-toggle="modal" data-target="#modalJackpot">
         <img src="~/assets/images/jackpot.png" alt="" />
@@ -53,7 +53,7 @@ const isMaintain = computed(() => {
         </div>
       </a>
     </div>
-  </div>
+  </div> -->
   <v-img 
     v-if="!isMaintain && maintainStore.maintain"
     class="mx-auto maintain"

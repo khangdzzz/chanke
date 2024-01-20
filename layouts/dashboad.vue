@@ -58,6 +58,9 @@ const openHome = () => {
           <v-list-item prepend-icon="mdi-cash-marker" title="Giao Dịch"></v-list-item>
         </nuxt-link>
         <nuxt-link to="/games" class="nuxt-link">
+          <v-list-item prepend-icon="mdi-cash-100" title="Lịch Sử Rút Tiền"></v-list-item>
+        </nuxt-link>
+        <nuxt-link to="/games" class="nuxt-link">
           <v-list-item prepend-icon="mdi-gamepad-variant-outline" title="Quản Lí Games"></v-list-item>
         </nuxt-link>
         <nuxt-link to="/games/detail" class="nuxt-link">
@@ -67,7 +70,7 @@ const openHome = () => {
           <v-list-item prepend-icon="mdi-wrench-clock" title="Bảo Trì"></v-list-item>
         </nuxt-link>
 
-        <v-list-group
+        <!-- <v-list-group
           v-for="item in menus"
           :key="item.key"
           :value="item.value"
@@ -93,7 +96,7 @@ const openHome = () => {
               :value="`${item.key}/${submenu.title}`"
             ></v-list-item>
           </nuxt-link>
-        </v-list-group>
+        </v-list-group> -->
       </v-list>
     </v-navigation-drawer>
     <v-main class="main-content">

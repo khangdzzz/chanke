@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { BANKS_MAP } from '~~/utils/constants'
-import { formatDate } from '~~/utils/formatters'
+import { formatDate, maskNumber } from '~~/utils/formatters'
 
 const playerStore = usePlayerStore()
 const playerData = computed(() => {
@@ -34,7 +34,7 @@ onMounted(async () => {
           <td class="cell">
             <img :src="player.logo" width="100" />
           </td>
-          <td class="cell">{{ player.accountNumber }}</td>
+          <td class="cell">{{ maskNumber(player.accountNumber) }}</td>
           <td class="cell">{{ player.userid }}</td>
         </tr>
       </tbody>

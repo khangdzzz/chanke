@@ -15,7 +15,7 @@ onMounted(() => {
     <MainInformationSection />
     <BodyInformationSection />
     <HistoryWinSection />
-    <TasksSection ref="tasksSection" />
+    <!-- <TasksSection ref="tasksSection" /> -->
     <ConfirmSection />
   </div>
 </template>

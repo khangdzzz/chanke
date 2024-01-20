@@ -30,24 +30,24 @@ watch(LISTGAME, () => {
 })
 
 const ACTION = [
-  {
-    id: 1,
-    name: 'Điểm Danh',
-    icon: 'mdi-account-plus ',
-    method: () => showDialogCheckIn(),
-  },
-  {
-    id: 2,
-    name: 'Nhiệm Vụ Hàng Ngày',
-    icon: 'mdi-format-list-checkbox ',
-    method: () => scrollToTasks(),
-  },
-  {
-    id: 3,
-    name: 'Mã Quà Tặng',
-    icon: 'mdi-gift ',
-    method: () => showDialogGift(),
-  },
+  // {
+  //   id: 1,
+  //   name: 'Điểm Danh',
+  //   icon: 'mdi-account-plus ',
+  //   method: () => showDialogCheckIn(),
+  // },
+  // {
+  //   id: 2,
+  //   name: 'Nhiệm Vụ Hàng Ngày',
+  //   icon: 'mdi-format-list-checkbox ',
+  //   method: () => scrollToTasks(),
+  // },
+  // {
+  //   id: 3,
+  //   name: 'Mã Quà Tặng',
+  //   icon: 'mdi-gift ',
+  //   method: () => showDialogGift(),
+  // },
   {
     id: 4,
     name: 'Tạo Nick Name',

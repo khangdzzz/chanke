@@ -90,6 +90,10 @@ export interface ITransactionHistory {
   nickname: string;
 }
 
+export interface ITransactionHistoryResponse extends IResponse {
+  data?: ITransactionHistory[]
+}
+
 export interface ITransactionHistoryPagination extends IResponse {
   totalRecords: number,
   totalPages: number,

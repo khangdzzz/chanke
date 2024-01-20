@@ -4,7 +4,6 @@ import {
   IResponse,
   BankAdminResponse,
   ITransaction,
-  TransactionHistoryResponse,
   ITransactionHistoryPagination
 } from '@/utils'
 
@@ -15,7 +14,6 @@ export const useAdminStore = defineStore('admin', () => {
   const isHandleTransactionFail = ref(false)
   const bankAdmin = ref<IBankAdmin[]>([])
   const bankAdminClient = ref<IBankAdmin[]>([])
-  const historyTransaction = ref<ITransactionHistoryPagination>()
 
   const createBankAdmin = async (body: IBankAdmin) => {
     const res: IResponse | null = await apis
@@ -72,17 +70,6 @@ export const useAdminStore = defineStore('admin', () => {
     isHandleTransactionFail.value = !isHandleTransactionSuccess.value
   }
 
-  const getHistoryTransaction = async (nickname: string, page: number, limit: number) => {
-    const res: TransactionHistoryResponse | null = await apis
-      .chanle!.get(`transation/history?nickname=${nickname}&page=${page}&limit=${limit}`)
-      .json<TransactionHistoryResponse>()
-      .catch(() => null)
-
-    if (res && res.success) {
-      historyTransaction.value = res.data
-    }
-  }
-
   const deleteBankAdmin = async (id: string) => {
     await apis
       .chanle!.delete(`admin/bank/${id}`)
@@ -96,13 +83,11 @@ export const useAdminStore = defineStore('admin', () => {
     bankAdmin,
     isHandleTransactionSuccess,
     isHandleTransactionFail,
-    historyTransaction,
     bankAdminClient,
     createBankAdmin,
     getBankAdmin,
     updateBankAdmin,
     handleTransaction,
-    getHistoryTransaction,
     getBankAdminClient,
     deleteBankAdmin
   }

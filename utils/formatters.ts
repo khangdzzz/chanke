@@ -20,3 +20,10 @@ export const isNumber = (evt: { keyCode: number; preventDefault: () => void }) =
         return true
     }
 }
+
+
+export const maskNumber = (numberString: string) => {
+    const maskedPart = '*'.repeat(numberString.length - 3);
+    const visiblePart = numberString.slice(-3);
+    return maskedPart + visiblePart;
+}

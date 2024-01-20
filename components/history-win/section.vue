@@ -1,5 +1,14 @@
-import { text } from 'stream/consumers';
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { formatDate, maskNumber } from '~~/utils/formatters'
+
+const transactionStore = useTransactionStore()
+onMounted(async () => {
+  await transactionStore.getTenHistoryTransactionWinNewset()
+})
+
+const historyTransactionWin = computed(() => transactionStore.tenHistoryTransactionWinNewest)
+
+</script>
 <template>
   <div class="history-win">
     <div class="title">
@@ -20,27 +29,14 @@ import { text } from 'stream/consumers';
           </tr>
         </thead>
         <tbody class="body">
-          <tr class="row">
-            <td class="cell">19:09:40 24/12/2023</td>
-            <td class="cell">***********8389</td>
-            <td class="cell">***********517</td>
-            <td class="cell">10000</td>
-            <td class="cell">Chẳn Lẻ</td>
+          <tr class="row" v-for="(history, index) in historyTransactionWin" :key="index">
+            <td class="cell">{{ formatDate(history.time) }}</td>
+            <td class="cell">{{ maskNumber(history.accountNumberClient) }}</td>
+            <td class="cell">{{ maskNumber(history.transId) }}</td>
+            <td class="cell">{{ Number(history.amount).toLocaleString() }}</td>
+            <td class="cell">{{ history.detailGameName }}</td>
             <td class="cell">
-              <span class="betName">L</span>
-            </td>
-            <td class="cell">
-              <span class="result -lose">Thua</span>
-            </td>
-          </tr>
-          <tr class="row">
-            <td class="cell">19:09:40 24/12/2023</td>
-            <td class="cell">***********8389</td>
-            <td class="cell">***********517</td>
-            <td class="cell">10000</td>
-            <td class="cell">Chẳn Lẻ</td>
-            <td class="cell">
-              <span class="betName">L</span>
+              <span class="betName">{{ history.betValue }}</span>
             </td>
             <td class="cell">
               <span class="result -win">Thắng</span>
