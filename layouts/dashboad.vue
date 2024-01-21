@@ -33,6 +33,13 @@ const logout = () => {
 const openHome = () => {
   router.push('/')
 }
+
+const gameStore = useGameStore()
+
+onMounted(async () => {
+  await gameStore.getListGameDetail()
+})
+
 </script>
 <template>
   <v-layout class="main-container">
@@ -57,7 +64,7 @@ const openHome = () => {
         <nuxt-link to="/transaction" class="nuxt-link">
           <v-list-item prepend-icon="mdi-cash-marker" title="Giao Dịch"></v-list-item>
         </nuxt-link>
-        <nuxt-link to="/games" class="nuxt-link">
+        <nuxt-link to="/cash" class="nuxt-link">
           <v-list-item prepend-icon="mdi-cash-100" title="Lịch Sử Rút Tiền"></v-list-item>
         </nuxt-link>
         <nuxt-link to="/games" class="nuxt-link">
@@ -142,8 +149,8 @@ const openHome = () => {
 
   > .container {
     background-color: white;
-    height: 100vh;
     padding: 20px;
+    min-height: 100vh;
   }
 }
 

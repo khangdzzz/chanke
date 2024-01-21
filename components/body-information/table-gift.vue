@@ -26,11 +26,14 @@ const openQrCode = (logo: string) => {
   dialogConfirmStore.showQrCode()
 }
 
+const snackbar = ref(false)
+const text = ref('')
+
 const copyBankNumber = (accountNumber: string) => {
   copy(accountNumber)
-  alert(`Sao chép thành công < ${accountNumber} >`);
+  text.value = `Sao chép thành công < ${accountNumber} >`
+  snackbar.value = true
 }
-
 
 </script>
 <template>
@@ -58,6 +61,10 @@ const copyBankNumber = (accountNumber: string) => {
             {{ item.accountNumber }}
             <v-icon class="icon-copy" icon="mdi-content-copy" @click="copyBankNumber(item.accountNumber)" />
             <v-icon class="icon-qr" icon="mdi-qrcode" @click="openQrCode(item.qr as string)" />
+            <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" color="success" elevation="24"
+              transition="fade-transition">
+              {{ text }}
+            </v-snackbar>
           </td>
           <td class="cell">{{ item.name }}</td>
         </tr>

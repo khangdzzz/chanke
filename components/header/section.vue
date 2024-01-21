@@ -7,7 +7,7 @@ const openCartIcon = ref(openCart)
   <div class="container-header">
     <div class="header">
       <img class="icon" :src="openCartIcon" alt="" />
-      <a class="label" href="/">chanlebank.cz</a>
+      <a class="label" href="/">chanlebank.page</a>
     </div>
   </div>
 </template>

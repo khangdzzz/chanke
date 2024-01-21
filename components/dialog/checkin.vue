@@ -104,7 +104,7 @@ onMounted(() => {
             </div>
             <div class="warning">
               <p>
-                chẵn lẻ bank - chanlebank.cz
+                chẵn lẻ bank - chanlebank.page
                 <br />
                 <br />
                 - Mỗi phiên quà các bạn có 15 phút để điểm danh.

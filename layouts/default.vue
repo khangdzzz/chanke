@@ -34,7 +34,7 @@ const isMaintain = computed(() => {
       </div>
       <div class="footer">
         <div class="label">
-          <b>chanlebank.cz</b>
+          <b>chanlebank.page</b>
           ©
           {{ new Date().getFullYear() }}
           -

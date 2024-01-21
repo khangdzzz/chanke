@@ -3,6 +3,11 @@ import { formatDate, maskNumber } from "~/utils/formatters"
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
+definePageMeta({
+  middleware: 'auth',
+  layout: 'dashboad',
+})
+
 const transactionStore = useTransactionStore()
 
 const page = ref(1)
@@ -10,7 +15,7 @@ const limit = 10
 const condition = ref("")
 
 onMounted(async () => {
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryCashLatest(condition.value, page.value, limit)
 })
 
 const gameStore = useGameStore()
@@ -21,8 +26,8 @@ const games = computed(() => {
   return [defaultGame.value, ...gameStore.listGamesDetail]
 })
 
-const transactions = computed(() => transactionStore.historyTransactionLatest?.transactions)
-const totalPage = computed(() => transactionStore.historyTransactionLatest?.totalPages)
+const transactions = computed(() => transactionStore.historyCashLatest?.transactions)
+const totalPage = computed(() => transactionStore.historyCashLatest?.totalPages)
 
 const isShowPagination = computed(() => {
   return totalPage.value ? totalPage.value > 1 : false
@@ -36,24 +41,24 @@ const endDate = ref(new Date())
 
 const isSearchTime = ref(false)
 
-const searchHistoryPlayer = async () => {
+const searchHistoryCash = async () => {
   condition.value = ''
   condition.value += nickname.value ? `&nickname=${nickname.value}` : ''
   condition.value += defaultGame.value.gameType ? `&gameName=${defaultGame.value.gameType}` : ''
-  
-  if(isSearchTime.value) {
+
+  if (isSearchTime.value) {
     condition.value += `&startDate=${startDate.value.toISOString()}`
     condition.value += `&endDate=${endDate.value.toISOString()}`
   }
 
   page.value = 1
 
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryCashLatest(condition.value, page.value, limit)
 };
 
 watch(page,
   async () => {
-    await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+    await transactionStore.getHistoryCashLatest(condition.value, page.value, limit)
   }
 )
 
@@ -64,20 +69,20 @@ watch(page,
     <v-select v-model="defaultGame" :items="games" item-value="gameType" item-title="name" variant="outlined"
       label="Loại Game" class="games" dense :clearable="false" return-object></v-select>
     <input v-model="nickname" class="input" type="text" placeholder="Nhập Nickname để kiểm tra" />
-     <div class="content__item">
-        <div class="content__item__title">Thời Gian Bắt Đầu</div>
-        <div class="content__item__input">
-          <VueDatePicker v-model="startDate"></VueDatePicker>
-        </div>
+    <div class="content__item">
+      <div class="content__item__title">Thời Gian Bắt Đầu</div>
+      <div class="content__item__input">
+        <VueDatePicker v-model="startDate"></VueDatePicker>
       </div>
-      <div class="content__item">
-        <div class="content__item__title">Thời Gian Kết Thúc</div>
-        <div class="content__item__input">
-          <VueDatePicker v-model="endDate"></VueDatePicker>
-        </div>
+    </div>
+    <div class="content__item">
+      <div class="content__item__title">Thời Gian Kết Thúc</div>
+      <div class="content__item__input">
+        <VueDatePicker v-model="endDate"></VueDatePicker>
       </div>
-      <v-checkbox v-model="isSearchTime" label="Chọn để tìm kiếm theo thời gian"></v-checkbox>
-    <v-btn class="icon" append-icon="mdi-magnify" @click="searchHistoryPlayer()">Tìm Kiếm</v-btn>
+    </div>
+    <v-checkbox v-model="isSearchTime" label="Chọn để tìm kiếm theo thời gian"></v-checkbox>
+    <v-btn class="icon" append-icon="mdi-magnify" @click="searchHistoryCash()">Tìm Kiếm</v-btn>
   </div>
   <div class="container-search">
     <table class="table">
@@ -98,8 +103,8 @@ watch(page,
         <tr class="row" v-for="item in transactions" :key="item._id">
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
-          <td class="cell">{{ item.accountNumberClient }}</td>
-          <td class="cell">{{ item.transId }}</td>
+          <td class="cell">{{ item.accountNumberClient  }}</td>
+          <td class="cell">{{ item.depositId  }}</td>
           <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
           <td class="cell">{{ item.detailGameName }}</td>
@@ -148,7 +153,6 @@ watch(page,
   >.icon {
     background-color: $primary-color;
     color: #fff;
-    padding: 20px 26px;
     border-radius: 4px;
     max-width: 127px;
     width: 100%;

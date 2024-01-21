@@ -63,7 +63,7 @@ onMounted(() => {
                     CHÚ Ý : KẾT QUẢ TÍNH TỔNG 2 SỐ CUỐI
                     <br />
                     <br />
-                    chẵn lẻ bank - chanlebank.cz
+                    chẵn lẻ bank - chanlebank.page
                   </span>
                 </p>
               </li>

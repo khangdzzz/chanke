@@ -17,7 +17,7 @@ onMounted(() => {
     <div class="how-play">
       <h3 class="title">Cách Chơi</h3>
       <b class="subTitle">
-        Chẵn lẻ Bank - Uy tín, xanh chín chỉ có ở chanlebank.cz
+        Chẵn lẻ Bank - Uy tín, xanh chín chỉ có ở chanlebank.page
         <br />
       </b>
 

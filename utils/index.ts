@@ -90,6 +90,26 @@ export interface ITransactionHistory {
   nickname: string;
 }
 
+
+export interface ICashHistory {
+  _id?: string;
+  depositId: string;
+  accountNumberClient: string;
+  bankClient: string;
+  amount: number;
+  bonus: number;
+  betValue: string;
+  gameName: string;
+  detailGameName: string;
+  content: string;
+  status: string;
+  time: string;
+  nickName: string;
+  createdAt: string;
+  updatedAt: string;
+  nickname: string;
+}
+
 export interface ITransactionHistoryResponse extends IResponse {
   data?: ITransactionHistory[]
 }
@@ -102,6 +122,17 @@ export interface ITransactionHistoryPagination extends IResponse {
 
 export interface TransactionHistoryResponse extends IResponse {
   data: ITransactionHistoryPagination
+}
+
+
+export interface ICashHistoryPagination extends IResponse {
+  totalRecords: number,
+  totalPages: number,
+  transactions: ICashHistory[]
+}
+
+export interface CashHistoryResponse extends IResponse {
+  data: ICashHistoryPagination
 }
 
 

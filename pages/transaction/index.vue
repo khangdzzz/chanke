@@ -11,10 +11,12 @@ const selectedBank = ref({ code: 'VCB', shortName: '(970436) Vietcombank' })
 const amount = ref(100000)
 const content = ref('hongha T')
 
-const adminStore  = useAdminStore()
+const adminStore = useAdminStore()
 const isHandleTransactionSuccess = computed(() => adminStore.isHandleTransactionSuccess)
 const isHandleTransactionFail = computed(() => adminStore.isHandleTransactionFail)
 const isLoading = ref(false)
+
+const transactionStore = useTransactionStore()
 
 const handleFakeTransaction = async () => {
   isLoading.value = true
@@ -23,8 +25,9 @@ const handleFakeTransaction = async () => {
     amount: Number(amount.value),
     bank_type: selectedBank.value.code,
   }
- 
+
   await adminStore.handleTransaction(body)
+  await transactionStore.getHistoryTransactionLatest('', 1, 10)
   isLoading.value = false
   setTimeout(() => {
     adminStore.isHandleTransactionSuccess = false
@@ -32,50 +35,36 @@ const handleFakeTransaction = async () => {
   }, 1000);
 }
 
+const isOpenHistory = ref(false)
+
+const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-arrow-up')
+
 </script>
 <template>
   <div class="transaction-container">
     <div class="form">
-      <v-select
-          v-model="selectedBank"
-          :items="BANK_USED"
-          item-value="code"
-          item-title="shortName"
-          variant="outlined"
-          label="Loại ngân hàng "
-          class="row"
-          dense
-          :clearable="false"
-          return-object
-      ></v-select>
-      <v-text-field 
-        class="row -money" 
-        v-model="amount"
-        label="Nhập tiền cược" 
-        outlined  
-        @keypress="isNumber($event)"
-      ></v-text-field>
-       <v-text-field 
-        class="row -money" 
-        v-model="content"
-        label="Nhập content (hoangnam n1)" 
-        outlined  
-      ></v-text-field>
+      <v-select v-model="selectedBank" :items="BANK_USED" item-value="code" item-title="shortName" variant="outlined"
+        label="Loại ngân hàng " class="row" dense :clearable="false" return-object></v-select>
+      <v-text-field class="row -money" v-model="amount" label="Nhập tiền cược" outlined
+        @keypress="isNumber($event)"></v-text-field>
+      <v-text-field class="row -money" v-model="content" label="Nhập content (hoangnam n1)" outlined></v-text-field>
       <v-btn class="add" @click="handleFakeTransaction()" :loading="isLoading">Test Transaction</v-btn>
       <span class="success" v-if="isHandleTransactionSuccess">Thành Công</span>
       <span class="fail" v-if="isHandleTransactionFail">Thất Bại</span>
+    </div>
+    <div class="history">
+      <v-btn class="label" :append-icon="iconArrow" variant="text" @click="() => isOpenHistory = !isOpenHistory">
+        Lịch sử giao dịch
+      </v-btn>
+      <TransactionManageHistorySection v-if="!isOpenHistory"></TransactionManageHistorySection>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .transaction-container {
   display: block;
-  overflow-x: auto;
   padding: 12px;
 
-  >.add {
-    margin-bottom: 12px;
-  }
 
   >.form {
     display: flex;
@@ -94,7 +83,7 @@ const handleFakeTransaction = async () => {
       width: 150px;
     }
 
-    > .success {
+    >.success {
       color: green;
       font-size: 0.9rem;
       font-weight: 900;
@@ -102,7 +91,7 @@ const handleFakeTransaction = async () => {
       margin: 12px 0;
     }
 
-    > .fail {
+    >.fail {
       color: red;
       font-size: 0.9rem;
       font-weight: 900;
@@ -110,5 +99,27 @@ const handleFakeTransaction = async () => {
       margin: 12px 0;
     }
   }
+
+  > .history {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+ > .history > .label {
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.5;
+    text-align: left;
+  }
+}
+
+:deep(.v-btn--size-default) {
+  padding: 0 !important;
 }
 </style>
