@@ -31,7 +31,7 @@ onMounted(() => {
         <tbody class="body">
           <tr class="row">
             <td id="cell">10,000</td>
-            <td id="cell">3,000,000</td>
+            <td id="cell">5,000,000</td>
           </tr>
         </tbody>
       </table>

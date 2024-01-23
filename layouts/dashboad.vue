@@ -61,19 +61,19 @@ onMounted(async () => {
         <nuxt-link to="/dashboard" class="nuxt-link">
           <v-list-item prepend-icon="mdi-home" title="Trang Chủ"></v-list-item>
         </nuxt-link>
-        <nuxt-link to="/transaction" class="nuxt-link">
+        <nuxt-link to="/dashboard/transaction" class="nuxt-link">
           <v-list-item prepend-icon="mdi-cash-marker" title="Giao Dịch"></v-list-item>
         </nuxt-link>
-        <nuxt-link to="/cash" class="nuxt-link">
+        <nuxt-link to="/dashboard/cash" class="nuxt-link">
           <v-list-item prepend-icon="mdi-cash-100" title="Lịch Sử Rút Tiền"></v-list-item>
         </nuxt-link>
-        <nuxt-link to="/games" class="nuxt-link">
+        <nuxt-link to="/dashboard/games" class="nuxt-link">
           <v-list-item prepend-icon="mdi-gamepad-variant-outline" title="Quản Lí Games"></v-list-item>
         </nuxt-link>
-        <nuxt-link to="/games/detail" class="nuxt-link">
+        <nuxt-link to="/dashboard/games/detail" class="nuxt-link">
           <v-list-item prepend-icon="mdi-gamepad-variant" title="Chi Tiết Games"></v-list-item>
         </nuxt-link>
-         <nuxt-link to="/maintain" class="nuxt-link">
+         <nuxt-link to="/dashboard/maintain" class="nuxt-link">
           <v-list-item prepend-icon="mdi-wrench-clock" title="Bảo Trì"></v-list-item>
         </nuxt-link>
 
