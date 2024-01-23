@@ -20,6 +20,7 @@ const openCreateNickName = () => {
 const selectedBank = ref({ value: '970415', label: '(970415) VietinBank' })
 const accountNumber = ref('')
 const accountName = ref('')
+const userid = ref('')
 
 const playerStore = usePlayerStore()
 
@@ -29,30 +30,32 @@ const joinToPlay = async () => {
     playerStore.isCreateFail = true
     return
   }
+
   const body = {
     amount: 0,
     bankcode: selectedBank.value.value,
     accountNumber: accountNumber.value,
-    userid: accountName.value,
+    accountName: accountName.value,
+    userid: userid.value,
   }
+
   await playerStore.create(body)
 }
 
 const isCreateSuccess = computed(() => playerStore.isCreateSuccess)
 const isCreateFail = computed(() => playerStore.isCreateFail)
 
-watch(accountName, newVal => {
-  accountName.value = newVal.replace(/\s/g, '')
+watch(userid, newVal => {
+  userid.value = newVal.replace(/\s/g, '')
 })
 
+const toUpper = (e: { target: { value: string } }) => {
+  accountName.value = e.target.value.toUpperCase()
+}
 </script>
 <template>
   <div class="container-create-account">
-    <v-btn
-      v-if="!isShowCreateNickName"
-      class="btn-create-nick"
-      @click="openCreateNickName"
-    >
+    <v-btn v-if="!isShowCreateNickName" class="btn-create-nick" @click="openCreateNickName">
       Tạo Nickname
     </v-btn>
     <form v-if="isShowCreateNickName" class="register-account">
@@ -60,37 +63,24 @@ watch(accountName, newVal => {
       <span v-if="isCreateFail" class="fail">Tạo Thất Bại</span>
       <div class="bank">
         <span class="label">Ngân hàng nhận thưởng</span>
-        <v-combobox
-          v-model="selectedBank"
-          :items="BANKS"
-          item-value="value"
-          item-title="label"
-          variant="outlined"
-          class="combobox"
-          dense
-        ></v-combobox>
+        <v-combobox v-model="selectedBank" :items="BANKS" item-value="value" item-title="label" variant="outlined"
+          class="combobox" dense></v-combobox>
       </div>
 
       <div class="accountNumber">
         <span class="label">Số tài khoản</span>
-        <v-text-field
-          v-model="accountNumber"
-          class="text"
-          variant="outlined"
-          type="number"
-          dense
-          @keypress="isNumber($event)"
-        ></v-text-field>
+        <v-text-field v-model="accountNumber" class="text" variant="outlined" type="number" dense
+          @keypress="isNumber($event)"></v-text-field>
+      </div>
+
+      <div class="accountNumber">
+        <span class="label">Tên tài khoản</span>
+        <v-text-field v-model="accountName" class="text" variant="outlined" dense @input="toUpper"></v-text-field>
       </div>
 
       <div class="nick">
         <span class="label">Nick name</span>
-        <v-text-field
-          v-model="accountName"
-          class="text"
-          variant="outlined"
-          dense
-        ></v-text-field>
+        <v-text-field v-model="userid" class="text" variant="outlined" dense></v-text-field>
       </div>
 
       <div class="confirm">
@@ -117,7 +107,7 @@ watch(accountName, newVal => {
   gap: 8px;
   margin: auto;
 
-  > .success {
+  >.success {
     color: #316100;
     background-color: #dff1cc;
     border-color: #d2ecb8;
@@ -126,7 +116,7 @@ watch(accountName, newVal => {
     border-radius: 3px;
   }
 
-  > .fail {
+  >.fail {
     color: #6b1110;
     background-color: #f5d2d2;
     border-color: #f1c1c0;
@@ -135,16 +125,16 @@ watch(accountName, newVal => {
     border-radius: 3px;
   }
 
-  > .bank > .label,
-  > .accountNumber > .label,
-  > .nick > .label {
+  >.bank>.label,
+  >.accountNumber>.label,
+  >.nick>.label {
     margin-bottom: 6px;
     display: block;
     font-weight: 600;
     font-size: 14px;
   }
 
-  > .bank > .v-input--density-default {
+  >.bank>.v-input--density-default {
     --v-input-control-height: 40px;
     --v-input-padding-top: 8px;
   }
@@ -161,23 +151,24 @@ watch(accountName, newVal => {
     border-radius: 15px !important;
   }
 
-  > .confirm {
+  >.confirm {
     display: flex;
     gap: 2px;
     margin: 4px 0;
     font-size: 14px;
     font-weight: 400;
   }
-  > .confirm > .joined {
+
+  >.confirm>.joined {
     cursor: text;
   }
 
-  > .confirm > .joinAgain {
+  >.confirm>.joinAgain {
     cursor: pointer;
     color: $primary-color;
   }
 
-  > .submit {
+  >.submit {
     color: #fff;
     background: linear-gradient(to bottom right, #f1d313 0%, #fbb034 100%);
     border-color: #fbb034;

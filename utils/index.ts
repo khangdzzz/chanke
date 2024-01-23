@@ -40,6 +40,7 @@ export interface IPlayer {
   amount?: number
   bankcode: string
   accountNumber: string
+  accountName: string
   userid: string
   createdAt?: string
 }
