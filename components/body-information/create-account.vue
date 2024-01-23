@@ -52,6 +52,10 @@ watch(userid, newVal => {
 const toUpper = (e: { target: { value: string } }) => {
   accountName.value = e.target.value.toUpperCase()
 }
+
+const toLower = (e: { target: { value: string } }) => {
+  userid.value = e.target.value.toLowerCase()
+}
 </script>
 <template>
   <div class="container-create-account">
@@ -80,7 +84,7 @@ const toUpper = (e: { target: { value: string } }) => {
 
       <div class="nick">
         <span class="label">Nick name</span>
-        <v-text-field v-model="userid" class="text" variant="outlined" dense></v-text-field>
+        <v-text-field v-model="userid" class="text" variant="outlined" dense @input="toLower"></v-text-field>
       </div>
 
       <div class="confirm">
