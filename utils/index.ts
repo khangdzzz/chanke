@@ -37,6 +37,7 @@ export interface GameResponse extends IResponse {
 }
 
 export interface IPlayer {
+  _id?: string
   amount?: number
   bankcode: string
   accountNumber: string
@@ -47,6 +48,11 @@ export interface IPlayer {
 
 export interface PlayerResponse extends IResponse {
   data: IPlayer[]
+}
+
+
+export interface UserResponse extends IResponse {
+  data: IPlayer
 }
 
 export interface IBankAdmin {

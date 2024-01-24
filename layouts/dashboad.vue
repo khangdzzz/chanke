@@ -40,43 +40,60 @@ onMounted(async () => {
   await gameStore.getListGameDetail()
 })
 
+const menuBars = [
+  {
+    url: '/dashboard',
+    text: 'Trang Chủ',
+    icon: 'mdi-home',
+  },
+  {
+    url: '/dashboard/transaction',
+    text: 'Giao Dịch',
+    icon: 'mdi-cash-marker',
+  },
+  {
+    url: '/dashboard/cash',
+    text: 'Lịch Sử Rút Tiền',
+    icon: 'mdi-cash-100',
+  },
+  {
+    url: '/dashboard/games',
+    text: 'Quản Lí Games',
+    icon: 'mdi-gamepad-variant-outline',
+  },
+  {
+    url: '/dashboard/games/detail',
+    text: 'Chi Tiết Games',
+    icon: 'mdi-gamepad-variant',
+  },
+  {
+    url: '/dashboard/player',
+    text: 'Quản Lí Người Chơi',
+    icon: 'mdi-account-group',
+  },
+  {
+    url: '/dashboard/maintain',
+    text: 'Bảo Trì',
+    icon: 'mdi-wrench-clock',
+  },
+]
+
+const header = ref('Trang Chủ')
+
+const switchMenuBar = (title: string) => header.value = title
+
 </script>
 <template>
   <v-layout class="main-container">
-    <v-navigation-drawer
-      v-model="drawer"
-      :rail="rail"
-      permanent
-      class="side-bar"
-      @click="rail = false"
-    >
-      <v-list-item
-        class="title"
-        prepend-avatar="http://66.42.54.207:8000/images/dashboard.png"
-        title="DashBoard"
-        @click="openHome()"
-      ></v-list-item>
+    <v-navigation-drawer v-model="drawer" :rail="rail" permanent class="side-bar" @click="rail = false">
+      <v-list-item class="title" prepend-avatar="http://66.42.54.207:8000/images/dashboard.png" title="DashBoard"
+        @click="openHome()"></v-list-item>
 
       <v-list class="menu">
-        <nuxt-link to="/dashboard" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-home" title="Trang Chủ"></v-list-item>
+        <nuxt-link v-for="(item, index) in menuBars" :key="index" :to="item.url" class="nuxt-link"
+          @click="switchMenuBar(item.text)">
+          <v-list-item :prepend-icon="item.icon" :title="item.text"></v-list-item>
         </nuxt-link>
-        <nuxt-link to="/dashboard/transaction" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-cash-marker" title="Giao Dịch"></v-list-item>
-        </nuxt-link>
-        <nuxt-link to="/dashboard/cash" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-cash-100" title="Lịch Sử Rút Tiền"></v-list-item>
-        </nuxt-link>
-        <nuxt-link to="/dashboard/games" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-gamepad-variant-outline" title="Quản Lí Games"></v-list-item>
-        </nuxt-link>
-        <nuxt-link to="/dashboard/games/detail" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-gamepad-variant" title="Chi Tiết Games"></v-list-item>
-        </nuxt-link>
-         <nuxt-link to="/dashboard/maintain" class="nuxt-link">
-          <v-list-item prepend-icon="mdi-wrench-clock" title="Bảo Trì"></v-list-item>
-        </nuxt-link>
-
         <!-- <v-list-group
           v-for="item in menus"
           :key="item.key"
@@ -109,16 +126,13 @@ onMounted(async () => {
     <v-main class="main-content">
       <v-toolbar density="compact" class="nav-bar">
         <v-app-bar-nav-icon @click.stop="rail = !rail"></v-app-bar-nav-icon>
-
+        <span class="header-dashboard">{{ header }}</span>
         <v-spacer></v-spacer>
 
         <span>Hi, Admin</span>
         <v-btn icon>
           <v-avatar>
-            <v-img
-              src="http://66.42.54.207:8000/images/admin.png"
-              rounded
-            ></v-img>
+            <v-img src="http://66.42.54.207:8000/images/admin.png" rounded></v-img>
           </v-avatar>
         </v-btn>
         <v-btn icon @click="logout">
@@ -133,7 +147,7 @@ onMounted(async () => {
 </template>
 <style lang="scss" scoped>
 .side-bar {
-  > .v-navigation-drawer__content > .title {
+  >.v-navigation-drawer__content>.title {
     padding: 4px 10px;
   }
 
@@ -142,12 +156,18 @@ onMounted(async () => {
   // }
 }
 
+.header-dashboard {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .main-content {
-  > .nav-bar {
+  >.nav-bar {
     background-color: $color-white;
   }
 
-  > .container {
+  >.container {
     background-color: white;
     padding: 20px;
     min-height: 100vh;

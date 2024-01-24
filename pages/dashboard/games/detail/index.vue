@@ -152,7 +152,7 @@ const createNewGameRating = async () => {
       <v-select v-model="defaultGame" :items="nameGames" variant="outlined" label="Chọn game" class="game" dense
         :clearable="false" return-object></v-select>
       <v-btn class="newgame" append-icon="mdi-plus">
-        <nuxt-link to="/games">Tạo mới game</nuxt-link>
+        <nuxt-link to="/dashboard/games">Tạo mới game</nuxt-link>
       </v-btn>
     </div>
 
@@ -231,12 +231,8 @@ const createNewGameRating = async () => {
     </div>
     <div v-if="isAddGame" class="form-add">
       <div class="cell -content">
-        <v-text-field
-          v-model="newContent" 
-          class="field -text"
-          :error="isExitContentInDB"
-          :error-messages="isExitContentInDB ? ['Nội dung đã tồn tại'] : []"
-        ></v-text-field>
+        <v-text-field v-model="newContent" class="field -text" :error="isExitContentInDB"
+          :error-messages="isExitContentInDB ? ['Nội dung đã tồn tại'] : []"></v-text-field>
       </div>
       <div class="cell -tls">
         <v-text-field v-model="newNumberTLS" label="Dãy số kết quả, ví dụ: 1, 2, 3" class="field -text"></v-text-field>
@@ -245,16 +241,8 @@ const createNewGameRating = async () => {
         <v-text-field v-model="newAmount" class="field -text"></v-text-field>
       </div>
 
-       <v-select
-          v-model="newResultType"
-          :items="resultTypesList"
-          variant="outlined"
-          label="Chọn cách tính kết quả"
-          class="row"
-          dense
-          :clearable="false"
-          return-object
-      ></v-select>
+      <v-select v-model="newResultType" :items="resultTypesList" variant="outlined" label="Chọn cách tính kết quả"
+        class="row" dense :clearable="false" return-object></v-select>
 
       <div class="cell -btn">
         <v-btn class="button -add" variant="text" :loading="isLoadingCreateGame" @click="createNewGameRating">
@@ -287,7 +275,7 @@ const createNewGameRating = async () => {
     margin-bottom: 20px;
   }
 
-  >.choose-game > .newgame a {
+  >.choose-game>.newgame a {
     text-decoration: none;
     color: $color-white;
   }

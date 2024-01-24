@@ -52,6 +52,10 @@ export const BANK_USED = [
         code: 'ACB',
         shortName: '(970416) ACB',
     },
+    {
+        code: 'MBBANK',
+        shortName: '(970422) MBBank',
+    }
 ]
 
 export const BANKS_MAP = [
