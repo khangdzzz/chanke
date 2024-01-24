@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
-      title: 'APP',
+      title: 'Chẵn lẻ page',
       htmlAttrs: {
         lang: 'ja',
       },
@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         { hid: 'description', name: 'description', content: '' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon-logo.ico' },
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap',

@@ -72,13 +72,13 @@ const toLower = (e: { target: { value: string } }) => {
       </div>
 
       <div class="accountNumber">
-        <span class="label">Số tài khoản</span>
+        <span class="label">Số tài khoản ngân hàng</span>
         <v-text-field v-model="accountNumber" class="text" variant="outlined" type="number" dense
           @keypress="isNumber($event)"></v-text-field>
       </div>
 
       <div class="accountNumber">
-        <span class="label">Tên tài khoản</span>
+        <span class="label">Tên tài khoản ngân hàng</span>
         <v-text-field v-model="accountName" class="text" variant="outlined" dense @input="toUpper"></v-text-field>
       </div>
 

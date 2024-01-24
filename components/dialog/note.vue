@@ -48,13 +48,13 @@ onMounted(() => {
               <li data-slate-node="element">
                 <p data-slate-node="element" style="text-align: center">
                   <span data-slate-node="text">
-                    <a
+                    <!-- <a
                       class="group-chat"
                       href="https://t.me/chanlebankczthongbao"
                       title="ok"
                     >
                       Xem cách tính mã ngân hàng tại đây
-                    </a>
+                    </a> -->
                     <br />
                     &nbsp;( chơi cùng bank để có cùng kết quả . chơi khác bank
                     sẽ tính mã bên nhận )
