@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+// definePageMeta({
+//   middleware: 'domain',
+// })
+
 const drawer = ref(true)
 const rail = ref(false)
 
@@ -86,7 +90,7 @@ const switchMenuBar = (title: string) => header.value = title
 <template>
   <v-layout class="main-container">
     <v-navigation-drawer v-model="drawer" :rail="rail" permanent class="side-bar" @click="rail = false">
-      <v-list-item class="title" prepend-avatar="http://66.42.54.207:8000/images/dashboard.png" title="DashBoard"
+      <v-list-item class="title" prepend-avatar="https://api.bapcaitim.club/public/dashboard.png" title="DashBoard"
         @click="openHome()"></v-list-item>
 
       <v-list class="menu">
@@ -132,7 +136,7 @@ const switchMenuBar = (title: string) => header.value = title
         <span>Hi, Admin</span>
         <v-btn icon>
           <v-avatar>
-            <v-img src="http://66.42.54.207:8000/images/admin.png" rounded></v-img>
+            <v-img src="https://api.bapcaitim.club/public/admin.png" rounded></v-img>
           </v-avatar>
         </v-btn>
         <v-btn icon @click="logout">

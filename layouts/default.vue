@@ -60,7 +60,7 @@ const isMaintain = computed(() => {
     min-width="300"
     max-width="600"
     :aspect-ratio="1"
-    src="http://66.42.54.207:8000/images/maintain1.jpeg"
+    src="https://api.bapcaitim.club/public/maintain1.jpeg"
   ></v-img>
 </template>
 
