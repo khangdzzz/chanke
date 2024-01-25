@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-// definePageMeta({
-//   middleware: 'domain',
-// })
 
 const drawer = ref(true)
 const rail = ref(false)
