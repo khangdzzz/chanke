@@ -71,6 +71,8 @@ export default defineNuxtConfig({
     public: {
       NODE_ENV: process.env.VITE_NODE_ENV,
       API_BASE_URL: process.env.VITE_API_BASE_URL,
+      HOME_URL: process.env.VITE_HOME_URL,
+      ADMIN_URL: process.env.VITE_ADMIN_URL,
     },
   },
   typescript: {
