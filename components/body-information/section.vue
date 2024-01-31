@@ -17,7 +17,7 @@ onMounted(() => {
     <div class="how-play">
       <h3 class="title">Cách Chơi</h3>
       <b class="subTitle">
-        Chẵn lẻ Bank - Uy tín, xanh chín chỉ có ở chanlebank.page
+        Chẵn lẻ Bank - Uy tín, xanh chín chỉ có ở clmm.cam
         <br />
       </b>
 
@@ -54,13 +54,15 @@ onMounted(() => {
       <BodyInformationSearch class="search" />
 
       <div class="groups">
-        <v-btn class="talk" prepend-icon="mdi-account-group" variant="outlined">
+        <v-btn class="talk" prepend-icon="mdi-account-group" variant="outlined" href="https://t.me/clmmsupport" target="_blank">
           Group CHÉM GIÓ
         </v-btn>
         <v-btn
           class="notification"
           prepend-icon="mdi-account-group"
           variant="outlined"
+          href="https://t.me/clmmnews"
+          target="_blank"
         >
           Group thông báo
         </v-btn>

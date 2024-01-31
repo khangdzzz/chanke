@@ -51,10 +51,12 @@ watch(userid, newVal => {
 
 const toUpper = (e: { target: { value: string } }) => {
   accountName.value = e.target.value.toUpperCase()
+  accountName.value = accountName.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 
 const toLower = (e: { target: { value: string } }) => {
   userid.value = e.target.value.toLowerCase()
+  userid.value = userid.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 </script>
 <template>
