@@ -55,8 +55,12 @@ const toUpper = (e: { target: { value: string } }) => {
 }
 
 const toLower = (e: { target: { value: string } }) => {
+  const regex = /^[a-zA-Z]*$/
+
+  if (!regex.test(e.target.value)) {
+    userid.value = e.target.value.replace(/[^a-zA-Z]/g, '')
+  }
   userid.value = e.target.value.toLowerCase()
-  userid.value = userid.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 </script>
 <template>
