@@ -22,6 +22,9 @@ const accountNumber = ref('')
 const accountName = ref('')
 const userid = ref('')
 
+const notification = ref('')
+const snackbar = ref(false)
+
 const playerStore = usePlayerStore()
 
 const joinToPlay = async () => {
@@ -40,6 +43,9 @@ const joinToPlay = async () => {
   }
 
   await playerStore.create(body)
+
+  notification.value = playerStore.isCreateSuccess ? 'Tạo Tài Khoản Thành Công' : 'Tạo  Tài Khoản Thất Bại'
+  snackbar.value = true
 }
 
 const isCreateSuccess = computed(() => playerStore.isCreateSuccess)
@@ -69,8 +75,14 @@ const toLower = (e: { target: { value: string } }) => {
       Tạo Nickname
     </v-btn>
     <form v-if="isShowCreateNickName" class="register-account">
-      <span v-if="isCreateSuccess" class="success">Tạo Thành Công</span>
-      <span v-if="isCreateFail" class="fail">Tạo Thất Bại</span>
+      <!-- <span v-if="isCreateSuccess" class="success">Tạo Thành Công</span> -->
+      <!-- <span v-if="isCreateFail" class="fail">Tạo Thất Bại</span> -->
+      <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" :color="isCreateSuccess ? 'success' : 'red'" elevation="24"
+        transition="fade-transition" >
+        <div style="width: 100%; text-align: center;">
+          {{ notification }}
+        </div>
+      </v-snackbar>
       <div class="bank">
         <span class="label">Ngân hàng nhận thưởng</span>
         <v-combobox v-model="selectedBank" :items="BANKS" item-value="value" item-title="label" variant="outlined"
