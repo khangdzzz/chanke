@@ -40,8 +40,8 @@ const searchHistoryPlayer = async () => {
   condition.value = ''
   condition.value += nickname.value ? `&nickname=${nickname.value}` : ''
   condition.value += defaultGame.value.gameType ? `&gameName=${defaultGame.value.gameType}` : ''
-  
-  if(isSearchTime.value) {
+
+  if (isSearchTime.value) {
     condition.value += `&startDate=${startDate.value.toISOString()}`
     condition.value += `&endDate=${endDate.value.toISOString()}`
   }
@@ -57,6 +57,14 @@ watch(page,
   }
 )
 
+const callbackPayment = async (item: any) => {
+  const nickname = item.nickname
+  const transactionId = item.transId
+
+  await transactionStore.callBackPayment(nickname, transactionId)
+  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+}
+
 
 </script>
 <template>
@@ -64,19 +72,19 @@ watch(page,
     <v-select v-model="defaultGame" :items="games" item-value="gameType" item-title="name" variant="outlined"
       label="Loại Game" class="games" dense :clearable="false" return-object></v-select>
     <input v-model="nickname" class="input" type="text" placeholder="Nhập Nickname để kiểm tra" />
-     <div class="content__item">
-        <div class="content__item__title">Thời Gian Bắt Đầu</div>
-        <div class="content__item__input">
-          <VueDatePicker v-model="startDate"></VueDatePicker>
-        </div>
+    <div class="content__item">
+      <div class="content__item__title">Thời Gian Bắt Đầu</div>
+      <div class="content__item__input">
+        <VueDatePicker v-model="startDate"></VueDatePicker>
       </div>
-      <div class="content__item">
-        <div class="content__item__title">Thời Gian Kết Thúc</div>
-        <div class="content__item__input">
-          <VueDatePicker v-model="endDate"></VueDatePicker>
-        </div>
+    </div>
+    <div class="content__item">
+      <div class="content__item__title">Thời Gian Kết Thúc</div>
+      <div class="content__item__input">
+        <VueDatePicker v-model="endDate"></VueDatePicker>
       </div>
-      <v-checkbox v-model="isSearchTime" label="Chọn để tìm kiếm theo thời gian"></v-checkbox>
+    </div>
+    <v-checkbox v-model="isSearchTime" label="Chọn để tìm kiếm theo thời gian"></v-checkbox>
     <v-btn class="icon" append-icon="mdi-magnify" @click="searchHistoryPlayer()">Tìm Kiếm</v-btn>
   </div>
   <div class="container-search">
@@ -90,8 +98,11 @@ watch(page,
           <th class="cell">TIỀN CƯỢC</th>
           <th class="cell">TIỀN THẮNG</th>
           <th class="cell">TRÒ CHƠI</th>
+          <th class="cell">MESSAGE</th>
           <th class="cell">CƯỢC</th>
           <th class="cell">KẾT QUẢ</th>
+          <th class="cell">TRẠNG THÁI THANH TOÁN TIỀN</th>
+          <th class="cell">CALLBACK</th>
         </tr>
       </thead>
       <tbody class="body">
@@ -104,10 +115,18 @@ watch(page,
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
           <td class="cell">{{ item.detailGameName }}</td>
           <td class="cell">
+            <span class="betName">{{ item.code }}</span>
+          </td>
+          <td class="cell">
             <span class="betName">{{ item.betValue }}</span>
           </td>
           <td class="cell">
             <span class="result -lose" :class="{ '-win': item.status === 'win' }">{{ item.status }}</span>
+          </td>
+          <td class="cell">{{ item.paymentStatus ? "Đã Thanh Toán " : "Chưa Thanh Toán" }}</td>
+          <td class="cell">
+            <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus"
+              @click="callbackPayment(item)">Payment</v-btn>
           </td>
         </tr>
       </tbody>
@@ -126,6 +145,7 @@ watch(page,
   flex-direction: column;
   gap: 10px;
   width: 50%;
+  color: #000;
 
   >.games {
     width: 100%;
@@ -158,6 +178,7 @@ watch(page,
 .container-search {
   width: 100%;
   overflow-x: auto;
+  color: #000;
 
   >.table {
     width: 100%;
@@ -198,6 +219,12 @@ watch(page,
     text-align: center;
     border: 1px solid #e0e0e0;
     white-space: nowrap;
+  }
+
+  >.table tbody>.row>.cell>.payment {
+    background-color: $primary-color;
+    color: #fff !important;
+    padding: 0 8px !important;
   }
 
   >.table tbody>.row>.cell>.betName {

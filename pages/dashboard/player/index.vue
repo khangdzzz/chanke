@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IPlayer } from '@/utils'
+import { User } from '@/utils'
 import { BANKS } from '~/utils/constants'
 import { isNumber, formatDate } from '~/utils/formatters'
 definePageMeta({
@@ -15,7 +15,7 @@ const playerTableColumns = ref([
   },
   {
     id: 2,
-    text: 'Nick Name',
+    text: 'User Name',
     width: '15%',
   },
   {
@@ -40,62 +40,63 @@ const playerTableColumns = ref([
   },
 ])
 
-const playerStore = usePlayerStore()
+const userStore = useUserStore()
 
 onMounted(async () => {
-  await playerStore.getPlayerData()
+  await userStore.getAllUsers()
 })
 
-const players = computed(() => playerStore.player)
+const users = computed(() => userStore.users)
 
-const userIdPlayerEdit = ref('')
-const isEditPlayer = ref(false)
+const usernameEdit = ref('')
+const isEditUser = ref(false)
 
-const isActiveEditPlayer = (userId: string) => {
-  return userIdPlayerEdit.value === userId && isEditPlayer.value
+const isActiveEditUser = (username: string) => {
+  return usernameEdit.value === username && isEditUser.value
 }
 
 const getBankInformation = (bankcode: string) => {
   return BANKS.find((bank) => bank.value === bankcode) ?? { value: '', label: '' }
 }
 
-const userid = ref('')
+const username = ref('')
 const accountName = ref('')
 const accountNumber = ref('')
 const selectedBank = ref({ value: '', label: '' })
 
-const editPlayer = (player: IPlayer) => {
-  isEditPlayer.value = true
-  userIdPlayerEdit.value = player.userid
-  userid.value = player.userid
-  accountName.value = player.accountName
-  accountNumber.value = player.accountNumber
-  selectedBank.value = getBankInformation(player.bankcode)
+const editUser = (user: User) => {
+  isEditUser.value = true
+  usernameEdit.value = user.username
+  username.value = user.username
+  accountName.value = user.accountName || ''
+  accountNumber.value = user.accountNumber || ''
+  selectedBank.value = user.bankcode ? getBankInformation(user.bankcode) : { value: '', label: '' }
 }
 
-const isLoadingUpdatePlayer = ref(false)
-const userIdUpdated = ref('')
+const isLoadingUpdateUser = ref(false)
+const usernameUpdated = ref('')
 
-const isActiveLoadingUpdatePlayer = (userid: string) => {
-  return userIdUpdated.value === userid && isLoadingUpdatePlayer.value
+const isActiveLoadingUpdateUser = (username: string) => {
+  return usernameUpdated.value === username && isLoadingUpdateUser.value
 }
 
 const statusUpdate = ref(false)
 const snackbar = ref(false)
 const notification = ref('')
 
-const updateEditPlayer = async (player: IPlayer) => {
-  userIdUpdated.value = player.userid
-  isLoadingUpdatePlayer.value = true
+const updateEditUser = async (user: User) => {
+  usernameUpdated.value = user.username
+  isLoadingUpdateUser.value = true
   const dataUpdate = {
-    userid: userid.value,
+    username: user.username,
     accountName: accountName.value,
     accountNumber: accountNumber.value,
     bankcode: selectedBank.value.value,
   }
 
-  await playerStore.updatePlayer(dataUpdate, player._id as string)
-  if (playerStore.statusUpdate) {
+  await userStore.updateUser(dataUpdate)
+  await userStore.getAllUsers()
+  if (userStore.isUpdated) {
     statusUpdate.value = true
     notification.value = 'Cập nhật thành công'
     snackbar.value = true
@@ -103,31 +104,31 @@ const updateEditPlayer = async (player: IPlayer) => {
     statusUpdate.value = false
     notification.value = 'Cập nhật thất bại, check lại internet or nickname đã tồn tại'
     snackbar.value = true
-    isLoadingUpdatePlayer.value = false
+    isLoadingUpdateUser.value = false
     return
   }
 
   setTimeout(() => {
-    isEditPlayer.value = false
-    isLoadingUpdatePlayer.value = false
-    userIdUpdated.value = ''
+    isEditUser.value = false
+    isLoadingUpdateUser.value = false
+    usernameUpdated.value = ''
   }, 1000);
 }
 
-const userIdDelete = ref('')
-const isLoadingDeletePlayer = ref(false)
-const isActiveDeletePlayer = (userid: string) => {
-  return userIdDelete.value === userid && isLoadingDeletePlayer.value
+const usernameDelete = ref('')
+const isLoadingDeleteUser = ref(false)
+const isActiveDeleteUser = (username: string) => {
+  return usernameDelete.value === username && isLoadingDeleteUser.value
 }
 
-const deletePlayer = async (player: IPlayer) => {
-  userIdDelete.value = player.userid
-  isLoadingDeletePlayer.value = true
-  await playerStore.deletePlayer(player._id as string)
+const deleteUser = async (user: User) => {
+  usernameDelete.value = user.username
+  isLoadingDeleteUser.value = true
+  await userStore.deleteUser(user.username as string)
 
   setTimeout(() => {
-    isLoadingDeletePlayer.value = false
-    userIdDelete.value = ''
+    isLoadingDeleteUser.value = false
+    usernameDelete.value = ''
   }, 100);
 }
 
@@ -136,13 +137,13 @@ const toUpper = (e: { target: { value: string } }) => {
 }
 
 const toLower = (e: { target: { value: string } }) => {
-  userid.value = e.target.value.toLowerCase()
+  username.value = e.target.value.toLowerCase()
 }
 
 const nickname = ref('')
 
 const searchPlayerByNickName = async () => {
-  await playerStore.getPlayererDataByUserId(nickname.value)
+  // await playerStore.getPlayererDataByUserId(nickname.value)
 }
 </script>
 <template>
@@ -161,42 +162,42 @@ const searchPlayerByNickName = async () => {
           </tr>
         </thead>
         <tbody class="body">
-          <tr v-for="(player, index) in players" :key="index" class="row">
-            <template v-if="!isActiveEditPlayer(player.userid as string)">
+          <tr v-for="(user, index) in users" :key="index" class="row">
+            <template v-if="!isActiveEditUser(user.username as string)">
               <td class="cell -text">
                 <span class="field -text">
-                  {{ formatDate(player.createdAt as string) }}
+                  {{ formatDate(user.createdAt as string) }}
                 </span>
               </td>
               <td class="cell -text">
                 <span class="field -text">
-                  {{ player.userid }}
+                  {{ user.username }}
                 </span>
               </td>
               <td class="cell -text">
                 <span class="field -text">
-                  {{ player.accountName }}
+                  {{ user.accountName }}
                 </span>
               </td>
               <td class="cell -text">
                 <span class="field -text">
-                  {{ player.accountNumber }}
-                </span>
-              </td>
-
-              <td class="cell -text">
-                <span class="field -text">
-                  {{ getBankInformation(player.bankcode).label }}
+                  {{ user.accountNumber }}
                 </span>
               </td>
 
               <td class="cell -text">
-                <v-btn class="button -edit" variant="text" @click="editPlayer(player)">
+                <span class="field -text">
+                  {{ user.bankcode ? getBankInformation(user.bankcode).label : '' }}
+                </span>
+              </td>
+
+              <td class="cell -text">
+                <v-btn class="button -edit" variant="text" @click="editUser(user)">
                   Edit
                 </v-btn>
                 <span>|</span>
-                <v-btn class="button -delete" variant="text" :loading="isActiveDeletePlayer(player.userid)"
-                  @click="deletePlayer(player)">
+                <v-btn class="button -delete" variant="text" :loading="isActiveDeleteUser(user.username)"
+                  @click="deleteUser(user)">
                   Delete
                 </v-btn>
               </td>
@@ -204,11 +205,11 @@ const searchPlayerByNickName = async () => {
             <template v-else>
               <td class="cell -text">
                 <span class="field -text">
-                  {{ player.createdAt }}
+                  {{ user.createdAt }}
                 </span>
               </td>
               <td class="cell -text">
-                <v-text-field v-model="userid" class="field -text" @input="toLower"></v-text-field>
+                <v-text-field v-model="username" class="field -text" @input="toLower"></v-text-field>
               </td>
               <td class="cell -text">
                 <v-text-field v-model="accountName" class="field -text" @input="toUpper"></v-text-field>
@@ -222,12 +223,12 @@ const searchPlayerByNickName = async () => {
               </td>
 
               <td class="cell -text">
-                <v-btn class="button -update" variant="text" @click="updateEditPlayer(player)"
-                  :loading="isActiveLoadingUpdatePlayer(player.userid)">
+                <v-btn class="button -update" variant="text" @click="updateEditUser(user)"
+                  :loading="isActiveLoadingUpdateUser(user.username)">
                   Update
                 </v-btn>
                 <span>|</span>
-                <v-btn class="button -cancel" variant="text" @click="() => (isEditPlayer = false)">
+                <v-btn class="button -cancel" variant="text" @click="() => (isEditUser = false)">
                   Cancel
                 </v-btn>
               </td>
@@ -247,6 +248,7 @@ const searchPlayerByNickName = async () => {
   padding-top: 10px;
   display: block;
   width: 100%;
+  color: #000;
 }
 
 .search-user {

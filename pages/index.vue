@@ -1,29 +1,27 @@
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'
-const scrollStore = useScrollStore()
-const { tasksSection } = storeToRefs(scrollStore)
 
-onMounted(() => {
-  const instance = getCurrentInstance()
-  if (instance && instance.refs.tasksSection) {
-    tasksSection.value = instance.refs.tasksSection
-  }
-})
 </script>
 <template>
   <div class="home-page">
-    <MainInformationSection />
-    <BodyInformationSection />
-    <HistoryWinSection />
-    <!-- <TasksSection ref="tasksSection" /> -->
-    <ConfirmSection />
+    <V2HomeGamesSection />
+    <V2HomeRateSection />
+    <V2HomeHistorySection />
+    <V2HomeHistoryJoinSection />
+    <V2HomeRankSection />
+    <V2HomeRoleSection />
+    <V2HomeDefineSection />
   </div>
 </template>
 <style lang="scss" scoped>
 .home-page {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 60px;
+  gap: 20px;
+}
+
+@include mediaquery-up(lg) {
+  .home-page {
+    padding: 25px 0 40px;
+  }
 }
 </style>

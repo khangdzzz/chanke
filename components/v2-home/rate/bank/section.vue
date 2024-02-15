@@ -9,12 +9,17 @@ const bankAdminClient = computed(() => {
     return {
       ...item,
       logo: bank?.logo,
+      nameBank: bank?.shortName
     }
   })
 })
 
+const { checkTokenValid } = useAuth()
+
+const isLogin = ref(false)
 
 onMounted(async () => {
+  isLogin.value = checkTokenValid()
   await adminStore.getBankAdminClient()
 })
 
@@ -37,14 +42,24 @@ const copyBankNumber = (accountNumber: string) => {
 
 </script>
 <template>
-  <div class="table-gift">
-    <table class="table">
+  <div class="container-table-bank">
+    <h3 class="title">
+      <v-icon class="icon" icon="mdi-bank"></v-icon>
+      THÔNG TIN BANK NHẬN
+    </h3>
+    <div class="warning" v-if="!isLogin">
+      ĐỂ LẤY THÔNG TIN BANK CHUYỂN KHOẢN, VUI LÒNG
+      <span class="login"><nuxt-link to="/user/login">ĐĂNG NHẬP</nuxt-link></span> HOẶC
+      <span class="register"><nuxt-link to="register">ĐĂNG KÝ NHANH</nuxt-link></span>
+    </div>
+    <table class="table" v-if="isLogin">
       <thead class="head">
         <tr class="row">
           <th class="cell">Trạng thái</th>
           <th class="cell">Ngân Hàng</th>
           <th class="cell">Số Tài Khoản</th>
           <th class="cell">Chủ Tài Khoản</th>
+          <th class="cell">Mã QR</th>
         </tr>
       </thead>
       <tbody class="body">
@@ -55,41 +70,78 @@ const copyBankNumber = (accountNumber: string) => {
             </v-chip>
           </td>
           <td class="cell">
-            <img :src="item.logo" width="100" />
+            {{ item.nameBank }}
           </td>
           <td class="cell">
             {{ item.accountNumber }}
             <v-icon class="icon-copy" icon="mdi-content-copy" @click="copyBankNumber(item.accountNumber)" />
-            <v-icon class="icon-qr" icon="mdi-qrcode" @click="openQrCode(item.qr as string)" />
+
             <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" color="success" elevation="24"
               transition="fade-transition">
               {{ text }}
             </v-snackbar>
           </td>
           <td class="cell">{{ item.name }}</td>
+          <td class="cell"><v-icon class="icon-qr" icon="mdi-qrcode" @click="openQrCode(item.qr as string)" /></td>
         </tr>
       </tbody>
     </table>
     <BodyInformationQrCode :logo-qr-code="logoQrCode" />
   </div>
 </template>
-
 <style lang="scss" scoped>
-.table-gift {
+.container-table-bank {
   display: block;
   overflow-x: auto;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  flex: 1;
+
+  >.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    color: #fef142;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    margin-bottom: 0;
+    background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 20px;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    >.icon {
+      -webkit-text-fill-color: #fe5b09;
+    }
+  }
+
+  >.warning {
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  >.warning>.login a,
+  >.warning>.register a {
+    color: #fef142;
+    font-weight: 600;
+    text-decoration: none;
+  }
 
   >.table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid #e0e0e0;
   }
 
   >.table>.head {
-    background-color: $primary-color;
-    color: white;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.05);
   }
 
   >.table>.head>.row>.cell {
@@ -98,8 +150,10 @@ const copyBankNumber = (accountNumber: string) => {
     font-weight: 900;
     line-height: 1.5;
     text-align: center;
-    border: 1px solid #e0e0e0;
-    white-space: nowrap;
+  }
+
+  >.table tbody>.row {
+    border-bottom: 4px solid rgba(255, 255, 255, 0.05);
   }
 
   >.table tbody>.row>.cell {
@@ -108,29 +162,19 @@ const copyBankNumber = (accountNumber: string) => {
     font-weight: 400;
     line-height: 1.5;
     text-align: center;
-    border: 1px solid #e0e0e0;
-    white-space: nowrap;
-  }
 
-  >.table tbody>.row:nth-child(odd) {
-    background-color: #fff;
-  }
-
-  >.table tbody>.row:nth-child(even) {
-    background-color: #f6f6f6;
   }
 
   >.table tbody>.row>.cell>.icon-copy,
   >.table tbody>.row>.cell>.icon-qr {
     cursor: pointer;
-    background-color: #fff;
-    color: $primary-color;
+    color: #fe5b09;
     margin-left: 5px;
   }
 
   >.table tbody>.row>.cell>.icon-copy:hover,
   >.table tbody>.row>.cell>.icon-qr:hover {
-    color: #2bcbf3;
+    color: #903001;
   }
 }
 </style>

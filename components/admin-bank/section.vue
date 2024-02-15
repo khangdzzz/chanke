@@ -277,6 +277,7 @@ const deleteBankAdmin = async (id: string) => {
   display: block;
   overflow-x: auto;
   margin-bottom: 12px;
+  color: #000;
 
   >.add {
     margin-bottom: 12px;

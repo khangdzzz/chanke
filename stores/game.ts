@@ -5,6 +5,7 @@ export const useGameStore = defineStore('game', () => {
   const reward = ref<Game[]>([])
   const listGames = ref<IListGame[]>([])
   const gameType = ref('')
+  const gameName = ref('Chẵn Lẻ')
   const resultTypeList = ref<{ _id: string }[]>([])
   const listGamesDetail = ref<IListGameDetail[]>([])
   const isExitContentInDB = ref(false)
@@ -125,6 +126,7 @@ export const useGameStore = defineStore('game', () => {
     reward,
     gameType,
     listGames,
+    gameName,
     resultTypeList,
     isExitContentInDB,
     statusCreateNewGame,

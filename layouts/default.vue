@@ -1,8 +1,18 @@
 <script lang="ts" setup>
+
+const route = useRoute()
+
 const maintainStore = useMaintainStore()
+
+const useApp = useDialogConfirmStore()
+const isOpenMenuBar = computed(() => useApp.isOpenMenuBar)
+const { checkTokenValid, getUserName } = useAuth()
+const isAuth = computed(() => checkTokenValid())
 
 onMounted(async () => {
   await maintainStore.getCalenderMaintain()
+
+  if (window.innerWidth > 1200) useApp.isOpenMenuBar = true
 })
 
 const isMaintain = computed(() => {
@@ -24,161 +34,331 @@ const isMaintain = computed(() => {
     return false
   }
 })
+
+const MENU_BARS =
+  [
+    {
+      url: '/',
+      text: 'Trang Chủ',
+      icon: 'mdi-home',
+      active: false,
+      show: true,
+    },
+    {
+      url: '/bank-setting',
+      text: 'Cài Đặt Bank',
+      icon: 'mdi-cog-outline',
+      active: false,
+      show: isAuth.value
+    },
+    {
+      url: '/user/login',
+      text: 'Đăng Nhập',
+      icon: 'mdi-login-variant',
+      active: false,
+      show: !isAuth.value
+    },
+    {
+      url: '/user/register',
+      text: 'Đăng Kí',
+      icon: 'mdi-account-plus-outline',
+      active: false,
+      show: !isAuth.value
+    },
+    {
+      url: '/user/change-password',
+      text: 'Đổi Mật Khẩu',
+      icon: 'mdi-key-change',
+      active: false,
+      show: isAuth.value
+    },
+    {
+      url: '/tele/chanel',
+      text: 'Chanel telegram',
+      icon: 'mdi-chat-question-outline',
+      active: false,
+      show: true
+    },
+    {
+      url: '/tele/group',
+      text: 'Group telegram',
+      icon: 'mdi-account-group',
+      active: false,
+      show: true
+    },
+    {
+      url: '/user/login',
+      text: 'Đăng Xuất',
+      icon: 'mdi-logout-variant',
+      active: false,
+      show: isAuth.value
+    },
+  ]
+const menuBars = ref(MENU_BARS.map(item => {
+  return {
+    ...item,
+    active: item.url === route.path,
+  }
+}))
+
+const chooseMenu = (index: number) => {
+  menuBars.value.forEach((item, i) => {
+    if (i === index) {
+      item.active = true
+    } else {
+      item.active = false
+    }
+  })
+}
+const router = useRouter()
+const logout = () => {
+  localStorage.removeItem('accessToken')
+
+  router.push('/user/login')
+}
+
 </script>
 <template>
-  <div class="main-container" v-if="isMaintain">
-    <HeaderSection />
-    <div class="spacer-background">
-      <div class="content">
-        <slot />
-      </div>
-      <div class="footer">
-        <div class="label">
-          <b>clmm.cam</b>
-          ©
-          {{ new Date().getFullYear() }}
-          -
-          {{ new Date().getFullYear() + 2 }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="jackpot" v-if="isMaintain">
-    <div class="jackpot-content">
-      <a class="content" href="#" data-toggle="modal" data-target="#modalJackpot">
-        <img src="~/assets/images/jackpot.png" alt="" />
-        <div class="jackpot-value">
-          <span>47,939</span>
-          đ
-        </div>
+  <div class="default-layout">
+    <div class="app-bar-menu">
+      <a href="/" class="logo">
+        <img src="~/assets/images/logo_chanlebank1.png" alt="">
       </a>
+      <CustomHeaderIcon></CustomHeaderIcon>
+      <div class="line"></div>
     </div>
-  </div> -->
-  <v-img 
-    v-if="!isMaintain && maintainStore.maintain"
-    class="mx-auto maintain"
-    min-width="300"
-    max-width="600"
-    :aspect-ratio="1"
-    src="https://api.bapcaitim.club/public/maintain1.jpeg"
-  ></v-img>
+    <v-layout class="layout">
+      <v-navigation-drawer class="navigation-drawer" v-model="isOpenMenuBar" color="#28282d">
+        <div class="container-drawer">
+          <a href="/" class="logo">
+            <img src="~/assets/images/logo_chanlebank1.png" alt="">
+          </a>
+
+          <div class="auth" v-if="isAuth">
+            <a href="/" class="logo">
+              <img src="~/assets/images/CLB_logo.gif" alt="">
+            </a>
+            <div class="user">
+              <span class="hi">Xin chào</span>
+              <span class="userid">{{ getUserName() }}</span>
+            </div>
+
+            <v-icon class="icon" icon="mdi-logout-variant" @click="logout"></v-icon>
+          </div>
+
+          <ul class="menu">
+            <li v-for="(item, index) in menuBars" :key="index" class="item" @click="chooseMenu(index)"
+              :class="{ 'hidden': !item.show }">
+              <nuxt-link :to="item.url" class="link">
+                <v-icon :class="{ active: item.active }" class="icon" :icon="item.icon"></v-icon>
+                <span :class="{ active: item.active }" class="text">{{ item.text }}</span>
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+      </v-navigation-drawer>
+      <v-main class="main-content">
+        <div class="container">
+          <slot></slot>
+        </div>
+      </v-main>
+    </v-layout>
+  </div>
 </template>
-
-<script lang="ts" setup></script>
-
 <style lang="scss" scoped>
-.spacer-background {
-  height: 160px;
-  background: $primary-color;
-  width: 100%;
-  position: relative;
-  z-index: 1;
+.navigation-drawer {
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.2);
+}
 
-  >.content {
+.container-drawer {
+  >.logo {
+    display: flex;
+    align-items: center;
+    height: 85px;
+    min-height: 85px;
+    padding: 0 30px;
+    background-color: #28282d;
     width: 100%;
-    max-width: 564px;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 0 16px;
+    position: relative;
 
-    @media (min-width: 769px) {
-      max-width: 660px;
-      padding: 0;
-    }
-
-    @media (min-width: 981px) {
-      max-width: 960px;
-      padding: 0;
-    }
-
-    @media (min-width: 1281px) {
-      max-width: 1200px;
-      margin-top: 70.4px;
-      padding: 0;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      display: block;
+      background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
+      box-shadow: 0 0 20px 0 rgba(254, 155, 33, 0.5);
+      pointer-events: none;
     }
   }
-}
 
-.footer {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  background: #fff;
-  border-top: 1px solid #eaeaea;
-  font-size: 0.875rem;
-  padding: 1.25rem 0;
-  color: #898989;
-  width: 100% !important;
-  position: relative;
-  z-index: 1;
-}
-
-.jackpot {
-  position: fixed;
-  z-index: 100;
-  bottom: 80px;
-  width: 120px;
-  left: 20px;
-
-  @media (max-width: 769px) {
-    width: 90px;
+  >.auth {
+    padding: 15px 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
-}
 
-.jackpot-content {
-  >.content {
+  >.auth>.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin-right: 12px;
+  }
+
+  >.auth>.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  >.auth>.icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+    margin-left: auto;
+  }
+
+  >.menu {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  >.menu>.item {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    min-height: 50px;
+    padding: 0 30px;
+    background-color: #28282d;
+    width: 100%;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    justify-content: flex-start;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  >.menu>.item>.link>.active {
+    color: #fef142;
+    background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  >.menu>.item>.link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    color: #fff;
     text-decoration: none;
+    gap: 10px;
+
+    >.icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
   }
 
-  >.content img {
-    animation: wiggle 1.3s linear infinite;
-  }
-
-  >.content>.jackpot-value {
-    font-size: 18px;
-    color: #28a745;
-    font-weight: 700;
+  >.menu>.item:hover>.link>.text,
+  >.menu>.item:hover>.link>.icon {
+    color: #fef142;
+    background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
-.maintain {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100vh;
-  padding: 0 16px;
+.app-bar-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: $primary-color-1;
+  position: relative;
+  display: none;
+
+  >.logo {
+    width: 160px;
+  }
+
+  >.line {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    display: block;
+    background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
+    box-shadow: 0 0 20px 0 rgba(255, 88, 96, 0.5);
+    pointer-events: none;
+  }
 }
 
-@keyframes wiggle {
+.main-content {
+  >.container {
+    padding: 0 24px 30px 24px;
+  }
+}
 
-  0%,
-  7% {
-    transform: rotateZ(0);
+:deep(.v-navigation-drawer__content) {
+  color: #fff !important;
+}
+
+:deep(.v-navigation-drawer__scrim) {
+  display: none !important;
+}
+
+@include mediaquery-up(lg) {
+  .container-drawer {
+    >.logo {
+      height: 70px;
+      min-height: 70px;
+    }
   }
 
-  15% {
-    transform: rotateZ(-15deg);
+  .app-bar-menu {
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    margin-bottom: 200px;
   }
 
-  20% {
-    transform: rotateZ(10deg);
+  .main-content {
+    >.container {
+      margin-top: 70px;
+      padding: 0 12px;
+    }
   }
 
-  25% {
-    transform: rotateZ(-10deg);
-  }
-
-  30% {
-    transform: rotateZ(6deg);
-  }
-
-  35% {
-    transform: rotateZ(-4deg);
-  }
-
-  40%,
-  100% {
-    transform: rotateZ(0);
-  }
 }
 </style>

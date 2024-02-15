@@ -264,6 +264,7 @@ const createNewGameRating = async () => {
   padding-top: 10px;
   display: block;
   width: 100%;
+  color: #000;
 
   >.choose-game {
     display: flex;
@@ -285,6 +286,7 @@ const createNewGameRating = async () => {
   border: 1px solid #f4f3f3;
   display: block;
   overflow-x: auto;
+  color: #000;
 
   >.table {
     width: 100%;
@@ -361,6 +363,7 @@ const createNewGameRating = async () => {
   display: flex;
   gap: 10px;
   justify-content: space-between;
+  color: #000;
 
   >.cell.-content {
     width: 10%;

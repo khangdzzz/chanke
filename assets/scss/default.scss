@@ -8,8 +8,8 @@ body {
   letter-spacing: 0.04em;
   color: $color-text-primary;
   font-family: 'Roboto', sans-serif;
-  background-color: #f2f2f2;
-  color: #636262;
+  background-color: $primary-color-1;
+  color: #fff;
 }
 
 li {
@@ -41,4 +41,9 @@ button {
   background: none;
   padding: 0;
   color: $primary-color;
+}
+
+.note {
+  color: #fef142;
+  font-weight: 500;
 }

@@ -5,6 +5,25 @@ export interface IResponse {
   data?: any
 }
 
+export interface User {
+  _id?: string;
+  username: string,
+  password: string,
+  permission: string,
+  accountNumber?: string,
+  accountName?: string,
+  bankcode?: string
+  createdAt?: string
+}
+
+export interface IUserResponse extends IResponse {
+  data: User
+}
+
+export interface IUsersResponse extends IResponse {
+  data: User[]
+}
+
 export interface Game {
   _id?: string;
   gameType: string;
@@ -42,7 +61,7 @@ export interface IPlayer {
   bankcode: string
   accountNumber: string
   accountName: string
-  userid: string
+  username: string
   createdAt?: string
 }
 
@@ -95,6 +114,8 @@ export interface ITransactionHistory {
   createdAt: string;
   updatedAt: string;
   nickname: string;
+  code: string;
+  paymentStatus: boolean;
 }
 
 

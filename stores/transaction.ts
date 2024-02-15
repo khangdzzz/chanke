@@ -5,7 +5,8 @@ import {
   ITransactionHistory,
   ITransactionHistoryResponse,
   CashHistoryResponse,
-  ICashHistoryPagination
+  ICashHistoryPagination,
+  IResponse
 } from '@/utils'
 
 export const useTransactionStore = defineStore('transaction', () => {
@@ -58,6 +59,13 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   }
 
+  const callBackPayment = async (username: string, transactionId: string) => {
+    await apis
+      .chanle!.get(`private/call-back-payment?username=${username}&transactionId=${transactionId}`)
+      .json<IResponse>()
+      .catch(() => null)
+  }
+
   return {
     historyCashLatest,
     historyTransaction,
@@ -67,5 +75,6 @@ export const useTransactionStore = defineStore('transaction', () => {
     getHistoryTransaction,
     getHistoryTransactionLatest,
     getTenHistoryTransactionWinNewset,
+    callBackPayment,
   }
 })

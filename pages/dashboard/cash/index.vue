@@ -131,6 +131,7 @@ watch(page,
   flex-direction: column;
   gap: 10px;
   width: 50%;
+  color: #000;
 
   >.games {
     width: 100%;
@@ -162,6 +163,7 @@ watch(page,
 .container-search {
   width: 100%;
   overflow-x: auto;
+  color: #000;
 
   >.table {
     width: 100%;

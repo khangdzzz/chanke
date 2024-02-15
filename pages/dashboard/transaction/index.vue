@@ -42,7 +42,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
 </script>
 <template>
   <div class="transaction-container">
-    <div class="form">
+    <!-- <div class="form">
       <v-select v-model="selectedBank" :items="BANK_USED" item-value="code" item-title="shortName" variant="outlined"
         label="Loại ngân hàng " class="row" dense :clearable="false" return-object></v-select>
       <v-text-field class="row -money" v-model="amount" label="Nhập tiền cược" outlined
@@ -51,7 +51,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
       <v-btn class="add" @click="handleFakeTransaction()" :loading="isLoading">Test Transaction</v-btn>
       <span class="success" v-if="isHandleTransactionSuccess">Thành Công</span>
       <span class="fail" v-if="isHandleTransactionFail">Thất Bại</span>
-    </div>
+    </div> -->
     <div class="history">
       <v-btn class="label" :append-icon="iconArrow" variant="text" @click="() => isOpenHistory = !isOpenHistory">
         Lịch sử giao dịch
@@ -64,6 +64,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
 .transaction-container {
   display: block;
   padding: 12px;
+  color: #000;
 
 
   >.form {
@@ -100,7 +101,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
     }
   }
 
-  > .history {
+  >.history {
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -108,7 +109,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
     width: 100%;
   }
 
- > .history > .label {
+  >.history>.label {
     width: 100%;
     margin-bottom: 12px;
     border-radius: 4px;

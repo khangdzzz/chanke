@@ -117,6 +117,7 @@ const updateStatusGame = async (game: IListGameDetail) => {
   display: block;
   overflow-x: auto;
   padding: 12px;
+  color: #000;
 
   > .back {
     margin-bottom: 20px;

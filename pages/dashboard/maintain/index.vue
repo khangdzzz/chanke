@@ -102,6 +102,7 @@ const createOrUpdateCanlenderMaintain = async () => {
 </template>
 <style lang="scss" scoped>
 .container-maintain {
+  color: #000;
   >.title {
     font-size: 24px;
     font-weight: 600;
