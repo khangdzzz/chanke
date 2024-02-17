@@ -2,6 +2,7 @@
 import { User } from '@/utils'
 import { BANKS } from '~/utils/constants'
 import { isNumber, formatDate } from '~/utils/formatters'
+import removeAccents from 'remove-accents'
 definePageMeta({
   middleware: 'auth',
   layout: 'dashboad',
@@ -41,12 +42,20 @@ const playerTableColumns = ref([
 ])
 
 const userStore = useUserStore()
+const page = ref(1)
+const limit = ref(10)
 
 onMounted(async () => {
-  await userStore.getAllUsers()
+  await userStore.getAllUsers(page.value, limit.value)
 })
 
-const users = computed(() => userStore.users)
+const users = computed(() => userStore.containerUsers?.users)
+
+const totalPage = computed(() => userStore.containerUsers?.totalPages)
+
+const isShowPagination = computed(() => {
+  return totalPage.value ? totalPage.value > 1 : false
+})
 
 const usernameEdit = ref('')
 const isEditUser = ref(false)
@@ -63,6 +72,10 @@ const username = ref('')
 const accountName = ref('')
 const accountNumber = ref('')
 const selectedBank = ref({ value: '', label: '' })
+
+watch(username, (newValue) => {
+  username.value = removeAccents(newValue)
+})
 
 const editUser = (user: User) => {
   isEditUser.value = true
@@ -95,7 +108,7 @@ const updateEditUser = async (user: User) => {
   }
 
   await userStore.updateUser(dataUpdate)
-  await userStore.getAllUsers()
+  await userStore.getAllUsers(page.value, limit.value)
   if (userStore.isUpdated) {
     statusUpdate.value = true
     notification.value = 'Cập nhật thành công'
@@ -125,11 +138,12 @@ const deleteUser = async (user: User) => {
   usernameDelete.value = user.username
   isLoadingDeleteUser.value = true
   await userStore.deleteUser(user.username as string)
+  await userStore.getAllUsers(page.value, limit.value)
 
   setTimeout(() => {
     isLoadingDeleteUser.value = false
     usernameDelete.value = ''
-  }, 100);
+  }, 500);
 }
 
 const toUpper = (e: { target: { value: string } }) => {
@@ -143,8 +157,15 @@ const toLower = (e: { target: { value: string } }) => {
 const nickname = ref('')
 
 const searchPlayerByNickName = async () => {
-  // await playerStore.getPlayererDataByUserId(nickname.value)
+  const condition = nickname.value ? `&username=${nickname.value}` : ''
+  await userStore.getAllUsers(page.value, limit.value, condition)
 }
+
+watch(page,
+  async () => {
+    await userStore.getAllUsers(page.value, limit.value)
+  }
+)
 </script>
 <template>
   <div class="container-player">
@@ -236,6 +257,10 @@ const searchPlayerByNickName = async () => {
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="text-center">
+      <v-pagination v-if="isShowPagination" v-model="page" :length="totalPage" rounded="circle" prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"></v-pagination>
     </div>
     <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" :color="statusUpdate ? 'success' : 'red'"
       elevation="24" transition="fade-transition">

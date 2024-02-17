@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import removeAccents from 'remove-accents'
 definePageMeta({
   layout: false,
 })
@@ -59,6 +60,10 @@ const registerUser = async () => {
   router.push('/user/login')
 }
 
+watch(username, (newValue) => {
+  username.value = removeAccents(newValue)
+})
+
 const warning = ref('')
 </script>
 <template>
@@ -72,7 +77,7 @@ const warning = ref('')
         <input v-model="username" class="username" type="text" placeholder="Nickname" required />
         <input v-model="password" class="password" type="password" placeholder="Mật Khẩu" required />
         <input v-model="repeatPassword" class="password" type="password" placeholder="Nhập Lại Mật Khẩu" required />
-        <v-btn class="btn" :loading="isLoading" @click="registerUser">Đang Ký</v-btn>
+        <v-btn class="btn" :loading="isLoading" @click="registerUser">Đang Kí</v-btn>
       </div>
 
       <div class="register">Đã có tài khoản? <nuxt-link class="link" to="/user/login">Đăng Nhập!</nuxt-link></div>

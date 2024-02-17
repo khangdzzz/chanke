@@ -38,6 +38,9 @@ export const useAuth = () => {
 
   const getUserName = () => {
     const token = localStorage.getItem('accessToken')
+
+    if (!token) return ''
+
     const decodedToken = parseJwt(token as string)
 
     return decodedToken.username

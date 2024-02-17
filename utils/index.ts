@@ -20,8 +20,14 @@ export interface IUserResponse extends IResponse {
   data: User
 }
 
+export interface IPaginationUser {
+  totalRecords: number,
+  totalPages: number,
+  users: User[]
+}
+
 export interface IUsersResponse extends IResponse {
-  data: User[]
+  data: IPaginationUser
 }
 
 export interface Game {
@@ -189,3 +195,14 @@ interface Bank {
   isTransfer: number;
   swift_code: string | null;
 }
+
+
+
+export interface Task {
+  code: string,
+}
+
+export interface TaskResponse extends IResponse {
+  data: Task
+}
+

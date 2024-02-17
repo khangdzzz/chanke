@@ -109,6 +109,8 @@ const chooseMenu = (index: number) => {
       item.active = false
     }
   })
+
+  if (window.innerWidth < 1200) useApp.isOpenMenuBar = false
 }
 const router = useRouter()
 const logout = () => {
@@ -124,8 +126,9 @@ const logout = () => {
       <a href="/" class="logo">
         <img src="~/assets/images/logo_chanlebank1.png" alt="">
       </a>
-      <CustomHeaderIcon></CustomHeaderIcon>
-      <div class="line"></div>
+      <v-icon class="icon" icon="mdi-menu" @click="useApp.isOpenMenuBar = !useApp.isOpenMenuBar"></v-icon>
+      <div class=" line">
+      </div>
     </div>
     <v-layout class="layout">
       <v-navigation-drawer class="navigation-drawer" v-model="isOpenMenuBar" color="#28282d">
@@ -307,6 +310,17 @@ const logout = () => {
 
   >.logo {
     width: 160px;
+  }
+
+  >.icon {
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      color: #fef142;
+      scale: 1.1;
+    }
   }
 
   >.line {

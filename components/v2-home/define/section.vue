@@ -9,7 +9,7 @@
     <div class="event">
       <span class="item">Chẵn lẻ bank là một trò chơi xanh chín, dựa vào mã giao dịch của ngân hàng MB Bank, Vietcombank
         (VCB), Techcombank (TCB), Vietinbank (VTB), BIDV, VPB Bank, ACB, Agribank, TPBANK (TPB), Sacombank (STB), SHB và
-        nhiều ngân hàng khác. Hiện nay KUBANK.NET đang là hệ thống bank chẵn lẻ, chẵn lẻ zalopay, chẵn lẻ momo thanh toán
+        nhiều ngân hàng khác. Hiện nay clmm.cam đang là hệ thống bank chẵn lẻ, chẵn lẻ zalopay, chẵn lẻ momo thanh toán
         tự động chỉ trong 3 giây và uy tín nhất hiện tại, Hỗ trợ khách hàng 24/7</span>
       <span class="item">Chẵn lẻ là một trò chơi phổ biến, thường được chơi trong các dịp tết đầu năm, lễ hội hoặc tụ tập
         bạn bè. Hiện nay, Chẵn Lẻ Bank đã được phát triển thành một trò chơi trực tuyến trên ứng dụng thanh toán di động
@@ -86,3 +86,4 @@
   }
 }
 </style>
+

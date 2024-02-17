@@ -10,7 +10,7 @@
 			<span class="item">[TB] RA MẮT GAME BTC TÍNH KẾT QUẢ DỰA VÀO BIẾN ĐỘNG VOL (BTC) .<span class="note">[THAM
 					GIA]</span></span>
 			<span class="item">[FAQ] HƯỚNG DẪN CÁCH TÍNH KẾT QUẢ <span class="note">[TẠI ĐÂY].</span></span>
-			<span class="item">[EVENT] NHẬN MIỄN PHÍ 25K HẰNG NGÀY KHI TRỞ THÀNH FAN KUBANK. <span class="note">[THAM
+			<span class="item">[EVENT] NHẬN MIỄN PHÍ 25K HẰNG NGÀY KHI TRỞ THÀNH FAN CLMM.CAM. <span class="note">[THAM
 					GIA]</span></span>
 			<span class="item">[EVENT] ĐUA TOP TƯƠNG TÁC NHẬN NGAY 700K VNĐ. <span class="note">[CHI TIẾT]</span></span>
 			<span class="item">[EVENT] NHẬN HOÀN CƯỢC LÊN TỚI 60% BẤT CHẤP THẮNG THUA. <span class="note">[THAM
@@ -20,7 +20,7 @@
 			<span class="item">[CẢNH BÁO] CHỈ CHUYỂN KHOẢN VÀO SỐ TÀI KHOẢN TRÊN WEB.</span>
 
 
-			<span class="item">[CẢNH BÁO] <span class="title">KUBANK</span> KHÔNG HỀ CÓ BẤT KỲ ADMIN/HỖ TRỢ NÀO TRÊN TELEGRAM.
+			<span class="item">[CẢNH BÁO] <span class="title">CLMM.CAM</span> KHÔNG HỀ CÓ BẤT KỲ ADMIN/HỖ TRỢ NÀO TRÊN TELEGRAM.
 				MỌI ĐỐI TƯỢNG NHẬN LÀ
 				ADMIN/HỖ TRỢ TRÊN
 				TELEGRAM ĐỀU LÀ LỪA ĐẢO.</span>

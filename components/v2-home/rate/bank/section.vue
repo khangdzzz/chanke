@@ -50,7 +50,7 @@ const copyBankNumber = (accountNumber: string) => {
     <div class="warning" v-if="!isLogin">
       ĐỂ LẤY THÔNG TIN BANK CHUYỂN KHOẢN, VUI LÒNG
       <span class="login"><nuxt-link to="/user/login">ĐĂNG NHẬP</nuxt-link></span> HOẶC
-      <span class="register"><nuxt-link to="register">ĐĂNG KÝ NHANH</nuxt-link></span>
+      <span class="register"><nuxt-link to="/user/register">ĐĂNG KÝ NHANH</nuxt-link></span>
     </div>
     <table class="table" v-if="isLogin">
       <thead class="head">

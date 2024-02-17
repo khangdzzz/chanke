@@ -77,6 +77,11 @@ const menuBars = [
     text: 'Bảo Trì',
     icon: 'mdi-wrench-clock',
   },
+  {
+    url: '/dashboard/task',
+    text: 'Thiết Lập Mã Nhiệm Vụ',
+    icon: 'mdi-cog-pause-outline',
+  },
 ]
 
 const header = ref('Trang Chủ')

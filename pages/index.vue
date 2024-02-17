@@ -10,6 +10,7 @@
     <V2HomeRankSection />
     <V2HomeRoleSection />
     <V2HomeDefineSection />
+    <V2HomeCountDownSection />
   </div>
 </template>
 <style lang="scss" scoped>

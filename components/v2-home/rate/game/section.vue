@@ -23,6 +23,10 @@ watch(
   }
 )
 
+const { getUserName } = useAuth()
+
+const username = computed(() => getUserName())
+
 const roleGame = ref('KẾT QUẢ TÍNH BẰNG SỐ CUỐI CỦA MÃ GIAO DỊCH BANK KHI CHUYỂN KHOẢN VÀO BANK NHẬN CỦA WEB TỶ LỆ SẼ LÀ <span class="note">x2.5</span> CHO LỆNH WIN ĐẦU TIỀN(>= 50K VÀ <= 100K)')
 </script>
 <template>
@@ -42,7 +46,7 @@ const roleGame = ref('KẾT QUẢ TÍNH BẰNG SỐ CUỐI CỦA MÃ GIAO DỊCH
       <tbody class="body">
         <tr class="row" v-for="reward in rewards" :key="reward?._id">
           <td class="cell">
-            nickname {{ reward.content }}
+            {{ username ? username : 'nickname' }} {{ reward.content }}
           </td>
           <td class="cell number">
             <span v-for="(code, index) in reward.numberTLS" :key="index" :class="{ 'code': code || code == 0 }">
@@ -53,7 +57,7 @@ const roleGame = ref('KẾT QUẢ TÍNH BẰNG SỐ CUỐI CỦA MÃ GIAO DỊCH
         </tr>
       </tbody>
     </table>
-    <div class="role" v-html="roleGame"></div>
+    <!-- <div class="role" v-html="roleGame"></div> -->
   </div>
 </template>
 <style lang="scss" scoped>

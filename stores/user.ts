@@ -1,6 +1,6 @@
 import { apis } from '@/apis'
 import { is } from 'date-fns/locale'
-import { IResponse, IUserResponse, IUsersResponse, User } from '~~/utils'
+import { IResponse, IUserResponse, IUsersResponse, IPaginationUser, User } from '~~/utils'
 interface LoginBody {
   username: string
   password: string
@@ -31,7 +31,7 @@ export const useUserStore = defineStore('user', () => {
   const isRegisterSuccess = ref(false)
   const authUser = ref<User>()
   const isUpdatePassword = ref(false)
-  const users = ref<User[]>([])
+  const containerUsers = ref<IPaginationUser>()
 
   const login = async (body: LoginBody) => {
     const res: IResponse | null = await apis
@@ -87,14 +87,14 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  const getAllUsers = async () => {
+  const getAllUsers = async (page: number, limit: number, condition?: string) => {
     const res: IUsersResponse | null = await apis
-      .chanle!.get('user/all')
+      .chanle!.get('user/all?page=' + page + '&limit=' + limit + (condition ? condition : ''))
       .json<IUsersResponse>()
       .catch(() => null)
 
     if (res?.success) {
-      users.value = res?.data
+      containerUsers.value = res.data
     }
   }
 
@@ -112,14 +112,10 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const deleteUser = async (username: string) => {
-    const res = await apis.chanle
+    await apis.chanle
       ?.delete(`user?username=${username}`)
       .json<IResponse>()
       .catch(() => null)
-
-    if (res && res.success) {
-      await getAllUsers()
-    }
   }
 
   return {
@@ -129,7 +125,7 @@ export const useUserStore = defineStore('user', () => {
     isUpdated,
     authUser,
     isUpdatePassword,
-    users,
+    containerUsers,
     login,
     register,
     updateUser,
