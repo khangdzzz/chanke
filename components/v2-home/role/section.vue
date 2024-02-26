@@ -27,7 +27,8 @@
       <span class="item">9. CÁC GD ZALO TỪ 0:00 TỚI 0:05 ĐỀU KHÔNG ĐƯỢC TÍNH VÀ KHÔNG HOÀN TIỀN. VUI LÒNG KHÔNG CK TỪ PHÚT
         58 TỚI 05 HÔM SAU.</span>
       <span class="item">10. CHUYỂN KHOẢN SAI NỘI DUNG/HẠN MỨC/TÀI KHOẢN BẢO TRÌ SẼ KHÔNG ĐƯỢC HOÀN TIỀN.</span>
-      <span class="item">11. BẠN CẦN TRUY CẬP LẠI WEB NẾU QUÁ 12H KHÔNG CÓ HOẠT ĐỘNG NÀO. NẾU KHÔNG HT SẼ KHÔNG TÍNH NỘI
+      <span class="item">11. HẠN MỨC CHUYỂN KHOẢN TỐI THIỂU LÀ 20K, TỐI ĐA 5M CHO MỖI LƯỢT GIAO DỊCH.</span>
+      <span class="item">12. BẠN CẦN TRUY CẬP LẠI WEB NẾU QUÁ 12H KHÔNG CÓ HOẠT ĐỘNG NÀO. NẾU KHÔNG HT SẼ KHÔNG TÍNH NỘI
         DUNG CỦA BẠN.</span>
 
     </div>

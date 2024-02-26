@@ -2,37 +2,15 @@
 
 const route = useRoute()
 
-const maintainStore = useMaintainStore()
-
 const useApp = useDialogConfirmStore()
 const isOpenMenuBar = computed(() => useApp.isOpenMenuBar)
-const { checkTokenValid, getUserName } = useAuth()
+const { checkTokenValid, getUserName, permission } = useAuth()
 const isAuth = computed(() => checkTokenValid())
 
+const isAdmin = computed(() => permission.value === 'admin')
+
 onMounted(async () => {
-  await maintainStore.getCalenderMaintain()
-
   if (window.innerWidth > 1200) useApp.isOpenMenuBar = true
-})
-
-const isMaintain = computed(() => {
-  if (maintainStore.maintain) {
-    if (maintainStore.maintain?.status) {
-      const startTime = new Date(maintainStore.maintain?.start ?? new Date())
-      const endTime = new Date(maintainStore.maintain?.end ?? new Date())
-      const currentTime = new Date()
-
-      if (currentTime >= startTime && currentTime <= endTime) {
-        return false
-      } else {
-        return true
-      }
-    } else {
-      return true
-    }
-  } else {
-    return false
-  }
 })
 
 const MENU_BARS =
@@ -41,7 +19,7 @@ const MENU_BARS =
       url: '/',
       text: 'Trang Chủ',
       icon: 'mdi-home',
-      active: false,
+      active: true,
       show: true,
     },
     {
@@ -94,12 +72,8 @@ const MENU_BARS =
       show: isAuth.value
     },
   ]
-const menuBars = ref(MENU_BARS.map(item => {
-  return {
-    ...item,
-    active: item.url === route.path,
-  }
-}))
+
+const menuBars = ref(MENU_BARS)
 
 const chooseMenu = (index: number) => {
   menuBars.value.forEach((item, i) => {
@@ -119,9 +93,19 @@ const logout = () => {
   router.push('/user/login')
 }
 
+onMounted(() => {
+  menuBars.value.forEach((item, index) => {
+    if (item.url === route.path) {
+      item.active = true
+    } else {
+      item.active = false
+    }
+  })
+})
+
 </script>
 <template>
-  <div class="default-layout">
+  <div class="default-layout" v-if="!isAdmin">
     <div class="app-bar-menu">
       <a href="/" class="logo">
         <img src="~/assets/images/logo_chanlebank1.png" alt="">

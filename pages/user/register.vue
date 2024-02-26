@@ -61,8 +61,12 @@ const registerUser = async () => {
 }
 
 watch(username, (newValue) => {
-  username.value = removeAccents(newValue)
+  username.value = removeAccents(newValue).toLowerCase()
 })
+
+const toLower = () => {
+  username.value = username.value.toLowerCase()
+}
 
 const warning = ref('')
 </script>
@@ -72,13 +76,13 @@ const warning = ref('')
       <a href="/" class="logo">
         <img src="~/assets/images/logo_chanlebank1.png" alt="">
       </a>
-      <div class="form">
+      <form @submit.prevent="registerUser" class="form">
         <span class="warning" v-if="warning">{{ warning }}</span>
-        <input v-model="username" class="username" type="text" placeholder="Nickname" required />
+        <input v-model="username" class="username" type="text" placeholder="Nickname" required @input="toLower" />
         <input v-model="password" class="password" type="password" placeholder="Mật Khẩu" required />
         <input v-model="repeatPassword" class="password" type="password" placeholder="Nhập Lại Mật Khẩu" required />
-        <v-btn class="btn" :loading="isLoading" @click="registerUser">Đang Kí</v-btn>
-      </div>
+        <v-btn type="submit" class="btn" :loading="isLoading" @click="registerUser">Đăng Ký</v-btn>
+      </form>
 
       <div class="register">Đã có tài khoản? <nuxt-link class="link" to="/user/login">Đăng Nhập!</nuxt-link></div>
     </div>

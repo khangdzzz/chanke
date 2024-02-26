@@ -45,11 +45,26 @@ export const useAuth = () => {
 
     return decodedToken.username
   }
+
+  const checkUpdateBank = () => {
+    const token = localStorage.getItem('accessToken')
+
+    if (!token) return false
+    
+    const decodedToken = parseJwt(token as string)
+
+    if (!decodedToken.accountNumber || !decodedToken.accountName || !decodedToken.bankcode) {
+      return false
+    }
+
+    return true
+  }
   return {
     username,
     permission,
     checkToken,
     checkTokenValid,
-    getUserName
+    getUserName,
+    checkUpdateBank,
   }
 }

@@ -22,7 +22,7 @@ export const isNumber = (evt: { keyCode: number; preventDefault: () => void }) =
 
 
 export const maskNumber = (numberString: string) => {
-    const maskedPart = '*'.repeat(numberString.length - 3);
-    const visiblePart = numberString.slice(-3);
+    const maskedPart = '*'.repeat(numberString.length - 6);
+    const visiblePart = numberString.slice(-6);
     return maskedPart + visiblePart;
 }

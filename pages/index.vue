@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+definePageMeta({
+  middleware: 'permission',
+})
+
 
 </script>
 <template>
@@ -11,6 +15,7 @@
     <V2HomeRoleSection />
     <V2HomeDefineSection />
     <V2HomeCountDownSection />
+    <DialogNotiUpdateBank />
   </div>
 </template>
 <style lang="scss" scoped>
