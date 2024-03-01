@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import copy from 'clipboard-copy'
 const gameStore = useGameStore()
 
 const gameMiddleTitle = computed(() => {
@@ -28,6 +29,15 @@ const { getUserName } = useAuth()
 const username = computed(() => getUserName())
 
 const roleGame = ref('SỐ TIỀN CƯỢC TỐI THIỂU LÀ <span class="note">11K</span>')
+
+const snackbar = ref(false)
+const text = ref('')
+
+const copyContentGame = (content: string) => {
+  copy(content)
+  text.value = `Sao chép thành công < ${content} >`
+  snackbar.value = true
+}
 </script>
 <template>
   <div class="container-table-ratio">
@@ -47,6 +57,8 @@ const roleGame = ref('SỐ TIỀN CƯỢC TỐI THIỂU LÀ <span class="note">1
         <tr class="row" v-for="reward in rewards" :key="reward?._id">
           <td class="cell">
             {{ username ? username : 'nickname' }} {{ reward.content }}
+            <v-icon class="icon-copy" icon="mdi-content-copy" v-if="username"
+              @click="copyContentGame(`${username} ${reward.content}`)" />
           </td>
           <td class="cell number">
             <span v-for="(code, index) in reward.numberTLS" :key="index" :class="{ 'code': code || code == 0 }">
@@ -57,6 +69,10 @@ const roleGame = ref('SỐ TIỀN CƯỢC TỐI THIỂU LÀ <span class="note">1
         </tr>
       </tbody>
     </table>
+    <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" color="success" elevation="24"
+      transition="fade-transition">
+      {{ text }}
+    </v-snackbar>
     <div class="role" v-html="roleGame"></div>
   </div>
 </template>

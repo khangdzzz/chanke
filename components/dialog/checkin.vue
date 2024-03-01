@@ -14,12 +14,7 @@ onMounted(() => {
 
 <template>
   <div class="text-center">
-    <v-dialog
-      v-if="isMounted"
-      v-model="isVisibleCheckIn"
-      activator="parent"
-      width="auto"
-    >
+    <v-dialog v-if="isMounted" v-model="isVisibleCheckIn" activator="parent" width="auto">
       <v-card>
         <div class="container">
           <div class="modal-header">
@@ -28,11 +23,7 @@ onMounted(() => {
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <input
-                type="text"
-                class="username"
-                placeholder="Nhập Username cần điểm danh.."
-              />
+              <input type="text" class="username" placeholder="Nhập Username cần điểm danh.." />
               <v-icon class="icon" icon="mdi-account-plus"></v-icon>
             </div>
             <div class="checkin">
@@ -104,7 +95,7 @@ onMounted(() => {
             </div>
             <div class="warning">
               <p>
-                chẵn lẻ bank - clmm.cam
+                chẵn lẻ bank - chanlebank.page
                 <br />
                 <br />
                 - Mỗi phiên quà các bạn có 15 phút để điểm danh.
@@ -145,13 +136,13 @@ onMounted(() => {
   padding: 10px 20px;
   align-items: center;
 
-  > .header {
+  >.header {
     font-size: 0.9rem;
     font-weight: 700;
     line-height: 1;
   }
 
-  > .close {
+  >.close {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
@@ -168,13 +159,14 @@ onMounted(() => {
   padding: 10px 20px;
   font-size: 0.9rem;
   font-weight: 300;
-  > .form-group {
+
+  >.form-group {
     display: flex;
     width: 100%;
     gap: 10px;
   }
 
-  > .form-group > .username {
+  >.form-group>.username {
     width: 100%;
 
     border: 1px solid #dee2e6;
@@ -189,7 +181,7 @@ onMounted(() => {
     margin-bottom: 1rem;
   }
 
-  > .form-group > .icon {
+  >.form-group>.icon {
     color: $primary-color;
     padding: 20px 26px;
     border-radius: 4px;
@@ -197,25 +189,25 @@ onMounted(() => {
     cursor: pointer;
   }
 
-  > .checkin {
+  >.checkin {
     display: block;
     overflow-x: auto;
     margin-bottom: 1rem;
   }
 
-  > .checkin > .table {
+  >.checkin>.table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #e0e0e0;
   }
 
-  > .checkin > .table > .head {
+  >.checkin>.table>.head {
     background-color: $primary-color;
     color: white;
   }
 
-  > .checkin > .table > .head > .row > .cell {
+  >.checkin>.table>.head>.row>.cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 900;
@@ -224,7 +216,7 @@ onMounted(() => {
     border: 1px solid #e0e0e0;
   }
 
-  > .checkin > .table tbody tr td {
+  >.checkin>.table tbody tr td {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -233,45 +225,49 @@ onMounted(() => {
     border: 1px solid #e0e0e0;
   }
 
-  > .checkin > .table tbody tr > .id {
+  >.checkin>.table tbody tr>.id {
     color: #45aaf2 !important;
   }
-  > .checkin > .table tbody tr > .gift {
+
+  >.checkin>.table tbody tr>.gift {
     color: #c21a1a !important;
   }
-  > .checkin > .table tbody tr > .total {
+
+  >.checkin>.table tbody tr>.total {
     color: #ecb403 !important;
   }
-  > .checkin > .table tbody tr > .win {
+
+  >.checkin>.table tbody tr>.win {
     color: #00c521 !important;
   }
 
-  > .checkin > .table tbody tr > .totalGift {
+  >.checkin>.table tbody tr>.totalGift {
     color: #45aaf2 !important;
   }
-  > .checkin > .table tbody tr > .time {
+
+  >.checkin>.table tbody tr>.time {
     color: #3fb7d5;
   }
 
-  > .list-checkin {
+  >.list-checkin {
     display: block;
     overflow-x: auto;
     margin-bottom: 1rem;
   }
 
-  > .list-checkin > .table {
+  >.list-checkin>.table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #e0e0e0;
   }
 
-  > .list-checkin > .table > .head {
+  >.list-checkin>.table>.head {
     background-color: $primary-color;
     color: white;
   }
 
-  > .list-checkin > .table > .head > .row > .cell {
+  >.list-checkin>.table>.head>.row>.cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 900;
@@ -280,7 +276,7 @@ onMounted(() => {
     border: 1px solid #e0e0e0;
   }
 
-  > .list-checkin > .table tbody tr td {
+  >.list-checkin>.table tbody tr td {
     padding: 8px 16px;
     font-size: 0.9rem;
     line-height: 1.5;
@@ -288,7 +284,7 @@ onMounted(() => {
     border: 1px solid #e0e0e0;
   }
 
-  > .list-checkin > .table tbody tr td:nth-child(1) {
+  >.list-checkin>.table tbody tr td:nth-child(1) {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -298,7 +294,7 @@ onMounted(() => {
     color: $primary-color;
   }
 
-  > .warning {
+  >.warning {
     color: #7d6608;
     background-color: #fcf3cf;
     border-color: #fbeebc;
@@ -313,7 +309,8 @@ onMounted(() => {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  > .close {
+
+  >.close {
     color: #fff;
     background: $primary-color;
     border: none;

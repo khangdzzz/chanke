@@ -1,9 +1,4 @@
 <script lang="ts" setup>
-definePageMeta({
-  middleware: 'permission',
-})
-
-
 </script>
 <template>
   <div class="home-page">

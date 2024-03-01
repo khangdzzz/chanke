@@ -24,7 +24,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-  plugins: [{ src: '~/plugins/liveChat.js', mode: 'client' }],
   modules: [
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {

@@ -12,7 +12,7 @@ const openCartIcon = ref(openCart)
   >
     <div class="header">
       <img class="icon" :src="openCartIcon" alt="" />
-      <a class="label" href="/">clmm.cam</a>
+      <a class="label" href="/">CHANLEBANK.PAGE</a>
     </div>
     <div class="spacer"></div>
   </v-app-bar>

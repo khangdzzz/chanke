@@ -27,28 +27,24 @@ const login = async () => {
   await userStore.login(body)
   isLoading.value = false
   if (isLoginSuccess.value) {
-    const { checkTokenValid, checkUpdateBank, permission } = useAuth()
+    const { checkTokenValid, checkUpdateBank } = useAuth()
 
     if (checkTokenValid()) {
-      if (permission.value === 'admin') {
-        router.push('/dashboard')
+      const isUpdateBank = checkUpdateBank()
+      useApp.isOpenMenuBar = false
+      if (!isUpdateBank) {
+        router.push('/bank-setting')
         return
       }
-      else {
-        const isUpdateBank = checkUpdateBank()
-        useApp.isOpenMenuBar = false
-        if (!isUpdateBank) {
-          router.push('/bank-setting')
-          return
-        }
-        router.push('/')
-        return
-      }
+      router.push('/')
+      return
     }
     router.push('/user/login')
     userStore.isLoginSuccess = false
     userStore.isLoginFail = false
   }
+  userStore.isLoginFail = false
+
 }
 </script>
 <template>
