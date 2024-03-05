@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-
+useHead({
+  title: 'Telegram Group',
+})
 </script>
+
 <template>
   <div class="chanel-page">
     <h3 class="title">
@@ -14,6 +17,7 @@
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .chanel-page {
   margin-top: 25px;

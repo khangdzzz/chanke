@@ -6,6 +6,17 @@ definePageMeta({
   middleware: 'auth',
 })
 
+useHead({
+  title: 'CHANLEBANK - Cài Đặt Bank',
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content: 'Cài Đặt Bank Trả Thưởng - CHANLEBANK-PAGE'
+    }
+  ],
+})
+
 const notification = ref('')
 const snackbar = ref(false)
 
@@ -15,16 +26,16 @@ const { getUserName } = useAuth()
 
 const authUser = computed(() => userStore.authUser)
 
-const selectedBank = ref({ value: '970415', label:  '(970415) VietinBank'})
+const selectedBank = ref({ value: '970415', label: '(970415) VietinBank' })
 const accountNumber = ref(authUser.value?.accountNumber)
 const accountName = ref(authUser.value?.accountName)
 
-onMounted(async() => {
+onMounted(async () => {
   await userStore.getDetailUser(getUserName())
   accountNumber.value = authUser.value?.accountNumber || ''
   accountName.value = authUser.value?.accountName || ''
-  selectedBank.value = authUser.value?.bankcode 
-    ? { value: authUser.value?.bankcode, label:  BANKS.find(bank => bank.value === authUser.value?.bankcode)?.label as string}
+  selectedBank.value = authUser.value?.bankcode
+    ? { value: authUser.value?.bankcode, label: BANKS.find(bank => bank.value === authUser.value?.bankcode)?.label as string }
     : { value: '970415', label: '(970415) VietinBank' }
 })
 
@@ -58,6 +69,7 @@ const toUpper = (e: { target: { value: string } }) => {
 }
 
 </script>
+
 <template>
   <div class="bank-setting">
     <V2HomeGamesSection />
@@ -69,8 +81,8 @@ const toUpper = (e: { target: { value: string } }) => {
     </h3>
 
     <form class="register-account">
-      <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" :color="isUpdated ? 'success' : 'red'"
-        elevation="24" transition="fade-transition">
+      <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top"
+        :color="isUpdated ? 'success' : 'red'" elevation="24" transition="fade-transition">
         <div style="width: 100%; text-align: center;">
           {{ notification }}
         </div>
@@ -102,6 +114,7 @@ const toUpper = (e: { target: { value: string } }) => {
     </span>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .bank-setting {
   display: flex;

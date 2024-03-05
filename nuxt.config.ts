@@ -6,16 +6,35 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
-      title: 'CHẴN LẺ BANK',
+      title: 'Home - Chẵn lẻ bank',
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'chanlebank',
+            name: 'Home',
+            description: 'Your site description',
+            url: 'https://chanlebank.page',
+          }),
+        },
+      ],
       htmlAttrs: {
         lang: 'ja',
       },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'keywords', name: 'keywords', content: 'Hệ thống chẵn lẻ bank MB Bank, Vietcombank (VCB), Techcombank (TCB), Vietinbank (VTB), BIDV tự động chỉ trong 3 giây' },
         { hid: 'description', name: 'description', content: 'Chẵn lẻ bank, uy tín hàng đầu !' },
+        { hid: 'author', name: 'author', content: 'ChanLeBank' },
+        { hid: 'og:title', property: 'og:title', content: 'Home' },
+        { hid: 'og:description', property: 'og:description', content: 'Your site description' },
+        { hid: 'og:url', property: 'og:url', content: 'https://chanlebank.page' },
+        { hid: 'og:image', property: 'og:image', content: 'https://chanlebank.page/your-image.jpg' },
       ],
       link: [
+        { rel: 'canonical', href: 'https://chanlebank.page' },
         { rel: 'icon', type: 'image/x-icon', href: '/CLB.ico' },
         {
           rel: 'stylesheet',

@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { IListGameDetail } from '~~/utils'
@@ -47,9 +46,9 @@ const chooseGame = (game: IListGameDetail) => {
   })
 }
 </script>
+
 <template>
   <div class="profile-content">
-    <h1 class=games>Danh Sách Games Của Chẵn Lẻ Bank</h1>
     <ul class="tabs" id="profile__tabs" role="tablist">
       <li class="item" v-for="game in listGame" :key="game._id" @click="chooseGame(game)">
         <button type="button" class="btn" :class="{ '-active': game.isActive }">{{ game.name }}</button>
@@ -57,6 +56,7 @@ const chooseGame = (game: IListGameDetail) => {
     </ul>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .profile-content {
   display: flex;

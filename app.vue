@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - Chẵn Lẻ Bank` : 'Chẵn Lẻ Bank';
+  }
+})
+</script>
+
 <template>
   <Suspense>
     <template #default>
@@ -6,17 +14,15 @@
         <NuxtPage />
       </NuxtLayout>
     </template>
+
     <template #fallback>
       <div class="overlay-loader">
-        <v-progress-circular
-          color="primary"
-          indeterminate
-          class="loading -circular"
-        />
+        <v-progress-circular color="primary" indeterminate class="loading -circular" />
       </div>
     </template>
   </Suspense>
 </template>
+
 <style lang="scss" scoped>
 .overlay-loader {
   display: flex;
@@ -32,7 +38,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  > .loading {
+
+  >.loading {
     width: 50px;
     height: 50px;
   }

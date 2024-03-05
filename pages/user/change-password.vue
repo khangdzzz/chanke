@@ -3,6 +3,10 @@ definePageMeta({
   middleware: 'auth',
 })
 
+useHead({
+  title: 'Đổi Mật Khẩu',
+})
+
 const notification = ref('')
 const snackbar = ref(false)
 const oldPassword = ref('')
@@ -16,7 +20,7 @@ const { getUserName } = useAuth()
 const isUpdatePass = computed(() => userStore.isUpdatePassword)
 
 const updatePassWord = async () => {
-  if(oldPassword.value === '' || newPassword.value === '' || confirmPassword.value === '') {
+  if (oldPassword.value === '' || newPassword.value === '' || confirmPassword.value === '') {
     notification.value = 'Vui lòng nhập đầy đủ thông tin'
     snackbar.value = true
     return
@@ -44,7 +48,7 @@ const updatePassWord = async () => {
 
   await userStore.updatePassword(body)
 
-  if(isUpdatePass.value) {
+  if (isUpdatePass.value) {
     notification.value = 'Cập Nhật Mật Khẩu Thành Công'
     snackbar.value = true
   } else {
@@ -55,6 +59,7 @@ const updatePassWord = async () => {
 
 
 </script>
+
 <template>
   <div class="container">
     <h3 class="title">
@@ -63,31 +68,32 @@ const updatePassWord = async () => {
     </h3>
 
     <form class="action-change">
-      <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top" :color="isUpdatePass ? 'success' : 'red'"
-        elevation="24" transition="fade-transition">
+      <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top"
+        :color="isUpdatePass ? 'success' : 'red'" elevation="24" transition="fade-transition">
         <div style="width: 100%; text-align: center;">
           {{ notification }}
         </div>
       </v-snackbar>
 
       <div class="input-text">
-        <v-text-field v-model="oldPassword" type="password" class="text"  placeholder="Nhập Mật Khẩu Cũ"></v-text-field>
+        <v-text-field v-model="oldPassword" type="password" class="text" placeholder="Nhập Mật Khẩu Cũ"></v-text-field>
       </div>
-    
+
       <div class="input-text">
         <v-text-field v-model="newPassword" type="password" class="text" placeholder="Nhập Mật Khẩu Mới"></v-text-field>
       </div>
 
       <div class="input-text">
-        <v-text-field v-model="confirmPassword" type="password" class="text" placeholder="Nhập Lại Mật Khẩu Mới" ></v-text-field>
+        <v-text-field v-model="confirmPassword" type="password" class="text"
+          placeholder="Nhập Lại Mật Khẩu Mới"></v-text-field>
       </div>
 
       <v-btn class="submit" @click="updatePassWord">Cập Nhật</v-btn>
     </form>
   </div>
 </template>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 .container {
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
@@ -128,40 +134,41 @@ const updatePassWord = async () => {
 
 
 .action-change {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #28282d;
-    box-shadow: 0 5px 25px 0 rgba(0,0,0,0.2);
-    padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #28282d;
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.2);
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 440px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: auto;
+  margin-top: 40px;
+
+  >.input-text {
     width: 100%;
-    max-width: 440px;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-    margin-top: 40px;
-    >.input-text {
+    margin-bottom: 20px;
+
+    >.text {
       width: 100%;
-      margin-bottom: 20px;
+      background: #1e1e23;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      line-height: 100%;
+      padding: 15px 20px;
+      border: 1px solid #1e1e23;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.2);
 
-      >.text {
-        width: 100%;
-        background: #1e1e23;
-        border-radius: 8px;
-        color: #fff;
-        font-size: 16px;
-        line-height: 100%;
-        padding: 15px 20px;
-        border: 1px solid #1e1e23;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 25px 0 rgba(0,0,0,0.2);
-
-        &:focus {
-          border-color: #fbb034;
-        }
+      &:focus {
+        border-color: #fbb034;
       }
     }
+  }
 
   >.submit {
     color: #fff;

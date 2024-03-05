@@ -3,6 +3,11 @@ import removeAccents from 'remove-accents'
 definePageMeta({
   layout: false,
 })
+
+useHead({
+  title: 'Đăng Kí',
+})
+
 const router = useRouter()
 
 const username = ref('')
@@ -70,6 +75,7 @@ const toLower = () => {
 
 const warning = ref('')
 </script>
+
 <template>
   <div class="login-container">
     <div class="card">
@@ -88,6 +94,7 @@ const warning = ref('')
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .login-container {
   margin: 0;

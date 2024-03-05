@@ -1,5 +1,9 @@
 <script lang="ts" setup>
+useHead({
+  title: 'Home',
+})
 </script>
+
 <template>
   <div class="home-page">
     <V2HomeGamesSection />
@@ -13,6 +17,7 @@
     <DialogNotiUpdateBank />
   </div>
 </template>
+
 <style lang="scss" scoped>
 .home-page {
   display: flex;

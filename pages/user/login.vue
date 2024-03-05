@@ -3,6 +3,10 @@ definePageMeta({
   layout: false,
 })
 
+useHead({
+  title: 'Đăng Nhập',
+})
+
 onMounted(() => {
   localStorage.removeItem('accessToken')
 })
