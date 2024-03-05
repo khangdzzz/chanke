@@ -22,7 +22,21 @@ export const isNumber = (evt: { keyCode: number; preventDefault: () => void }) =
 
 
 export const maskNumber = (numberString: string) => {
-    const maskedPart = '*'.repeat(numberString.length - 3);
-    const visiblePart = numberString.slice(-3);
+    const maskedPart = '*'.repeat(numberString.length - 6);
+    const visiblePart = numberString.slice(-6);
     return maskedPart + visiblePart;
+}
+
+export const getStartTime = () => {
+    const start = new Date()
+    start.setHours(0, 0, 0, 0)
+
+    return start
+}
+
+export const endTimeDay = () => {
+    const end = new Date()
+    end.setHours(23, 59, 59, 999)
+
+    return end
 }

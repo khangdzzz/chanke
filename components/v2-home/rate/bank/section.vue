@@ -86,7 +86,7 @@ const copyBankNumber = (accountNumber: string) => {
         </tr>
       </tbody>
     </table>
-    <BodyInformationQrCode :logo-qr-code="logoQrCode" />
+    <V2HomeRateBankQrCode :logo-qr-code="logoQrCode" />
   </div>
 </template>
 <style lang="scss" scoped>

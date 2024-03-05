@@ -206,3 +206,12 @@ export interface TaskResponse extends IResponse {
   data: Task
 }
 
+export interface Statistical {
+  time: string,
+  amount: number,
+  bonus: number,
+}
+
+export interface StatisticalResponse extends IResponse {
+  data: Statistical[]
+}

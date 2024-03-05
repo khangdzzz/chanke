@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate, maskNumber } from "~/utils/formatters"
+import { formatDate, getStartTime, endTimeDay } from "~/utils/formatters"
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
@@ -30,9 +30,9 @@ const isShowPagination = computed(() => {
 
 const nickname = ref("")
 
-const startDate = ref(new Date())
+const startDate = ref(getStartTime())
 
-const endDate = ref(new Date())
+const endDate = ref(endTimeDay())
 
 const isSearchTime = ref(false)
 
@@ -57,12 +57,67 @@ watch(page,
   }
 )
 
+const notification = ref('')
+const snackbar = ref(false)
+
+const isCallPaymentSuccess = computed(() => transactionStore.isCallPaymentSuccess)
+const isDetectTransactionSuccess = computed(() => transactionStore.isDetectTransactionSuccess)
+
+
+const dialogConfirmStore = useDialogConfirmStore()
+const action = ref('')
+const content = ref('')
+
+const nicknamePayment = ref('')
+const transactionIdPayment = ref('')
 const callbackPayment = async (item: any) => {
-  const nickname = item.nickname
-  const transactionId = item.transId
+  dialogConfirmStore.isOpenConfirmHandleTransaction = true
+  action.value = "PAYMENT"
+  content.value = `${item.nickname} (${item.bonus})`
+
+  nicknamePayment.value = item.nickname
+  transactionIdPayment.value = item.transId
+}
+
+const handlePayment = async () => {
+  const nickname = nicknamePayment.value
+  const transactionId = transactionIdPayment.value
 
   await transactionStore.callBackPayment(nickname, transactionId)
   await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+
+  dialogConfirmStore.isOpenConfirmHandleTransaction = false
+
+  notification.value = transactionStore.isCallPaymentSuccess ? 'Thanh Toán Thành Công' : 'Thanh Toán Thất Bại, Số tiền quá nhỏ or user không tồn tại'
+  snackbar.value = true
+}
+
+const contentDetected = "Code format invalid"
+
+
+const transactionIdDetect = ref('')
+const detectTransactionAgain = (item: any) => {
+
+  dialogConfirmStore.isOpenConfirmHandleTransaction = true
+  action.value = "DETECT"
+  content.value = item.nickname ? `${item.nickname} (${item.bonus})` : item.betValue
+
+  transactionIdDetect.value = item.transId
+
+}
+
+const handleDetectTransaction = async () => {
+  const body = {
+    transaction_id: transactionIdDetect.value
+  }
+
+  await transactionStore.detectTransaction(body)
+  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+
+  dialogConfirmStore.isOpenConfirmHandleTransaction = false
+
+  notification.value = transactionStore.isDetectTransactionSuccess ? 'Detect Thành Công' : 'Detect Thành Thất Bại'
+  snackbar.value = true
 }
 
 
@@ -103,6 +158,7 @@ const callbackPayment = async (item: any) => {
           <th class="cell">KẾT QUẢ</th>
           <th class="cell">TRẠNG THÁI THANH TOÁN TIỀN</th>
           <th class="cell">CALLBACK</th>
+          <th class="cell">DETECT</th>
         </tr>
       </thead>
       <tbody class="body">
@@ -128,6 +184,10 @@ const callbackPayment = async (item: any) => {
             <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus"
               @click="callbackPayment(item)">Payment</v-btn>
           </td>
+          <td class="cell">
+            <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus && item.status == contentDetected"
+              @click="detectTransactionAgain(item)">Detect</v-btn>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -136,6 +196,16 @@ const callbackPayment = async (item: any) => {
         next-icon="mdi-menu-right"></v-pagination>
     </div>
   </div>
+  <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top"
+    :color="isCallPaymentSuccess || isDetectTransactionSuccess ? 'success' : 'red'" elevation="24"
+    transition="fade-transition">
+    <div style="width: 100%; text-align: center;">
+      {{ notification }}
+    </div>
+  </v-snackbar>
+  <DialogConfirmHandleTransaction :action="action" :content="content" @payment="handlePayment"
+    @detect="handleDetectTransaction">
+  </DialogConfirmHandleTransaction>
 </template>
 
 <style lang="scss" scoped>

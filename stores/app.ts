@@ -4,6 +4,7 @@ export const useDialogConfirmStore = defineStore('dialog-confirm', () => {
   const isVisibleCheckIn = ref(false)
   const isVisibleQrCode = ref(false)
   const isOpenMenuBar = ref(false)
+  const isOpenConfirmHandleTransaction = ref(false)
 
   const showQrCode = () => {
     isVisibleQrCode.value = true
@@ -39,6 +40,7 @@ export const useDialogConfirmStore = defineStore('dialog-confirm', () => {
     isVisibleCheckIn,
     isVisibleQrCode,
     isOpenMenuBar,
+    isOpenConfirmHandleTransaction,
     showQrCode,
     showDialog,
     hideDialog,

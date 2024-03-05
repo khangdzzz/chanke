@@ -4,6 +4,8 @@ const { checkTokenValid, getUserName } = useAuth()
 
 const username = computed(() => getUserName())
 
+const isLogin = computed(() => checkTokenValid())
+
 const transactionStore = useTransactionStore()
 
 const page = ref(1)
@@ -11,15 +13,16 @@ const limit = 10
 const condition = ref("")
 
 onMounted(async () => {
+  if(!isLogin.value) return
   condition.value = `&nickname=${username.value}`
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryTransactionAuth(condition.value, page.value, limit)
 })
 
-const transactions = computed(() => transactionStore.historyTransactionLatest?.transactions)
+const transactions = computed(() => transactionStore.historyTransactionAuth?.transactions)
 
 </script>
 <template>
-  <div class="container-history">
+  <div class="container-history" v-if="isLogin">
     <h3 class="title">
       <v-icon class="icon" icon="mdi-clock-time-eight-outline"></v-icon>
       LỊCH SỬ CHƠI GẦN ĐÂY
@@ -45,8 +48,8 @@ const transactions = computed(() => transactionStore.historyTransactionLatest?.t
           <td class="cell">{{ item.nickname }}</td>
           <td class="cell">{{ item.accountNumberClient }}</td>
           <td class="cell">{{ item.transId }}</td>
-          <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
-          <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
+          <td class="cell">{{ Number(item.amount ?? 0).toLocaleString() }}</td>
+          <td class="cell">{{ Number(item.bonus ?? 0).toLocaleString() }}</td>
           <td class="cell">{{ item.detailGameName }}</td>
           <td class="cell">
             <span class="betName">{{ item.code }}</span>

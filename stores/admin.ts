@@ -40,7 +40,7 @@ export const useAdminStore = defineStore('admin', () => {
 
   const getBankAdminClient = async () => {
     const res: BankAdminResponse | null = await apis
-      .chanle!.get('admin/bank-client')
+      .chanle!.get('bank-client')
       .json<BankAdminResponse>()
       .catch(() => null)
 

@@ -16,6 +16,8 @@ const isLoginSuccess = computed(() => userStore.isLoginSuccess)
 const isLoginFail = computed(() => userStore.isLoginFail)
 const isLoading = ref(false)
 
+const useApp = useDialogConfirmStore()
+
 const login = async () => {
   isLoading.value = true
   const body = {
@@ -25,15 +27,23 @@ const login = async () => {
   await userStore.login(body)
   isLoading.value = false
   if (isLoginSuccess.value) {
-    const { checkTokenValid, permission } = useAuth()
+    const { checkTokenValid, checkUpdateBank, permission } = useAuth()
 
     if (checkTokenValid()) {
       if (permission.value === 'admin') {
         router.push('/dashboard')
         return
       }
-      else router.push('/')
-      return
+      else {
+        const isUpdateBank = checkUpdateBank()
+        useApp.isOpenMenuBar = false
+        if (!isUpdateBank) {
+          router.push('/bank-setting')
+          return
+        }
+        router.push('/')
+        return
+      }
     }
     router.push('/user/login')
     userStore.isLoginSuccess = false
@@ -48,11 +58,11 @@ const login = async () => {
       <a href="/" class="logo">
         <img src="~/assets/images/logo_chanlebank1.png" alt="">
       </a>
-      <div class="form">
+      <form @submit.prevent="login" class="form">
         <input v-model="username" class="username" type="text" placeholder="Nickname" required />
         <input v-model="password" class="password" type="password" placeholder="Mật Khẩu" required />
-        <v-btn class="btn" :loading="isLoading" @click="login">Đang Nhập</v-btn>
-      </div>
+        <v-btn type="submit" class="btn" :loading="isLoading" @click="login">Đăng Nhập</v-btn>
+      </form>
 
       <div class="register">Chưa có tài khoản? <nuxt-link class="link" to="/user/register">Đăng Ký!</nuxt-link></div>
     </div>

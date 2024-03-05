@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate, maskNumber } from '~~/utils/formatters'
+import { formatDate } from '~~/utils/formatters'
 
 const transactionStore = useTransactionStore()
 onMounted(async () => {
@@ -30,8 +30,8 @@ const historyTransactionWin = computed(() => transactionStore.tenHistoryTransact
       <tbody class="body">
         <tr class="row" v-for="(history, index) in historyTransactionWin" :key="index">
           <td class="cell">{{ formatDate(history.time) }}</td>
-          <td class="cell">{{ maskNumber(history.accountNumberClient) }}</td>
-          <td class="cell">{{ maskNumber(history.transId) }}</td>
+          <td class="cell">{{ history.accountNumberClient }}</td>
+          <td class="cell">{{ history.transId }}</td>
           <td class="cell">{{ Number(history.amount).toLocaleString() }}</td>
           <td class="cell">{{ history.detailGameName }}</td>
           <td class="cell">

@@ -3,27 +3,6 @@
 const drawer = ref(true)
 const rail = ref(false)
 
-const menus = ref([
-  {
-    key: 'admin',
-    value: 'Admin',
-    title: 'Admin',
-    icon: 'mdi-account-circle',
-    submenu: [
-      {
-        title: 'Management',
-        icon: 'mdi-account-multiple-outline',
-        url: '/',
-      },
-      {
-        title: 'Settings',
-        icon: 'mdi-cog-outline',
-        url: '/',
-      },
-    ],
-  },
-])
-
 const router = useRouter()
 const logout = () => {
   localStorage.removeItem('accessToken')
@@ -48,6 +27,11 @@ const menuBars = [
     icon: 'mdi-home',
   },
   {
+    url: '/dashboard/player',
+    text: 'Quản Lí Người Chơi',
+    icon: 'mdi-account-group',
+  },
+  {
     url: '/dashboard/transaction',
     text: 'Giao Dịch',
     icon: 'mdi-cash-marker',
@@ -58,6 +42,11 @@ const menuBars = [
     icon: 'mdi-cash-100',
   },
   {
+    url: '/dashboard/statistical',
+    text: 'Thống Kê',
+    icon: 'mdi-finance',
+  },
+  {
     url: '/dashboard/games',
     text: 'Quản Lí Games',
     icon: 'mdi-gamepad-variant-outline',
@@ -66,11 +55,6 @@ const menuBars = [
     url: '/dashboard/games/detail',
     text: 'Chi Tiết Games',
     icon: 'mdi-gamepad-variant',
-  },
-  {
-    url: '/dashboard/player',
-    text: 'Quản Lí Người Chơi',
-    icon: 'mdi-account-group',
   },
   {
     url: '/dashboard/maintain',
@@ -89,6 +73,7 @@ const header = ref('Trang Chủ')
 const switchMenuBar = (title: string) => header.value = title
 
 </script>
+
 <template>
   <v-layout class="main-container">
     <v-navigation-drawer v-model="drawer" :rail="rail" permanent class="side-bar" @click="rail = false">
@@ -100,33 +85,6 @@ const switchMenuBar = (title: string) => header.value = title
           @click="switchMenuBar(item.text)">
           <v-list-item :prepend-icon="item.icon" :title="item.text"></v-list-item>
         </nuxt-link>
-        <!-- <v-list-group
-          v-for="item in menus"
-          :key="item.key"
-          :value="item.value"
-          class="submenu"
-        >
-          <template #activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              :title="item.title"
-              :prepend-icon="item.icon"
-              class="header"
-            ></v-list-item>
-          </template>
-
-          <nuxt-link
-            v-for="(submenu, i) in item.submenu"
-            :key="i"
-            :to="submenu.url"
-            class="nuxt-link"
-          >
-            <v-list-item
-              :title="submenu.title"
-              :value="`${item.key}/${submenu.title}`"
-            ></v-list-item>
-          </nuxt-link>
-        </v-list-group> -->
       </v-list>
     </v-navigation-drawer>
     <v-main class="main-content">
@@ -151,6 +109,7 @@ const switchMenuBar = (title: string) => header.value = title
     </v-main>
   </v-layout>
 </template>
+
 <style lang="scss" scoped>
 .side-bar {
   >.v-navigation-drawer__content>.title {

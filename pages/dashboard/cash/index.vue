@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate, maskNumber } from "~/utils/formatters"
+import { formatDate, getStartTime, endTimeDay } from "~/utils/formatters"
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
@@ -35,9 +35,9 @@ const isShowPagination = computed(() => {
 
 const nickname = ref("")
 
-const startDate = ref(new Date())
+const startDate = ref(getStartTime())
 
-const endDate = ref(new Date())
+const endDate = ref(endTimeDay())
 
 const isSearchTime = ref(false)
 
@@ -103,8 +103,8 @@ watch(page,
         <tr class="row" v-for="item in transactions" :key="item._id">
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
-          <td class="cell">{{ item.accountNumberClient  }}</td>
-          <td class="cell">{{ item.depositId  }}</td>
+          <td class="cell">{{ item.accountNumberClient }}</td>
+          <td class="cell">{{ item.depositId }}</td>
           <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
           <td class="cell">{{ item.detailGameName }}</td>

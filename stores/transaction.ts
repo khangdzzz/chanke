@@ -9,11 +9,19 @@ import {
   IResponse
 } from '@/utils'
 
+export interface IBodyDetectTransaction {
+  transaction_id: string
+}
+
 export const useTransactionStore = defineStore('transaction', () => {
   const historyTransaction = ref<ITransactionHistoryPagination>()
   const historyTransactionLatest = ref<ITransactionHistoryPagination>()
+  const historyTransactionAuth = ref<ITransactionHistoryPagination>()
   const historyCashLatest = ref<ICashHistoryPagination>()
   const tenHistoryTransactionWinNewest = ref<ITransactionHistory[]>()
+  const isCallPaymentSuccess = ref<boolean>(false)
+  const isDetectTransactionSuccess = ref<boolean>(false)
+
 
   const getHistoryTransaction = async (nickname: string, page: number, limit: number) => {
     const res: TransactionHistoryResponse | null = await apis
@@ -34,6 +42,17 @@ export const useTransactionStore = defineStore('transaction', () => {
 
     if (res && res.success) {
       historyTransactionLatest.value = res.data
+    }
+  }
+
+  const getHistoryTransactionAuth = async (condition: string, page: number, limit: number) => {
+    const res: TransactionHistoryResponse | null = await apis
+      .chanle!.get(`transation/auth?page=${page}&limit=${limit}${condition}`)
+      .json<TransactionHistoryResponse>()
+      .catch(() => null)
+
+    if (res && res.success) {
+      historyTransactionAuth.value = res.data
     }
   }
 
@@ -60,10 +79,31 @@ export const useTransactionStore = defineStore('transaction', () => {
   }
 
   const callBackPayment = async (username: string, transactionId: string) => {
-    await apis
+    const res = await apis
       .chanle!.get(`private/call-back-payment?username=${username}&transactionId=${transactionId}`)
       .json<IResponse>()
       .catch(() => null)
+
+    if (res && res.success) {
+      isCallPaymentSuccess.value = true
+    } else {
+      isCallPaymentSuccess.value = false
+    }
+  }
+
+  const detectTransaction = async (body: IBodyDetectTransaction) => {
+    const res = await apis
+      .chanle!.post('private/detect', {
+        json: body,
+      })
+      .json<IResponse>()
+      .catch(() => null)
+
+    if (res && res.success) {
+      isDetectTransactionSuccess.value = true
+    } else {
+      isDetectTransactionSuccess.value = false
+    }
   }
 
   return {
@@ -71,10 +111,15 @@ export const useTransactionStore = defineStore('transaction', () => {
     historyTransaction,
     historyTransactionLatest,
     tenHistoryTransactionWinNewest,
+    isCallPaymentSuccess,
+    historyTransactionAuth,
+    isDetectTransactionSuccess,
     getHistoryCashLatest,
     getHistoryTransaction,
     getHistoryTransactionLatest,
     getTenHistoryTransactionWinNewset,
     callBackPayment,
+    getHistoryTransactionAuth,
+    detectTransaction
   }
 })

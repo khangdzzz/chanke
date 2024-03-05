@@ -73,6 +73,7 @@ export const useUserStore = defineStore('user', () => {
 
     if (res?.success) {
       isUpdated.value = true
+      window.localStorage.setItem('accessToken', res?.data)
     } else isUpdated.value = false
   }
 
