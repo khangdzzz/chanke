@@ -148,6 +148,12 @@ const copyContentGame = (content: string) => {
     text-align: center;
   }
 
+  >.table tbody>.row>.cell>.icon-copy {
+    background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   >.table tbody>.row>.cell.number {
     display: flex;
     flex-direction: row;
