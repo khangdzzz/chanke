@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
-      title: 'Home - Chẵn lẻ bank',
+      title: 'CHẴN LẺ BANK UY TÍN - CLMM',
       script: [
         {
           type: 'application/ld+json',
@@ -25,11 +25,11 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'keywords', name: 'keywords', content: 'Hệ thống chẵn lẻ bank MB Bank, Vietcombank (VCB), Techcombank (TCB), Vietinbank (VTB), BIDV tự động chỉ trong 3 giây' },
-        { hid: 'description', name: 'description', content: 'Chẵn lẻ bank, uy tín hàng đầu !' },
+        { hid: 'keywords', name: 'keywords', content: 'chẵn lẻ bank, chan le bank, bank chẵn lẻ, chẵn lẻ bank tự động, tài xỉu bank, chẵn lẻ bank uy tín, bank chẵn lẻ uy tín, chẵn lẻ banking, clmm, chan le momo, clmm uy tín, chanlebank' },
+        { hid: 'description', name: 'description', content: 'CLMM - Chẵn lẻ Bank - Chẵn lẻ MoMo - Hệ thống mini game giải trí Chẵn lẻ bank thanh toán tự động 24/7 Uy tín, trả thưởng chỉ trong 10s.' },
         { hid: 'author', name: 'author', content: 'ChanLeBank' },
         { hid: 'og:title', property: 'og:title', content: 'Home' },
-        { hid: 'og:description', property: 'og:description', content: 'Your site description' },
+        { hid: 'og:description', property: 'og:description', content: 'CLMM - Chẵn lẻ Bank - Chẵn lẻ MoMo - Hệ thống mini game giải trí Chẵn lẻ bank thanh toán tự động 24/7 Uy tín, trả thưởng chỉ trong 10s.' },
         { hid: 'og:url', property: 'og:url', content: 'https://chanlebank.page' },
         { hid: 'og:image', property: 'og:image', content: 'https://chanlebank.page/your-image.jpg' },
       ],
