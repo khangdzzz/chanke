@@ -38,7 +38,7 @@ const historyTransactionWin = computed(() => transactionStore.tenHistoryTransact
             <span class="betName">{{ history.betValue }}</span>
           </td>
           <td class="cell">
-            <span class="result -win">Thắng</span>
+            <span class="result -win">WIN</span>
           </td>
         </tr>
       </tbody>

@@ -15,6 +15,7 @@ useHead({
     <V2HomeDefineSection />
     <V2HomeCountDownSection />
     <DialogNotiUpdateBank />
+    <DialogTele />
   </div>
 </template>
 

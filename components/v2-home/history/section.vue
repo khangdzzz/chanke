@@ -1,5 +1,11 @@
 <script lang="ts" setup>
 import { formatDate } from "~/utils/formatters"
+
+import { storeToRefs } from 'pinia'
+
+const dialogConfirmStore = useDialogConfirmStore()
+const { isShowMessageGame } = storeToRefs(dialogConfirmStore)
+
 const { checkTokenValid, getUserName } = useAuth()
 
 const username = computed(() => getUserName())
@@ -13,12 +19,19 @@ const limit = 10
 const condition = ref("")
 
 onMounted(async () => {
-  if(!isLogin.value) return
+  if (!isLogin.value) return
   condition.value = `&nickname=${username.value}`
   await transactionStore.getHistoryTransactionAuth(condition.value, page.value, limit)
 })
 
 const transactions = computed(() => transactionStore.historyTransactionAuth?.transactions)
+const message = ref('')
+
+const showMessage = (value: string) => {
+  message.value = value
+
+  isShowMessageGame.value = true
+}
 
 </script>
 <template>
@@ -52,18 +65,25 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
           <td class="cell">{{ Number(item.bonus ?? 0).toLocaleString() }}</td>
           <td class="cell">{{ item.detailGameName }}</td>
           <td class="cell">
-            <span class="betName">{{ item.code }}</span>
+            <!-- <span class="code">{{ item.code }}</span> -->
+            <span class="code"><v-icon class="icon" icon="mdi-eye-circle-outline"
+                @click="showMessage(item.code)"></v-icon></span>
           </td>
           <td class="cell">
             <span class="betName">{{ item.betValue }}</span>
           </td>
           <td class="cell">
-            <span class="result -lose" :class="{ '-win': item.status === 'win' }">{{ item.status }}</span>
+            <span class="result" :class="{ '-win': item.status === 'win', '-lose': item.status != 'win' }">
+              {{
+    item.status.toUpperCase()
+  }}
+            </span>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <DialogMessage :message="message"/>
 </template>
 
 <style lang="scss" scoped>
@@ -126,6 +146,34 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
     font-weight: 400;
     line-height: 1.5;
     text-align: center;
+  }
+
+  >.table tbody>.row>.cell>.code>.icon {
+    cursor: pointer;
+    color: #fe5b09;
+  }
+
+  >.table tbody>.row>.cell>.betName {
+    cursor: pointer;
+    background-color: $primary-color;
+    color: #fff;
+    padding: 1px 2px;
+    border-radius: 1px;
+  }
+
+
+  >.table tbody>.row>.cell>.-lose {
+    background-color: #ff4d4f;
+    padding: 3px 6px;
+    color: #fff;
+    border-radius: 3px;
+  }
+
+  >.table tbody>.row>.cell>.-win {
+    padding: 3px 6px;
+    color: #fff;
+    border-radius: 3px;
+    background: linear-gradient(to bottom right, #62fb62, #21a544) !important;
   }
 }
 </style>
