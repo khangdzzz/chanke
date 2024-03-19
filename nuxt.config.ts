@@ -3,7 +3,7 @@ import vuetify from 'vite-plugin-vuetify'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // using ssr: false will not face with this issue https://github.com/nuxt/framework/issues/8825
-  ssr: false,
+  ssr: true,
   app: {
     head: {
       title: 'CHẴN LẺ BANK UY TÍN - CLMM',
@@ -14,10 +14,24 @@ export default defineNuxtConfig({
             '@context': 'https://schema.org',
             '@type': 'chanlebank',
             name: 'Home',
-            description: 'Your site description',
             url: 'https://chanlebank.page',
           }),
         },
+        {
+          hid: 'gtag',
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-KPELED6F1W',
+          async: true
+        },
+        {
+          hid: 'gtag-inline',
+          innerHTML: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KPELED6F1W');
+        `,
+          type: 'text/javascript'
+        }
       ],
       htmlAttrs: {
         lang: 'ja',

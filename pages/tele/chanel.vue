@@ -12,7 +12,8 @@ useHead({
     </h3>
     <div class="subpage-wrapper">
       <p class="label">Tham Gia Chanel Để Có Thêm Nhiều Thông Tin Hơn Về Game</p>
-      <p class="text-center mb-4 link"><a class="lnk__btn" href="https://t.me/clmmsupport" target="_blank">THAM GIA
+      <p class="text-center mb-4 link"><a class="lnk__btn" href="https://t.me/chanlebankpagenews" target="_blank">THAM
+          GIA
           NGAY</a></p>
     </div>
   </div>

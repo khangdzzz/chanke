@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+
 const props = defineProps<{
   message: string
 }>()
 
 const message = computed(() => props.message)
-
-import { storeToRefs } from 'pinia'
 
 const dialogConfirmStore = useDialogConfirmStore()
 const { isShowMessageGame } = storeToRefs(dialogConfirmStore)

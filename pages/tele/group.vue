@@ -12,7 +12,7 @@ useHead({
     </h3>
     <div class="subpage-wrapper">
       <p class="label">Tham Gia Group Để Tìm Kiếm Các Đồng Đội Trong Game</p>
-      <p class="text-center mb-4 link"><a class="lnk__btn" href="https://t.me/clmmnews" target="_blank">THAM GIA
+      <p class="text-center mb-4 link"><a class="lnk__btn" href="https://t.me/chanlebankpage" target="_blank">THAM GIA
           NGAY</a></p>
     </div>
   </div>
