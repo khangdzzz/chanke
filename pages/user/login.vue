@@ -8,7 +8,8 @@ useHead({
 })
 
 onMounted(() => {
-  localStorage.removeItem('accessToken')
+  const token = useCookie('accessToken')
+  token.value = ''
 })
 const router = useRouter()
 

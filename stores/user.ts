@@ -45,7 +45,8 @@ export const useUserStore = defineStore('user', () => {
     isLoginFail.value = res?.success ? false : true
 
     if (res?.success) {
-      window.localStorage.setItem('accessToken', res?.data)
+      const token = useCookie('accessToken')
+      token.value = res?.data
     }
   }
 
@@ -58,7 +59,8 @@ export const useUserStore = defineStore('user', () => {
       .catch(() => null)
 
     if (res?.success) {
-      window.localStorage.setItem('accessToken', res?.data)
+      const token = useCookie('accessToken')
+      token.value = res?.data
     }
     isRegisterSuccess.value = res?.success ? true : false
   }
@@ -73,7 +75,8 @@ export const useUserStore = defineStore('user', () => {
 
     if (res?.success) {
       isUpdated.value = true
-      window.localStorage.setItem('accessToken', res?.data)
+      const token = useCookie('accessToken')
+      token.value = res?.data
     } else isUpdated.value = false
   }
 

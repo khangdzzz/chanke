@@ -86,8 +86,8 @@ const chooseMenu = (index: number) => {
 }
 const router = useRouter()
 const logout = () => {
-  localStorage.removeItem('accessToken')
-
+  const token = useCookie('accessToken')
+  token.value = ''
   router.push('/user/login')
 }
 

@@ -29,29 +29,29 @@ export const useAuth = () => {
   }
 
   const checkTokenValid = () => {
-    const token = localStorage.getItem('accessToken')
-    if (token) {
-      return checkToken(token)
+    const token = useCookie('accessToken')
+    if (token.value) {
+      return checkToken(token.value)
     }
     return false
   }
 
   const getUserName = () => {
-    const token = localStorage.getItem('accessToken')
+    const token = useCookie('accessToken')
 
-    if (!token) return ''
+    if (!token.value) return ''
 
-    const decodedToken = parseJwt(token as string)
+    const decodedToken = parseJwt(token.value as string)
 
     return decodedToken.username
   }
 
   const checkUpdateBank = () => {
-    const token = localStorage.getItem('accessToken')
+    const token = useCookie('accessToken')
 
-    if (!token) return false
+    if (!token.value) return false
     
-    const decodedToken = parseJwt(token as string)
+    const decodedToken = parseJwt(token.value as string)
 
     if (!decodedToken.accountNumber || !decodedToken.accountName || !decodedToken.bankcode) {
       return false

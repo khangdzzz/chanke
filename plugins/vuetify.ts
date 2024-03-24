@@ -1,6 +1,8 @@
 import { createVuetify, ThemeDefinition } from 'vuetify'
 // Vuetify comes with vite-plugin-vuetify that enable automatic treeshaking.
 // Vuetify components and directives will be automatically imported
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 const defaultTheme: ThemeDefinition = {
   dark: false,
@@ -16,6 +18,9 @@ const defaultTheme: ThemeDefinition = {
 
 export default defineNuxtPlugin(nuxtApp => {
   const vuetify = createVuetify({
+    ssr: true,
+    components,
+    directives,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     icons: {

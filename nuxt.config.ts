@@ -1,4 +1,7 @@
 import vuetify from 'vite-plugin-vuetify'
+import { createResolver } from '@nuxt/kit'
+
+const { resolve } = createResolver(import.meta.url)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -45,7 +48,7 @@ export default defineNuxtConfig({
         { hid: 'og:title', property: 'og:title', content: 'Home' },
         { hid: 'og:description', property: 'og:description', content: 'CLMM - Chẵn lẻ Bank - Chẵn lẻ MoMo - Hệ thống mini game giải trí Chẵn lẻ bank thanh toán tự động 24/7 Uy tín, trả thưởng chỉ trong 10s.' },
         { hid: 'og:url', property: 'og:url', content: 'https://chanlebank.page' },
-        { hid: 'og:image', property: 'og:image', content: 'https://chanlebank.page/your-image.jpg' },
+        { hid: 'og:image', property: 'og:image', content: 'https://chanlebank.page/logo_chanlebank1.png' },
       ],
       link: [
         { rel: 'canonical', href: 'https://chanlebank.page' },
@@ -58,17 +61,17 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    async (options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', config => {
-        config.plugins?.push(
-          vuetify({
-            styles: {
-              configFile: './assets/scss/vuetify.settings.scss',
-            },
-          })
-        )
-      })
-    },
+    // async (options, nuxt) => {
+    //   nuxt.hooks.hook('vite:extendConfig', config => {
+    //     config.plugins?.push(
+    //       vuetify({
+    //         styles: {
+    //           configFile: './assets/scss/vuetify.settings.scss',
+    //         },
+    //       })
+    //     )
+    //   })
+    // },
     [
       '@pinia/nuxt',
       {
@@ -79,6 +82,15 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  hooks: {
+    'vite:extendConfig': (config) => {
+      config.plugins.push(
+        vuetify({
+          styles: { configFile: resolve('./assets/scss/vuetify.settings.scss') },
+        })
+      )
+    }
+  },
   imports: {
     dirs: ['stores'],
   },
@@ -98,14 +110,16 @@ export default defineNuxtConfig({
   },
   build: {
     // No transpile vuetify for now
-    // transpile: ['vuetify'],
+    transpile: ['vuetify'],
   },
   runtimeConfig: {
     public: {
       API_BASE_URL: process.env.VITE_API_BASE_URL,
     },
   },
-  typescript: {
-    typeCheck: true,
-  },
+  // typescript: {
+  //   typeCheck: true,
+  // },
 })
+
+
