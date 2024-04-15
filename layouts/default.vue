@@ -63,6 +63,13 @@ const MENU_BARS =
       show: true
     },
     {
+      url: '/post',
+      text: 'Tin Game',
+      icon: 'mdi-post-outline',
+      active: false,
+      show: true
+    },
+    {
       url: '/user/login',
       text: 'Đăng Xuất',
       icon: 'mdi-logout-variant',

@@ -7,7 +7,6 @@
       <a href="/" class="link_home">CHẴN LẺ BANK LÀ GÌ?</a>
     </h3>
     <div class="event">
-      <img src="~/assets/images/web-infor.png" class="bank" />
       <div>
         <h3 class="title"><a href="/" class="link_home_title">Chẵn Lẻ Bank</a> Là Gì?</h3>
         <p class="content"><a href="/" class="link_home">Chẵn Lẻ Bank</a> là một trò chơi dựa trên việc dự đoán kết quả

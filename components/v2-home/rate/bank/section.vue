@@ -59,7 +59,7 @@ const copyBankNumber = (accountNumber: string) => {
           <th class="cell">Ngân Hàng</th>
           <th class="cell">Số Tài Khoản</th>
           <th class="cell">Chủ Tài Khoản</th>
-          <th class="cell">Mã QR</th>
+          <!-- <th class="cell">Mã QR</th> -->
         </tr>
       </thead>
       <tbody class="body">
@@ -82,7 +82,7 @@ const copyBankNumber = (accountNumber: string) => {
             </v-snackbar>
           </td>
           <td class="cell">{{ item.name }}</td>
-          <td class="cell"><v-icon class="icon-qr" icon="mdi-qrcode" @click="openQrCode(item.qr as string)" /></td>
+          <!-- <td class="cell"><v-icon class="icon-qr" icon="mdi-qrcode" @click="openQrCode(item.qr as string)" /></td> -->
         </tr>
       </tbody>
     </table>
