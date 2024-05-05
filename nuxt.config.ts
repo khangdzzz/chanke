@@ -5,7 +5,7 @@ const { resolve } = createResolver(import.meta.url)
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // using ssr: false will not face with this issue https://github.com/nuxt/framework/issues/8825
-  ssr: true,
+  ssr: false,
   app: {
     head: {
       title: 'CHẴN LẺ BANK UY TÍN - CLMM',
