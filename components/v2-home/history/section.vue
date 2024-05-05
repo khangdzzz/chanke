@@ -33,6 +33,12 @@ const showMessage = (value: string) => {
   isShowMessageGame.value = true
 }
 
+const timers = setInterval(async () => {
+  await transactionStore.getHistoryTransactionAuth(condition.value, page.value, limit)
+}, 5000)
+
+onUnmounted(() => clearInterval(timers))
+
 </script>
 <template>
   <div class="container-history" v-if="isLogin">
@@ -75,15 +81,15 @@ const showMessage = (value: string) => {
           <td class="cell">
             <span class="result" :class="{ '-win': item.status === 'win', '-lose': item.status != 'win' }">
               {{
-    item.status.toUpperCase()
-  }}
+                item.status.toUpperCase()
+              }}
             </span>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <DialogMessage :message="message"/>
+  <DialogMessage :message="message" />
 </template>
 
 <style lang="scss" scoped>
@@ -118,7 +124,6 @@ const showMessage = (value: string) => {
   }
 
   >.table {
-    display: block;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;

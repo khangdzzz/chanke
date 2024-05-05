@@ -46,15 +46,12 @@ const login = async () => {
     }
     router.push('/user/login')
     userStore.isLoginSuccess = false
-    userStore.isLoginFail = false
   }
-  userStore.isLoginFail = false
-
 }
 </script>
 <template>
   <div class="login-container">
-    <div v-if="isLoginFail" class="fail">Đang Nhập Không Thành Công</div>
+    <div v-if="!isLoginSuccess" class="fail">Đang Nhập Không Thành Công</div>
     <div class="card">
       <a href="/" class="logo">
         <img src="~/assets/images/logo_chanlebank1.png" alt="">

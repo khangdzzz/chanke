@@ -9,10 +9,11 @@
     <div class="event">
       <span class="item">1. HỆ THỐNG CHẴN LẺ BANK TÍNH THEO KẾT QUẢ MÃ GIAO DỊCH CỦA BẠN NẾU CHUYỂN KHOẢN CÙNG NGÂN
         HÀNG.</span>
-      <span class="item">2. RIÊNG VCB SẼ TÍNH KẾT QUẢ LÀ SỐ GIAO DỊCH. CÙNG NGÂN PHẢI CHUYỂN TỪ APP VCB DIGIBANK NẾU KHÔNG
-        SẼ KHÔNG ĐƯỢC HOÀN. NẾU GẶP THÔNG BÁO GIAO DỊCH KHÔNG HỢP LỆ. VUI LÒNG KHÔNG CK THÊM NẾU KHÔNG SẼ KHÔNG ĐƯỢC HOÀN
-        TRẢ.</span>
-      <span class="item">3. HỆ THÔNG SỬ DỤNG MÃ GIAO DỊCH CỦA BANK NHẬN ĐỂ TÍNH KẾT QUẢ TRÒ CHƠI NẾU BẠN CHUYỂN KHOẢN LIÊN
+      <span class="item">2. RIÊNG VCB SẼ TÍNH KẾT QUẢ LÀ SỐ GIAO DỊCH CỘNG VỚI MÃ GIAO DỊCH. CÙNG NGÂN HÀNG PHẢI CHUYỂN TỪ
+        APP VCB DIGIBANK NẾU KHÔNG SẼ KHÔNG ĐƯỢC HOÀN. NẾU GẶP THÔNG BÁO GIAO DỊCH KHÔNG HỢP LỆ. VUI LÒNG KHÔNG CK THÊM
+        NẾU KHÔNG SẼ KHÔNG ĐƯỢC HOÀN TRẢ.</span>
+      <span class="item">3. HỆ THÔNG SỬ DỤNG MÃ GIAO DỊCH CỦA BANK NHẬN ĐỂ TÍNH KẾT QUẢ TRÒ CHƠI NẾU BẠN CHUYỂN KHOẢN
+        LIÊN
         NGÂN HÀNG.</span>
       <span class="item">4. CHUYỂN LIÊN BANK NỘI DUNG CÓ THỂ BỊ NGÂN HÀNG THÊM THẮT HOẶC THAY ĐỔI. HT TÍNH THEO NỘI DUNG
         BANK HT NHẬN ĐƯỢC.</span>
@@ -24,7 +25,8 @@
       <span class="item">7. HỆ THỐNG TRÍCH 1% TIỀN CƯỢC GIAO DỊCH WIN CHO VÀO HŨ JACKPOT.</span>
       <span class="item">8. ĐỐI VỚI ZALOPAY MỖI LẦN CHUYỂN KHOẢN CÁC BẠN CẦN LẤY LẠI QRCODE. NẾU CK VÀO SỐ OFF SẼ KHÔNG
         ĐƯỢC HOÀN TIỀN.</span>
-      <span class="item">9. CÁC GD ZALO TỪ 0:00 TỚI 0:05 ĐỀU KHÔNG ĐƯỢC TÍNH VÀ KHÔNG HOÀN TIỀN. VUI LÒNG KHÔNG CK TỪ PHÚT
+      <span class="item">9. CÁC GD ZALO TỪ 0:00 TỚI 0:05 ĐỀU KHÔNG ĐƯỢC TÍNH VÀ KHÔNG HOÀN TIỀN. VUI LÒNG KHÔNG CK TỪ
+        PHÚT
         58 TỚI 05 HÔM SAU.</span>
       <span class="item">10. CHUYỂN KHOẢN SAI NỘI DUNG/HẠN MỨC/TÀI KHOẢN BẢO TRÌ SẼ KHÔNG ĐƯỢC HOÀN TIỀN.</span>
       <span class="item">11. HẠN MỨC CHUYỂN KHOẢN TỐI THIỂU LÀ 20K, TỐI ĐA 5M CHO MỖI LƯỢT GIAO DỊCH.</span>

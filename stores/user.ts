@@ -25,7 +25,7 @@ interface UpdatePassword {
 }
 
 export const useUserStore = defineStore('user', () => {
-  const isLoginSuccess = ref(false)
+  const isLoginSuccess = ref(true)
   const isLoginFail = ref(false)
   const isUpdated = ref(false)
   const isRegisterSuccess = ref(false)

@@ -21,6 +21,13 @@ const isLoading = ref(false)
 const registerUser = async () => {
   isLoading.value = true
 
+  const regex = /^[a-zA-Z0-9]+$/
+  if (!regex.test(username.value)) {
+    warning.value = 'Tên đăng nhập chỉ bao gồm số và chữ'
+    isLoading.value = false
+    return
+  }
+
   if (!username.value || !password.value || !repeatPassword.value) {
     warning.value = 'Vui lòng nhập đầy đủ thông tin'
     isLoading.value = false
@@ -44,6 +51,7 @@ const registerUser = async () => {
     isLoading.value = false
     return
   }
+
   const body = {
     username: username.value,
     password: password.value,
@@ -84,7 +92,8 @@ const warning = ref('')
       </a>
       <form @submit.prevent="registerUser" class="form">
         <span class="warning" v-if="warning">{{ warning }}</span>
-        <input v-model="username" class="username" type="text" placeholder="Nickname" required @input="toLower" />
+        <input v-model="username" class="username" type="text" placeholder="Nickname" required
+          @input="toLower" />
         <input v-model="password" class="password" type="password" placeholder="Mật Khẩu" required />
         <input v-model="repeatPassword" class="password" type="password" placeholder="Nhập Lại Mật Khẩu" required />
         <v-btn type="submit" class="btn" :loading="isLoading" @click="registerUser">Đăng Ký</v-btn>

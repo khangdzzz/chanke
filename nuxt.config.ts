@@ -1,6 +1,5 @@
 import vuetify from 'vite-plugin-vuetify'
 import { createResolver } from '@nuxt/kit'
-
 const { resolve } = createResolver(import.meta.url)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -14,10 +13,32 @@ export default defineNuxtConfig({
         {
           type: 'application/ld+json',
           innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'chanlebank',
-            name: 'Home',
-            url: 'https://chanlebank.page',
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Chẵn Lẻ Bank",
+            "image": "https://chanlebank.page/_nuxt/logo_chanlebank1.a99aafa5.png",
+            "@id": "",
+            "url": "https://chanlebank.page/",
+            "telephone": "0946127569",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "35 Võ Văn Tần, Đài Sơn, Phan Rang-Tháp Chàm, Ninh Thuận, Việt Nam",
+              "addressLocality": "Ninh Thuận",
+              "postalCode": "59000",
+              "addressCountry": "VN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 11.5807699,
+              "longitude": 108.9959812
+            },
+            "sameAs": [
+              "https://twitter.com/chanlebankpage",
+              "https://www.youtube.com/@chanlebankpage",
+              "https://www.tumblr.com/chanlebankpage",
+              "https://www.reddit.com/user/chanlebankpage/",
+              "https://www.pinterest.com/chanlebankpage/"
+            ]
           }),
         },
         {
@@ -34,7 +55,35 @@ export default defineNuxtConfig({
           gtag('config', 'G-KPELED6F1W');
         `,
           type: 'text/javascript'
-        }
+        },
+        {
+          innerHTML: `
+            var target_urls = [
+              "/**"
+            ];
+          `,
+          type: 'text/javascript',
+          body: true,
+        },
+        {
+          src: 'https://campaign.tsminifier.net/v2/opt/seo/index.min.js',
+          type: 'text/javascript',
+          body: true,
+        },
+        {
+          src: 'https://code.jquery.com/jquery-3.7.0.js',
+          body: true,
+        },
+        {
+          innerHTML: `
+            var linkcodesite = "2809db4";
+          `,
+          body: true,
+        },
+        {
+          src: 'https://quanly.traffic1s.org/traffic1sorg.js?version=3',
+          body: true,
+        },
       ],
       htmlAttrs: {
         lang: 'ja',
