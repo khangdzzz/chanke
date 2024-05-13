@@ -46,6 +46,18 @@ export const useAuth = () => {
     return decodedToken.username
   }
 
+  const getAuthUser = () => {
+    const token = useCookie('accessToken')
+
+    if (!token.value) return ''
+
+    const decodedToken = parseJwt(token.value as string)
+
+    return decodedToken
+  }
+
+
+
   const checkUpdateBank = () => {
     const token = useCookie('accessToken')
 
@@ -66,5 +78,6 @@ export const useAuth = () => {
     checkTokenValid,
     getUserName,
     checkUpdateBank,
+    getAuthUser
   }
 }

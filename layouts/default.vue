@@ -76,6 +76,13 @@ const MENU_BARS =
       active: false,
       show: isAuth.value
     },
+    {
+      url: '/ctv',
+      text: 'Trở thành CTV',
+      icon: 'mdi-account-multiple',
+      active: false,
+      show: isAuth.value
+    },
   ]
 
 const menuBars = ref(MENU_BARS)
