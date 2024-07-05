@@ -77,6 +77,15 @@ export const useAdminStore = defineStore('admin', () => {
       .catch(() => null)
   }
 
+  const maintainBank = async (body: any) => {
+    await apis
+      .chanle!.put('admin/maintain-bank', {
+        json: body,
+      })
+      .json<IResponse>()
+      .catch(() => null)
+  }
+
   return {
     isCreateSuccess,
     isCreateFail,
@@ -89,6 +98,7 @@ export const useAdminStore = defineStore('admin', () => {
     updateBankAdmin,
     handleTransaction,
     getBankAdminClient,
-    deleteBankAdmin
+    deleteBankAdmin,
+    maintainBank
   }
 })

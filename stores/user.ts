@@ -1,6 +1,12 @@
 import { apis } from '@/apis'
 import { is } from 'date-fns/locale'
-import { IResponse, IUserResponse, IUsersResponse, IPaginationUser, User } from '~~/utils'
+import {
+  IResponse,
+  IUserResponse,
+  IUsersResponse,
+  IPaginationUser,
+  User,
+} from '~~/utils'
 interface LoginBody {
   username: string
   password: string
@@ -88,9 +94,19 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  const getAllUsers = async (page: number, limit: number, condition?: string) => {
+  const getAllUsers = async (
+    page: number,
+    limit: number,
+    condition?: string
+  ) => {
     const res: IUsersResponse | null = await apis
-      .chanle!.get('user/all?page=' + page + '&limit=' + limit + (condition ? condition : ''))
+      .chanle!.get(
+        'user/all?page=' +
+          page +
+          '&limit=' +
+          limit +
+          (condition ? condition : '')
+      )
       .json<IUsersResponse>()
       .catch(() => null)
 
@@ -119,6 +135,15 @@ export const useUserStore = defineStore('user', () => {
       .catch(() => null)
   }
 
+  const refundBankUser = async (body: any) => {
+    return await apis
+      .chanle!.post('private/refund', {
+        json: body,
+      })
+      .json<IResponse>()
+      .catch(() => null)
+  }
+
   return {
     isLoginSuccess,
     isLoginFail,
@@ -133,6 +158,7 @@ export const useUserStore = defineStore('user', () => {
     getDetailUser,
     updatePassword,
     getAllUsers,
-    deleteUser
+    deleteUser,
+    refundBankUser,
   }
 })

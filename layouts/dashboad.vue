@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 const drawer = ref(true)
 const rail = ref(false)
 
@@ -32,6 +31,11 @@ const menuBars = [
     icon: 'mdi-account-group',
   },
   {
+    url: '/dashboard/ctv',
+    text: 'Giới Thiệu User',
+    icon: 'mdi-account-heart',
+  },
+  {
     url: '/dashboard/transaction',
     text: 'Giao Dịch',
     icon: 'mdi-cash-marker',
@@ -52,14 +56,24 @@ const menuBars = [
     icon: 'mdi-gamepad-variant-outline',
   },
   {
+    url: '/dashboard/bank-user',
+    text: 'Chuyển Khoản',
+    icon: 'mdi-bank-transfer',
+  },
+  {
     url: '/dashboard/games/detail',
     text: 'Chi Tiết Games',
     icon: 'mdi-gamepad-variant',
   },
   {
     url: '/dashboard/maintain',
-    text: 'Bảo Trì',
+    text: 'Bảo Trì Hệ Thống',
     icon: 'mdi-wrench-clock',
+  },
+  {
+    url: '/dashboard/bank',
+    text: 'Bảo Trì Bank',
+    icon: 'mdi-cogs',
   },
   {
     url: '/dashboard/task',
@@ -70,20 +84,37 @@ const menuBars = [
 
 const header = ref('Trang Chủ')
 
-const switchMenuBar = (title: string) => header.value = title
-
+const switchMenuBar = (title: string) => (header.value = title)
 </script>
 
 <template>
   <v-layout class="main-container">
-    <v-navigation-drawer v-model="drawer" :rail="rail" permanent class="side-bar" @click="rail = false">
-      <v-list-item class="title" prepend-avatar="https://api.bapcaitim.club/public/dashboard.png" title="DashBoard"
-        @click="openHome()"></v-list-item>
+    <v-navigation-drawer
+      v-model="drawer"
+      :rail="rail"
+      permanent
+      class="side-bar"
+      @click="rail = false"
+    >
+      <v-list-item
+        class="title"
+        prepend-avatar="https://api.bapcaitim.club/public/dashboard.png"
+        title="DashBoard"
+        @click="openHome()"
+      ></v-list-item>
 
       <v-list class="menu">
-        <nuxt-link v-for="(item, index) in menuBars" :key="index" :to="item.url" class="nuxt-link"
-          @click="switchMenuBar(item.text)">
-          <v-list-item :prepend-icon="item.icon" :title="item.text"></v-list-item>
+        <nuxt-link
+          v-for="(item, index) in menuBars"
+          :key="index"
+          :to="item.url"
+          class="nuxt-link"
+          @click="switchMenuBar(item.text)"
+        >
+          <v-list-item
+            :prepend-icon="item.icon"
+            :title="item.text"
+          ></v-list-item>
         </nuxt-link>
       </v-list>
     </v-navigation-drawer>
@@ -96,7 +127,10 @@ const switchMenuBar = (title: string) => header.value = title
         <span>Hi, Admin</span>
         <v-btn icon>
           <v-avatar>
-            <v-img src="https://api.bapcaitim.club/public/admin.png" rounded></v-img>
+            <v-img
+              src="https://api.bapcaitim.club/public/admin.png"
+              rounded
+            ></v-img>
           </v-avatar>
         </v-btn>
         <v-btn icon @click="logout">
@@ -112,7 +146,7 @@ const switchMenuBar = (title: string) => header.value = title
 
 <style lang="scss" scoped>
 .side-bar {
-  >.v-navigation-drawer__content>.title {
+  > .v-navigation-drawer__content > .title {
     padding: 4px 10px;
   }
 
@@ -128,11 +162,11 @@ const switchMenuBar = (title: string) => header.value = title
 }
 
 .main-content {
-  >.nav-bar {
+  > .nav-bar {
     background-color: $color-white;
   }
 
-  >.container {
+  > .container {
     background-color: white;
     padding: 20px;
     min-height: 100vh;

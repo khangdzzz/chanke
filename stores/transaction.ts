@@ -6,7 +6,9 @@ import {
   ITransactionHistoryResponse,
   CashHistoryResponse,
   ICashHistoryPagination,
-  IResponse
+  IResponse,
+  Ctv,
+  CtvResponse,
 } from '@/utils'
 
 export interface IBodyDetectTransaction {
@@ -21,11 +23,18 @@ export const useTransactionStore = defineStore('transaction', () => {
   const tenHistoryTransactionWinNewest = ref<ITransactionHistory[]>()
   const isCallPaymentSuccess = ref<boolean>(false)
   const isDetectTransactionSuccess = ref<boolean>(false)
+  const ctvData = ref<Ctv[]>()
+  const isPaymentIntro = ref(false)
 
-
-  const getHistoryTransaction = async (nickname: string, page: number, limit: number) => {
+  const getHistoryTransaction = async (
+    nickname: string,
+    page: number,
+    limit: number
+  ) => {
     const res: TransactionHistoryResponse | null = await apis
-      .chanle!.get(`transation/history-by-nickname?nickname=${nickname}&page=${page}&limit=${limit}`)
+      .chanle!.get(
+        `transation/history-by-nickname?nickname=${nickname}&page=${page}&limit=${limit}`
+      )
       .json<TransactionHistoryResponse>()
       .catch(() => null)
 
@@ -34,18 +43,33 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   }
 
-  const getHistoryTransactionLatest = async (condition: string, page: number, limit: number) => {
+  const getHistoryTransactionLatest = async (
+    condition: string,
+    page: number,
+    limit: number
+  ) => {
+    console.log('here', condition)
     const res: TransactionHistoryResponse | null = await apis
-      .chanle!.get(`transation/history-player?page=${page}&limit=${limit}${condition}`)
+      .chanle!.get(
+        `transation/history-player?page=${page}&limit=${limit}${condition}`
+      )
       .json<TransactionHistoryResponse>()
       .catch(() => null)
 
+    console.log('res', res)
+
     if (res && res.success) {
       historyTransactionLatest.value = res.data
+
+      console.log('historyTransactionLatest', historyTransactionLatest.value)
     }
   }
 
-  const getHistoryTransactionAuth = async (condition: string, page: number, limit: number) => {
+  const getHistoryTransactionAuth = async (
+    condition: string,
+    page: number,
+    limit: number
+  ) => {
     const res: TransactionHistoryResponse | null = await apis
       .chanle!.get(`transation/auth?page=${page}&limit=${limit}${condition}`)
       .json<TransactionHistoryResponse>()
@@ -56,9 +80,15 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   }
 
-  const getHistoryCashLatest = async (condition: string, page: number, limit: number) => {
+  const getHistoryCashLatest = async (
+    condition: string,
+    page: number,
+    limit: number
+  ) => {
     const res: CashHistoryResponse | null = await apis
-      .chanle!.get(`transation/history-cash?page=${page}&limit=${limit}${condition}`)
+      .chanle!.get(
+        `transation/history-cash?page=${page}&limit=${limit}${condition}`
+      )
       .json<CashHistoryResponse>()
       .catch(() => null)
 
@@ -80,7 +110,9 @@ export const useTransactionStore = defineStore('transaction', () => {
 
   const callBackPayment = async (username: string, transactionId: string) => {
     const res = await apis
-      .chanle!.get(`private/call-back-payment?username=${username}&transactionId=${transactionId}`)
+      .chanle!.get(
+        `private/call-back-payment?username=${username}&transactionId=${transactionId}`
+      )
       .json<IResponse>()
       .catch(() => null)
 
@@ -106,6 +138,32 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   }
 
+  const paymentIntro = async (username: string) => {
+    const res = await apis
+      .chanle!.post('private/paymentIntro', {
+        json: {
+          username,
+        },
+      })
+      .json<IResponse>()
+      .catch(() => null)
+
+    if (res && res.success) {
+      isPaymentIntro.value = true
+    } else {
+      isPaymentIntro.value = false
+    }
+  }
+
+  const getCtvInfor = async (month: number | string) => {
+    const res = await apis
+      .chanle!.get(`transation/ctv?month=${month}`)
+      .json<CtvResponse>()
+      .catch(() => null)
+
+    if (res?.success) ctvData.value = res.data
+  }
+
   return {
     historyCashLatest,
     historyTransaction,
@@ -114,12 +172,16 @@ export const useTransactionStore = defineStore('transaction', () => {
     isCallPaymentSuccess,
     historyTransactionAuth,
     isDetectTransactionSuccess,
+    ctvData,
+    paymentIntro,
     getHistoryCashLatest,
     getHistoryTransaction,
     getHistoryTransactionLatest,
     getTenHistoryTransactionWinNewset,
     callBackPayment,
     getHistoryTransactionAuth,
-    detectTransaction
+    detectTransaction,
+    getCtvInfor,
+    isPaymentIntro,
   }
 })

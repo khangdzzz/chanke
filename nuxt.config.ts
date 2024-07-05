@@ -65,7 +65,7 @@ export default defineNuxtConfig({
   },
   build: {
     // No transpile vuetify for now
-    // transpile: ['vuetify'],
+    transpile: ['vuetify'],
   },
   runtimeConfig: {
     public: {
