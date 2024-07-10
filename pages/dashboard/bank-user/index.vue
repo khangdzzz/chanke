@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '@vuepic/vue-datepicker/dist/main.css'
 import { formatDate } from '~/utils/formatters'
+import { BANKS } from "../../../utils/constants"
 
 definePageMeta({
   middleware: 'auth',
@@ -21,6 +22,16 @@ onMounted(async () => {
   )
 })
 
+watch(page,
+  async () => {
+    await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
+  }
+)
+
 const nickname = ref('')
 const userStore = useUserStore()
 
@@ -31,11 +42,13 @@ const accountName = ref('')
 const accountNumber = ref('')
 const money = ref(0)
 const content = ref('')
+const bankType = ref('')
 const user = computed(() => userStore.authUser)
-
+const loading = ref(false)
 watch(user, () => {
   accountName.value = user.value?.accountName ?? ''
   accountNumber.value = user.value?.accountNumber ?? ''
+  bankType.value = BANKS.find(item => item.value == user.value?.bankcode)?.label ?? ''
 })
 
 const transactions = computed(
@@ -46,8 +59,6 @@ const totalPage = computed(
 )
 
 const searchHistoryPlayer = async () => {
-  page.value = 1
-
   await transactionStore.getHistoryTransactionLatest(
     condition.value,
     page.value,
@@ -77,6 +88,7 @@ const snackbar = ref(false)
 const notification = ref('')
 
 const refundUser = async () => {
+  loading.value = true;
   const body = {
     username: nickname.value,
     money: money.value,
@@ -90,6 +102,7 @@ const refundUser = async () => {
     notification.value = 'Thanh Toán Thành Công'
     isRefund.value = true
     await searchHistoryPlayer()
+    loading.value = false;
   }
 }
 
@@ -98,6 +111,10 @@ const timers = setInterval(async () => {
 }, 3000)
 
 onUnmounted(() => clearInterval(timers))
+
+const getBankUser = (code: string) => {
+  return BANKS.find(bank => bank.value == code)?.label ?? ""
+}
 </script>
 <template>
   <div class="bank-client">
@@ -127,6 +144,14 @@ onUnmounted(() => clearInterval(timers))
         placeholder="Tên Tài Khoản"
       />
     </div>
+     <div class="nickname">
+      <input
+        v-model="bankType"
+        class="input"
+        type="text"
+        placeholder="Tên Tài Khoản"
+      />
+    </div>
     <div class="nickname">
       <input v-model="money" class="input" type="text" placeholder="Số Tiền" />
     </div>
@@ -137,7 +162,7 @@ onUnmounted(() => clearInterval(timers))
         type="text"
         placeholder="Nội Dung"
       />
-      <v-btn @click="refundUser()">Chuyển khoản</v-btn>
+      <v-btn @click="refundUser()" :loading="loading">Chuyển khoản</v-btn>
     </div>
 
     <div class="container-search">
@@ -146,7 +171,8 @@ onUnmounted(() => clearInterval(timers))
           <tr class="row">
             <th class="cell">THỜI GIAN</th>
             <th class="cell">Nick Name</th>
-            <th class="cell">Số Tài Khoản</th>
+            <th class="cell">Tên Tài Khoản</th>
+            <th class="cell">Ngân Hàng</th>
             <th class="cell">MGD</th>
             <th class="cell">TIỀN BANK</th>
             <th class="cell">MESSAGE</th>
@@ -159,6 +185,7 @@ onUnmounted(() => clearInterval(timers))
             <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
             <td class="cell">{{ item.nickname }}</td>
             <td class="cell">{{ item.accountNumberClient }}</td>
+            <td class="cell">{{ getBankUser(item.bankClient) }}</td>
             <td class="cell">{{ item.transId }}</td>
             <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
             <td class="cell">
