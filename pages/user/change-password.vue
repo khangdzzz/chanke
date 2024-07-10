@@ -20,7 +20,11 @@ const { getUserName } = useAuth()
 const isUpdatePass = computed(() => userStore.isUpdatePassword)
 
 const updatePassWord = async () => {
-  if (oldPassword.value === '' || newPassword.value === '' || confirmPassword.value === '') {
+  if (
+    oldPassword.value === '' ||
+    newPassword.value === '' ||
+    confirmPassword.value === ''
+  ) {
     notification.value = 'Vui lòng nhập đầy đủ thông tin'
     snackbar.value = true
     return
@@ -43,7 +47,7 @@ const updatePassWord = async () => {
   const body = {
     username,
     password: oldPassword.value,
-    newPassword: newPassword.value
+    newPassword: newPassword.value,
   }
 
   await userStore.updatePassword(body)
@@ -56,8 +60,6 @@ const updatePassWord = async () => {
     snackbar.value = true
   }
 }
-
-
 </script>
 
 <template>
@@ -68,24 +70,45 @@ const updatePassWord = async () => {
     </h3>
 
     <form class="action-change">
-      <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top"
-        :color="isUpdatePass ? 'success' : 'red'" elevation="24" transition="fade-transition">
-        <div style="width: 100%; text-align: center;">
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="1000"
+        rounded="pill"
+        location="top"
+        :color="isUpdatePass ? 'success' : 'red'"
+        elevation="24"
+        transition="fade-transition"
+      >
+        <div style="width: 100%; text-align: center">
           {{ notification }}
         </div>
       </v-snackbar>
 
       <div class="input-text">
-        <v-text-field v-model="oldPassword" type="password" class="text" placeholder="Nhập Mật Khẩu Cũ"></v-text-field>
+        <v-text-field
+          v-model="oldPassword"
+          type="password"
+          class="text"
+          placeholder="Nhập Mật Khẩu Cũ"
+        ></v-text-field>
       </div>
 
       <div class="input-text">
-        <v-text-field v-model="newPassword" type="password" class="text" placeholder="Nhập Mật Khẩu Mới"></v-text-field>
+        <v-text-field
+          v-model="newPassword"
+          type="password"
+          class="text"
+          placeholder="Nhập Mật Khẩu Mới"
+        ></v-text-field>
       </div>
 
       <div class="input-text">
-        <v-text-field v-model="confirmPassword" type="password" class="text"
-          placeholder="Nhập Lại Mật Khẩu Mới"></v-text-field>
+        <v-text-field
+          v-model="confirmPassword"
+          type="password"
+          class="text"
+          placeholder="Nhập Lại Mật Khẩu Mới"
+        ></v-text-field>
       </div>
 
       <v-btn class="submit" @click="updatePassWord">Cập Nhật</v-btn>
@@ -101,7 +124,7 @@ const updatePassWord = async () => {
   padding-bottom: 50px;
   height: calc(100vh - 100px);
 
-  >.title {
+  > .title {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -119,19 +142,18 @@ const updatePassWord = async () => {
     gap: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
-    >.icon {
+    > .icon {
       -webkit-text-fill-color: #fe5b09;
     }
   }
 
-  >.confirm {
+  > .confirm {
     display: flex;
     padding: 20px;
     justify-content: center;
     font-size: 16px;
   }
 }
-
 
 .action-change {
   display: flex;
@@ -148,11 +170,11 @@ const updatePassWord = async () => {
   margin: auto;
   margin-top: 40px;
 
-  >.input-text {
+  > .input-text {
     width: 100%;
     margin-bottom: 20px;
 
-    >.text {
+    > .text {
       width: 100%;
       background: #1e1e23;
       border-radius: 8px;
@@ -170,7 +192,7 @@ const updatePassWord = async () => {
     }
   }
 
-  >.submit {
+  > .submit {
     color: #fff;
     background: linear-gradient(to bottom right, #f1d313 0%, #fbb034 100%);
     border-color: #fbb034;

@@ -9,5 +9,4 @@ export default defineNuxtRouteMiddleware(() => {
   } else {
     console.log('Token is valid.')
   }
-
 })

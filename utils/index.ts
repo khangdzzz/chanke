@@ -6,14 +6,15 @@ export interface IResponse {
 }
 
 export interface User {
-  _id?: string;
-  username: string,
-  password: string,
-  permission: string,
-  accountNumber?: string,
-  accountName?: string,
+  _id?: string
+  username: string
+  password: string
+  permission: string
+  accountNumber?: string
+  accountName?: string
   bankcode?: string
   createdAt?: string
+  countIntro?: number
 }
 
 export interface IUserResponse extends IResponse {
@@ -21,8 +22,8 @@ export interface IUserResponse extends IResponse {
 }
 
 export interface IPaginationUser {
-  totalRecords: number,
-  totalPages: number,
+  totalRecords: number
+  totalPages: number
   users: User[]
 }
 
@@ -31,34 +32,32 @@ export interface IUsersResponse extends IResponse {
 }
 
 export interface Game {
-  _id?: string;
-  gameType: string;
-  content: string;
-  betName: string;
-  name?: string;
-  numberTLS: number[];
-  amount: number;
-  resultType: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  _id?: string
+  gameType: string
+  content: string
+  betName: string
+  name?: string
+  numberTLS: number[]
+  amount: number
+  resultType: string
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export interface IListGame {
-  _id?: string;
-  games: Game[];
+  _id?: string
+  games: Game[]
 }
-
 
 export interface IListGameDetail {
-  _id?: string;
-  name: string;
-  gameType: string;
-  status: boolean;
+  _id?: string
+  name: string
+  gameType: string
+  status: boolean
 }
 
-
 export interface GameResponse extends IResponse {
-  data: Game[];
+  data: Game[]
 }
 
 export interface IPlayer {
@@ -74,7 +73,6 @@ export interface IPlayer {
 export interface PlayerResponse extends IResponse {
   data: IPlayer[]
 }
-
 
 export interface UserResponse extends IResponse {
   data: IPlayer
@@ -94,54 +92,52 @@ export interface BankAdminResponse extends IResponse {
   data: IBankAdmin[]
 }
 
-
 export interface ITransaction {
-  content: string;
-  amount: number;
-  bank_type: string;
+  content: string
+  amount: number
+  bank_type: string
 }
 
 export interface ITransactionHistory {
-  _id?: string;
-  transId: string;
-  accountNumberClient: string;
-  bankClient: string;
-  accountNumberAdmin: string;
-  bankAdmin: string;
-  amount: number;
-  bonus: number;
-  betValue: string;
-  betName: string;
-  gameName: string;
-  detailGameName: string;
-  content: string;
-  status: string;
-  time: string;
-  createdAt: string;
-  updatedAt: string;
-  nickname: string;
-  code: string;
-  paymentStatus: boolean;
+  _id?: string
+  transId: string
+  accountNumberClient: string
+  bankClient: string
+  accountNumberAdmin: string
+  bankAdmin: string
+  amount: number
+  bonus: number
+  betValue: string
+  betName: string
+  gameName: string
+  detailGameName: string
+  content: string
+  status: string
+  time: string
+  createdAt: string
+  updatedAt: string
+  nickname: string
+  code: string
+  paymentStatus: boolean
 }
 
-
 export interface ICashHistory {
-  _id?: string;
-  depositId: string;
-  accountNumberClient: string;
-  bankClient: string;
-  amount: number;
-  bonus: number;
-  betValue: string;
-  gameName: string;
-  detailGameName: string;
-  content: string;
-  status: string;
-  time: string;
-  nickName: string;
-  createdAt: string;
-  updatedAt: string;
-  nickname: string;
+  _id?: string
+  depositId: string
+  accountNumberClient: string
+  bankClient: string
+  amount: number
+  bonus: number
+  betValue: string
+  gameName: string
+  detailGameName: string
+  content: string
+  status: string
+  time: string
+  nickName: string
+  createdAt: string
+  updatedAt: string
+  nickname: string
 }
 
 export interface ITransactionHistoryResponse extends IResponse {
@@ -149,8 +145,8 @@ export interface ITransactionHistoryResponse extends IResponse {
 }
 
 export interface ITransactionHistoryPagination extends IResponse {
-  totalRecords: number,
-  totalPages: number,
+  totalRecords: number
+  totalPages: number
   transactions: ITransactionHistory[]
 }
 
@@ -158,17 +154,15 @@ export interface TransactionHistoryResponse extends IResponse {
   data: ITransactionHistoryPagination
 }
 
-
 export interface ICashHistoryPagination extends IResponse {
-  totalRecords: number,
-  totalPages: number,
+  totalRecords: number
+  totalPages: number
   transactions: ICashHistory[]
 }
 
 export interface CashHistoryResponse extends IResponse {
   data: ICashHistoryPagination
 }
-
 
 export interface IMaintain {
   _id?: string
@@ -183,26 +177,23 @@ export interface MaintainResponse extends IResponse {
 }
 
 interface Bank {
-  name: string;
-  code: string;
-  bin: string;
-  shortName: string;
-  logo: string | null;
-  transferSupported: number;
-  lookupSupported: number;
-  short_name: string;
-  support: number;
-  isTransfer: number;
-  swift_code: string | null;
+  name: string
+  code: string
+  bin: string
+  shortName: string
+  logo: string | null
+  transferSupported: number
+  lookupSupported: number
+  short_name: string
+  support: number
+  isTransfer: number
+  swift_code: string | null
 }
 
-
-
 export interface Task {
-  code: string,
+  code: string
 }
 
 export interface TaskResponse extends IResponse {
   data: Task
 }
-

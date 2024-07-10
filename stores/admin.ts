@@ -1,9 +1,5 @@
 import { apis } from '@/apis'
-import {
-  IBankAdmin,
-  IResponse,
-  BankAdminResponse,
-} from '@/utils'
+import { IBankAdmin, IResponse, BankAdminResponse } from '@/utils'
 
 export const useAdminStore = defineStore('admin', () => {
   const bankAdminClient = ref<IBankAdmin[]>([])
@@ -29,6 +25,6 @@ export const useAdminStore = defineStore('admin', () => {
   return {
     bankAdminClient,
     getBankAdminClient,
-    deleteBankAdmin
+    deleteBankAdmin,
   }
 })

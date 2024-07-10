@@ -1,23 +1,22 @@
 import { apis } from '@/apis'
 
 export interface Post {
-  id: number;
-  date: string;
+  id: number
+  date: string
   title: {
-    rendered: string;
-  };
-  slug: string;
+    rendered: string
+  }
+  slug: string
   excerpt: {
-    rendered: string;
-  };
-  link: string;
-  author: string;
-  _embedded: any;
+    rendered: string
+  }
+  link: string
+  author: string
+  _embedded: any
   content: {
-    rendered: string;
-  };
+    rendered: string
+  }
 }
-
 
 export const usePostStore = defineStore('post', () => {
   const posts = ref<Post[] | null>(null)
@@ -29,7 +28,7 @@ export const usePostStore = defineStore('post', () => {
       .json<Post[]>()
       .catch(() => null)
 
-    if(res) {
+    if (res) {
       posts.value = res
     }
   }
@@ -40,7 +39,7 @@ export const usePostStore = defineStore('post', () => {
       .json<Post[]>()
       .catch(() => null)
 
-    if(res) {
+    if (res) {
       post.value = res[0]
     }
   }

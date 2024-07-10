@@ -54,15 +54,32 @@ const login = async () => {
     <div v-if="!isLoginSuccess" class="fail">Đang Nhập Không Thành Công</div>
     <div class="card">
       <a href="/" class="logo">
-        <img src="~/assets/images/logo_chanlebank1.png" alt="">
+        <img src="~/assets/images/logo_chanlebank1.png" alt="" />
       </a>
-      <form @submit.prevent="login" class="form">
-        <input v-model="username" class="username" type="text" placeholder="Nickname" required />
-        <input v-model="password" class="password" type="password" placeholder="Mật Khẩu" required />
-        <v-btn type="submit" class="btn" :loading="isLoading" @click="login">Đăng Nhập</v-btn>
+      <form class="form" @submit.prevent="login">
+        <input
+          v-model="username"
+          class="username"
+          type="text"
+          placeholder="Nickname"
+          required
+        />
+        <input
+          v-model="password"
+          class="password"
+          type="password"
+          placeholder="Mật Khẩu"
+          required
+        />
+        <v-btn type="submit" class="btn" :loading="isLoading" @click="login">
+          Đăng Nhập
+        </v-btn>
       </form>
 
-      <div class="register">Chưa có tài khoản? <nuxt-link class="link" to="/user/register">Đăng Ký!</nuxt-link></div>
+      <div class="register">
+        Chưa có tài khoản?
+        <nuxt-link class="link" to="/user/register">Đăng Ký!</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -79,7 +96,7 @@ const login = async () => {
   gap: 16px;
   padding: 0 16px;
 
-  >.status {
+  > .status {
     color: #316100;
     background-color: #dff1cc;
     border-color: #d2ecb8;
@@ -89,7 +106,7 @@ const login = async () => {
     min-width: 400px;
   }
 
-  >.fail {
+  > .fail {
     color: #6b1110;
     background-color: #f5d2d2;
     border-color: #f1c1c0;
@@ -99,7 +116,7 @@ const login = async () => {
     min-width: 400px;
   }
 
-  >.card {
+  > .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,24 +132,24 @@ const login = async () => {
     gap: 20px;
   }
 
-  >.card>.logo {
+  > .card > .logo {
     width: 220px;
     margin-bottom: 30px;
   }
 
-  >.card>.title {
+  > .card > .title {
     color: #333;
   }
 
-  >.card>.form {
+  > .card > .form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 80%;
   }
 
-  >.card>.form>.username,
-  >.card>.form>.password {
+  > .card > .form > .username,
+  > .card > .form > .password {
     background-color: #2b2b31;
     border: 1px solid transparent;
     height: 50px;
@@ -144,7 +161,7 @@ const login = async () => {
     padding: 0 44px;
   }
 
-  >.card>.form>.btn {
+  > .card > .form > .btn {
     background: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
     color: #fff;
     font-size: 16px;
@@ -153,13 +170,13 @@ const login = async () => {
     padding: 0 44px;
   }
 
-  >.card>.register {
+  > .card > .register {
     color: #fff;
     font-size: 14px;
     text-align: center;
   }
 
-  >.card>.register>.link {
+  > .card > .register > .link {
     color: #fef142;
     cursor: pointer;
   }

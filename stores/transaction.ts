@@ -10,7 +10,11 @@ export const useTransactionStore = defineStore('transaction', () => {
   const historyTransactionAuth = ref<ITransactionHistoryPagination>()
   const tenHistoryTransactionWinNewest = ref<ITransactionHistory[]>()
 
-  const getHistoryTransactionAuth = async (condition: string, page: number, limit: number) => {
+  const getHistoryTransactionAuth = async (
+    condition: string,
+    page: number,
+    limit: number
+  ) => {
     const res: TransactionHistoryResponse | null = await apis
       .chanle!.get(`transation/auth?page=${page}&limit=${limit}${condition}`)
       .json<TransactionHistoryResponse>()
@@ -32,11 +36,10 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   }
 
-
   return {
     tenHistoryTransactionWinNewest,
     historyTransactionAuth,
     getTenHistoryTransactionWinNewset,
-    getHistoryTransactionAuth
+    getHistoryTransactionAuth,
   }
 })

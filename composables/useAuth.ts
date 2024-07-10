@@ -1,5 +1,3 @@
-import { de } from "date-fns/locale"
-
 export const useAuth = () => {
   const permission = ref('')
   const username = ref('')
@@ -56,16 +54,18 @@ export const useAuth = () => {
     return decodedToken
   }
 
-
-
   const checkUpdateBank = () => {
     const token = useCookie('accessToken')
 
     if (!token.value) return false
-    
+
     const decodedToken = parseJwt(token.value as string)
 
-    if (!decodedToken.accountNumber || !decodedToken.accountName || !decodedToken.bankcode) {
+    if (
+      !decodedToken.accountNumber ||
+      !decodedToken.accountName ||
+      !decodedToken.bankcode
+    ) {
       return false
     }
 
@@ -78,6 +78,6 @@ export const useAuth = () => {
     checkTokenValid,
     getUserName,
     checkUpdateBank,
-    getAuthUser
+    getAuthUser,
   }
 }

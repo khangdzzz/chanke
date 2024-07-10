@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 const route = useRoute()
 
 const useApp = useDialogConfirmStore()
@@ -11,79 +10,78 @@ onMounted(async () => {
   if (window.innerWidth > 1200) useApp.isOpenMenuBar = true
 })
 
-const MENU_BARS =
-  [
-    {
-      url: '/',
-      text: 'Trang Chủ',
-      icon: 'mdi-home',
-      active: true,
-      show: true,
-    },
-    {
-      url: '/bank-setting',
-      text: 'Cài Đặt Bank',
-      icon: 'mdi-cog-outline',
-      active: false,
-      show: isAuth.value
-    },
-    {
-      url: '/user/login',
-      text: 'Đăng Nhập',
-      icon: 'mdi-login-variant',
-      active: false,
-      show: !isAuth.value
-    },
-    {
-      url: '/user/register',
-      text: 'Đăng Kí',
-      icon: 'mdi-account-plus-outline',
-      active: false,
-      show: !isAuth.value
-    },
-    {
-      url: '/user/change-password',
-      text: 'Đổi Mật Khẩu',
-      icon: 'mdi-key-change',
-      active: false,
-      show: isAuth.value
-    },
-    {
-      url: '/tele/chanel',
-      text: 'Chanel telegram',
-      icon: 'mdi-chat-question-outline',
-      active: false,
-      show: true
-    },
-    {
-      url: '/tele/group',
-      text: 'Group telegram',
-      icon: 'mdi-account-group',
-      active: false,
-      show: true
-    },
-    {
-      url: '/post',
-      text: 'Tin Game',
-      icon: 'mdi-post-outline',
-      active: false,
-      show: true
-    },
-    {
-      url: '/user/login',
-      text: 'Đăng Xuất',
-      icon: 'mdi-logout-variant',
-      active: false,
-      show: isAuth.value
-    },
-    {
-      url: '/ctv',
-      text: 'Trở thành CTV',
-      icon: 'mdi-account-multiple',
-      active: false,
-      show: isAuth.value
-    },
-  ]
+const MENU_BARS = [
+  {
+    url: '/',
+    text: 'Trang Chủ',
+    icon: 'mdi-home',
+    active: true,
+    show: true,
+  },
+  {
+    url: '/bank-setting',
+    text: 'Cài Đặt Bank',
+    icon: 'mdi-cog-outline',
+    active: false,
+    show: isAuth.value,
+  },
+  {
+    url: '/user/login',
+    text: 'Đăng Nhập',
+    icon: 'mdi-login-variant',
+    active: false,
+    show: !isAuth.value,
+  },
+  {
+    url: '/user/register',
+    text: 'Đăng Kí',
+    icon: 'mdi-account-plus-outline',
+    active: false,
+    show: !isAuth.value,
+  },
+  {
+    url: '/user/change-password',
+    text: 'Đổi Mật Khẩu',
+    icon: 'mdi-key-change',
+    active: false,
+    show: isAuth.value,
+  },
+  {
+    url: '/tele/chanel',
+    text: 'Chanel telegram',
+    icon: 'mdi-chat-question-outline',
+    active: false,
+    show: true,
+  },
+  {
+    url: '/tele/group',
+    text: 'Group telegram',
+    icon: 'mdi-account-group',
+    active: false,
+    show: true,
+  },
+  {
+    url: '/post',
+    text: 'Tin Game',
+    icon: 'mdi-post-outline',
+    active: false,
+    show: true,
+  },
+  {
+    url: '/ctv',
+    text: 'Trở thành CTV',
+    icon: 'mdi-account-multiple',
+    active: false,
+    show: isAuth.value,
+  },
+  {
+    url: '/user/login',
+    text: 'Đăng Xuất',
+    icon: 'mdi-logout-variant',
+    active: false,
+    show: isAuth.value,
+  },
+]
 
 const menuBars = ref(MENU_BARS)
 
@@ -114,43 +112,64 @@ onMounted(() => {
     }
   })
 })
-
 </script>
 <template>
   <div class="default-layout">
     <div class="app-bar-menu">
       <a href="/" class="logo">
-        <img src="~/assets/images/logo_chanlebank1.png" alt="">
+        <img src="~/assets/images/logo_chanlebank1.png" alt="" />
       </a>
-      <v-icon class="icon" icon="mdi-menu" @click="useApp.isOpenMenuBar = !useApp.isOpenMenuBar"></v-icon>
-      <div class=" line">
-      </div>
+      <v-icon
+        class="icon"
+        icon="mdi-menu"
+        @click="useApp.isOpenMenuBar = !useApp.isOpenMenuBar"
+      ></v-icon>
+      <div class="line"></div>
     </div>
     <v-layout class="layout">
-      <v-navigation-drawer class="navigation-drawer" v-model="isOpenMenuBar" color="#28282d">
+      <v-navigation-drawer
+        v-model="isOpenMenuBar"
+        class="navigation-drawer"
+        color="#28282d"
+      >
         <div class="container-drawer">
           <a href="/" class="logo">
-            <img src="~/assets/images/logo_chanlebank1.png" alt="">
+            <img src="~/assets/images/logo_chanlebank1.png" alt="" />
           </a>
 
-          <div class="auth" v-if="isAuth">
+          <div v-if="isAuth" class="auth">
             <a href="/" class="logo">
-              <img src="~/assets/images/CLB_logo.gif" alt="">
+              <img src="~/assets/images/CLB_logo.gif" alt="" />
             </a>
             <div class="user">
               <span class="hi">Xin chào</span>
               <span class="userid">{{ getUserName() }}</span>
             </div>
 
-            <v-icon class="icon" icon="mdi-logout-variant" @click="logout"></v-icon>
+            <v-icon
+              class="icon"
+              icon="mdi-logout-variant"
+              @click="logout"
+            ></v-icon>
           </div>
 
           <ul class="menu">
-            <li v-for="(item, index) in menuBars" :key="index" class="item" @click="chooseMenu(index)"
-              :class="{ 'hidden': !item.show }">
+            <li
+              v-for="(item, index) in menuBars"
+              :key="index"
+              class="item"
+              :class="{ hidden: !item.show }"
+              @click="chooseMenu(index)"
+            >
               <nuxt-link :to="item.url" class="link">
-                <v-icon :class="{ active: item.active }" class="icon" :icon="item.icon"></v-icon>
-                <span :class="{ active: item.active }" class="text">{{ item.text }}</span>
+                <v-icon
+                  :class="{ active: item.active }"
+                  class="icon"
+                  :icon="item.icon"
+                ></v-icon>
+                <span :class="{ active: item.active }" class="text">
+                  {{ item.text }}
+                </span>
               </nuxt-link>
             </li>
           </ul>
@@ -172,7 +191,7 @@ onMounted(() => {
 }
 
 .container-drawer {
-  >.logo {
+  > .logo {
     display: flex;
     align-items: center;
     height: 85px;
@@ -196,7 +215,7 @@ onMounted(() => {
     }
   }
 
-  >.auth {
+  > .auth {
     padding: 15px 30px;
     width: 100%;
     display: flex;
@@ -206,7 +225,7 @@ onMounted(() => {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  >.auth>.logo {
+  > .auth > .logo {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -217,7 +236,7 @@ onMounted(() => {
     margin-right: 12px;
   }
 
-  >.auth>.user {
+  > .auth > .user {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -225,7 +244,7 @@ onMounted(() => {
     font-size: 14px;
   }
 
-  >.auth>.icon {
+  > .auth > .icon {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -238,12 +257,12 @@ onMounted(() => {
     margin-left: auto;
   }
 
-  >.menu {
+  > .menu {
     margin-top: 20px;
     width: 100%;
   }
 
-  >.menu>.item {
+  > .menu > .item {
     display: flex;
     align-items: center;
     height: 50px;
@@ -264,14 +283,14 @@ onMounted(() => {
     }
   }
 
-  >.menu>.item>.link>.active {
+  > .menu > .item > .link > .active {
     color: #fef142;
     background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  >.menu>.item>.link {
+  > .menu > .item > .link {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -281,14 +300,14 @@ onMounted(() => {
     text-decoration: none;
     gap: 10px;
 
-    >.icon {
+    > .icon {
       font-size: 24px;
       margin-right: 10px;
     }
   }
 
-  >.menu>.item:hover>.link>.text,
-  >.menu>.item:hover>.link>.icon {
+  > .menu > .item:hover > .link > .text,
+  > .menu > .item:hover > .link > .icon {
     color: #fef142;
     background-image: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
     -webkit-background-clip: text;
@@ -305,11 +324,11 @@ onMounted(() => {
   position: relative;
   display: none;
 
-  >.logo {
+  > .logo {
     width: 160px;
   }
 
-  >.icon {
+  > .icon {
     font-size: 30px;
     color: #fff;
     cursor: pointer;
@@ -320,7 +339,7 @@ onMounted(() => {
     }
   }
 
-  >.line {
+  > .line {
     content: '';
     position: absolute;
     bottom: 0;
@@ -335,7 +354,7 @@ onMounted(() => {
 }
 
 .main-content {
-  >.container {
+  > .container {
     padding: 0 24px 30px 24px;
   }
 }
@@ -350,7 +369,7 @@ onMounted(() => {
 
 @include mediaquery-up(lg) {
   .container-drawer {
-    >.logo {
+    > .logo {
       height: 70px;
       min-height: 70px;
     }
@@ -365,11 +384,10 @@ onMounted(() => {
   }
 
   .main-content {
-    >.container {
+    > .container {
       margin-top: 70px;
       padding: 0 12px;
     }
   }
-
 }
 </style>

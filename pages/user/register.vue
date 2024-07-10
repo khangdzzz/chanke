@@ -50,7 +50,7 @@ const registerUser = async () => {
   const body = {
     username: username.value,
     password: password.value,
-    userIntro: userIntro.value
+    userIntro: userIntro.value,
   }
   await userStore.register(body)
   isLoading.value = false
@@ -78,7 +78,7 @@ const setWarning = (message: string) => {
   }, 3000)
 }
 
-watch(username, (newValue) => {
+watch(username, newValue => {
   username.value = removeAccents(newValue).toLowerCase()
 })
 
@@ -102,17 +102,46 @@ const warning = ref('')
   <div class="login-container">
     <div class="card">
       <a href="/" class="logo">
-        <img src="~/assets/images/logo_chanlebank1.png" alt="">
+        <img src="~/assets/images/logo_chanlebank1.png" alt="" />
       </a>
-      <form @submit.prevent="registerUser" class="form">
-        <span class="warning" v-if="warning">{{ warning }}</span>
-        <input v-model="username" class="username" type="text" placeholder="Nickname" required @input="toLower" />
-        <input v-model="password" class="password" type="password" placeholder="Mật Khẩu" required />
-        <input v-model="repeatPassword" class="password" type="password" placeholder="Nhập Lại Mật Khẩu" required />
-        <v-btn type="submit" class="btn" :loading="isLoading" @click="registerUser">Đăng Ký</v-btn>
+      <form class="form" @submit.prevent="registerUser">
+        <span v-if="warning" class="warning">{{ warning }}</span>
+        <input
+          v-model="username"
+          class="username"
+          type="text"
+          placeholder="Nickname"
+          required
+          @input="toLower"
+        />
+        <input
+          v-model="password"
+          class="password"
+          type="password"
+          placeholder="Mật Khẩu"
+          required
+        />
+        <input
+          v-model="repeatPassword"
+          class="password"
+          type="password"
+          placeholder="Nhập Lại Mật Khẩu"
+          required
+        />
+        <v-btn
+          type="submit"
+          class="btn"
+          :loading="isLoading"
+          @click="registerUser"
+        >
+          Đăng Ký
+        </v-btn>
       </form>
 
-      <div class="register">Đã có tài khoản? <nuxt-link class="link" to="/user/login">Đăng Nhập!</nuxt-link></div>
+      <div class="register">
+        Đã có tài khoản?
+        <nuxt-link class="link" to="/user/login">Đăng Nhập!</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -130,7 +159,7 @@ const warning = ref('')
   gap: 16px;
   padding: 0 16px;
 
-  >.status {
+  > .status {
     color: #316100;
     background-color: #dff1cc;
     border-color: #d2ecb8;
@@ -140,7 +169,7 @@ const warning = ref('')
     min-width: 400px;
   }
 
-  >.fail {
+  > .fail {
     color: #6b1110;
     background-color: #f5d2d2;
     border-color: #f1c1c0;
@@ -150,7 +179,7 @@ const warning = ref('')
     min-width: 400px;
   }
 
-  >.card {
+  > .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -166,30 +195,30 @@ const warning = ref('')
     gap: 20px;
   }
 
-  >.card>.logo {
+  > .card > .logo {
     width: 220px;
     margin-bottom: 30px;
   }
 
-  >.card>.title {
+  > .card > .title {
     color: #333;
   }
 
-  >.card>.form {
+  > .card > .form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 80%;
   }
 
-  >.card>.form>.warning {
+  > .card > .form > .warning {
     color: #f00;
     font-size: 14px;
     text-align: center;
   }
 
-  >.card>.form>.username,
-  >.card>.form>.password {
+  > .card > .form > .username,
+  > .card > .form > .password {
     background-color: #2b2b31;
     border: 1px solid transparent;
     height: 50px;
@@ -201,7 +230,7 @@ const warning = ref('')
     padding: 0 44px;
   }
 
-  >.card>.form>.btn {
+  > .card > .form > .btn {
     background: linear-gradient(90deg, #fe5b09 0%, #fef9a6 100%);
     color: #fff;
     font-size: 16px;
@@ -210,13 +239,13 @@ const warning = ref('')
     padding: 0 44px;
   }
 
-  >.card>.register {
+  > .card > .register {
     color: #fff;
     font-size: 14px;
     text-align: center;
   }
 
-  >.card>.register>.link {
+  > .card > .register > .link {
     color: #fef142;
     cursor: pointer;
   }

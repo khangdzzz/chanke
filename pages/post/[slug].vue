@@ -3,7 +3,7 @@ useHead({
   title: 'Detail Blog',
 })
 
-const params = useRoute().params;
+const params = useRoute().params
 
 const usePost = usePostStore()
 
@@ -25,8 +25,10 @@ onMounted(async () => {
       </div>
     </div>
 
-    <span class="public" v-if="post"> Công Khai:
-      <span class="date">{{ post?.date }}</span></span>
+    <span v-if="post" class="public">
+      Công Khai:
+      <span class="date">{{ post?.date }}</span>
+    </span>
   </div>
 </template>
 
@@ -35,17 +37,17 @@ onMounted(async () => {
   display: block;
   padding: 0 300px;
 
-  >.title {
+  > .title {
     margin-bottom: 20px;
   }
 
-  >.public {
+  > .public {
     display: flex;
     justify-content: end;
     margin-top: 30px;
     font-weight: 600;
 
-    >.date {
+    > .date {
       margin-left: 5px;
       font-style: italic;
     }
