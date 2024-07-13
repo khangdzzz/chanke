@@ -1,0 +1,116 @@
+<script lang="ts" setup>
+import { BANK_USED } from '~/utils/constants'
+import { isNumber, formatDate } from '~/utils/formatters'
+
+definePageMeta({
+  middleware: 'auth',
+  layout: 'dashboad',
+})
+
+const selectedBank = ref({ code: 'VCB', shortName: '(970436) Vietcombank' })
+const amount = ref(100000)
+const content = ref('hongha T')
+
+const adminStore = useAdminStore()
+const isHandleTransactionSuccess = computed(() => adminStore.isHandleTransactionSuccess)
+const isHandleTransactionFail = computed(() => adminStore.isHandleTransactionFail)
+const isLoading = ref(false)
+
+const transactionStore = useTransactionStore()
+
+const handleFakeTransaction = async () => {
+  isLoading.value = true
+  const body = {
+    content: content.value,
+    amount: Number(amount.value),
+    bank_type: selectedBank.value.code,
+  }
+
+  await adminStore.handleTransaction(body)
+  await transactionStore.getHistoryTransactionLatest('', 1, 10)
+  isLoading.value = false
+  setTimeout(() => {
+    adminStore.isHandleTransactionSuccess = false
+    adminStore.isHandleTransactionFail = false
+  }, 1000);
+}
+
+const isOpenHistory = ref(false)
+
+const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-arrow-up')
+
+</script>
+<template>
+  <div class="transaction-container">
+    <div class="history">
+      <v-btn class="label" :append-icon="iconArrow" variant="text" @click="() => isOpenHistory = !isOpenHistory">
+        Lịch sử giao dịch
+      </v-btn>
+      <TransactionManageHistorySection v-if="!isOpenHistory"></TransactionManageHistorySection>
+    </div>
+  </div>
+</template>
+<style lang="scss" scoped>
+.transaction-container {
+  display: block;
+  padding: 12px;
+  color: #000;
+
+
+  >.form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 12px;
+    width: 50%;
+
+    >.row {
+      width: 100%;
+      margin-bottom: 12px;
+      border-radius: 4px;
+    }
+
+    >.add {
+      width: 150px;
+    }
+
+    >.success {
+      color: green;
+      font-size: 0.9rem;
+      font-weight: 900;
+      line-height: 1.5;
+      margin: 12px 0;
+    }
+
+    >.fail {
+      color: red;
+      font-size: 0.9rem;
+      font-weight: 900;
+      line-height: 1.5;
+      margin: 12px 0;
+    }
+  }
+
+  >.history {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  >.history>.label {
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.5;
+    text-align: left;
+  }
+}
+
+:deep(.v-btn--size-default) {
+  padding: 0 !important;
+}
+</style>

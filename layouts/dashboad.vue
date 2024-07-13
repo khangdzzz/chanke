@@ -37,7 +37,12 @@ const menuBars = [
   },
   {
     url: '/dashboard/transaction',
-    text: 'Giao Dịch',
+    text: 'Giao Dịch V1',
+    icon: 'mdi-cash-marker',
+  },
+  {
+    url: '/dashboard/transaction-v2',
+    text: 'Giao Dịch V2',
     icon: 'mdi-cash-marker',
   },
   {

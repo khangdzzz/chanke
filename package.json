@@ -7,7 +7,7 @@
     "generate": "nuxt generate",
     "start": "node .output/server/index.mjs",
     "deploy": "yarn build && yarn start",
-    "pm2": "pm2 delete admin && pm2 start npm  --name 'admin' -- run deploy",
+    "pm2": "pm2 delete fe-cms && pm2 start npm  --name 'fe-cms' -- run deploy",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
@@ -56,9 +56,11 @@
     "linkify-html": "^4.1.0",
     "linkifyjs": "^4.1.0",
     "pinia": "^2.0.29",
+    "pm2": "^5.4.2",
     "remove-accents": "^0.5.0",
     "sanitize.css": "^13.0.0",
-    "vuetify": "^3.2.5"
+    "vuetify": "^3.2.5",
+    "yarn": "^1.22.22"
   },
   "volta": {
     "node": "16.18.0",

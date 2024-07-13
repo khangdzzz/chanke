@@ -2,6 +2,7 @@
 import { formatDate, getStartTime, endTimeDay } from "~/utils/formatters"
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
+import { BANKS, BANKS_MAP } from '~/utils/constants'
 
 const transactionStore = useTransactionStore()
 
@@ -120,6 +121,19 @@ const handleDetectTransaction = async () => {
   snackbar.value = true
 }
 
+const getBankUser = (code: string) => {
+  return BANKS.find(bank => bank.value == code)?.label ?? ""
+}
+
+const STATUS_BANK = [
+  { value: 99, label: '' },
+  { value: 1, label: 'Đã Thanh Toán ' },
+  { value: 0, label: 'Chưa Thanh Toán' },
+]
+
+
+const statusBank = ref()
+
 
 </script>
 <template>
@@ -127,6 +141,8 @@ const handleDetectTransaction = async () => {
     <v-select v-model="defaultGame" :items="games" item-value="gameType" item-title="name" variant="outlined"
       label="Loại Game" class="games" dense :clearable="false" return-object></v-select>
     <input v-model="nickname" class="input" type="text" placeholder="Nhập Nickname để kiểm tra" />
+    <v-select v-model="statusBank" :items="STATUS_BANK"  item-value="value" item-title="label" variant="outlined" label="Chọn cách tính kết quả"
+        class="row" dense :clearable="false" return-object></v-select>
     <div class="content__item">
       <div class="content__item__title">Thời Gian Bắt Đầu</div>
       <div class="content__item__input">
@@ -149,6 +165,7 @@ const handleDetectTransaction = async () => {
           <th class="cell">THỜI GIAN</th>
           <th class="cell">Nick Name</th>
           <th class="cell">Số Tài Khoản</th>
+          <th class="cell">Ngân Hàng</th>
           <th class="cell">MGD</th>
           <th class="cell">TIỀN CƯỢC</th>
           <th class="cell">TIỀN THẮNG</th>
@@ -166,6 +183,7 @@ const handleDetectTransaction = async () => {
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
           <td class="cell">{{ item.accountNumberClient }}</td>
+          <td class="cell">{{ item.bankClient ? getBankUser(item.bankClient) : '' }}</td>
           <td class="cell">{{ item.transId }}</td>
           <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
