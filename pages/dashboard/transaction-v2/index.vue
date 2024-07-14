@@ -46,7 +46,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
       <v-btn class="label" :append-icon="iconArrow" variant="text" @click="() => isOpenHistory = !isOpenHistory">
         Lịch sử giao dịch
       </v-btn>
-      <TransactionManageHistorySection v-if="!isOpenHistory"></TransactionManageHistorySection>
+      <TransactionManageV2HistorySection v-if="!isOpenHistory"></TransactionManageV2HistorySection>
     </div>
   </div>
 </template>
