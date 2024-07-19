@@ -144,6 +144,15 @@ export const useUserStore = defineStore('user', () => {
       .catch(() => null)
   }
 
+  const refundDepositManual = async (body: any) => {
+    return await apis
+      .chanle!.post('private/deposit-manual', {
+        json: body,
+      })
+      .json<IResponse>()
+      .catch(() => null)
+  }
+
   return {
     isLoginSuccess,
     isLoginFail,
@@ -160,5 +169,6 @@ export const useUserStore = defineStore('user', () => {
     getAllUsers,
     deleteUser,
     refundBankUser,
+    refundDepositManual,
   }
 })

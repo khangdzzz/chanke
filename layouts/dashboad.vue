@@ -66,6 +66,11 @@ const menuBars = [
     icon: 'mdi-bank-transfer',
   },
   {
+    url: '/dashboard/deposit-manual',
+    text: 'CK Thủ Công',
+    icon: 'mdi-bank-transfer-out',
+  },
+  {
     url: '/dashboard/games/detail',
     text: 'Chi Tiết Games',
     icon: 'mdi-gamepad-variant',
