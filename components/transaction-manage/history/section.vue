@@ -7,7 +7,7 @@ import { BANKS, BANKS_MAP } from '~/utils/constants'
 const transactionStore = useTransactionStore()
 
 const page = ref(1)
-const limit = 10
+const limit = 50
 const condition = ref("")
 
 onMounted(async () => {
@@ -93,7 +93,7 @@ const handlePayment = async () => {
   snackbar.value = true
 }
 
-const contentDetected = "Code format invalid"
+const contentDetecteds = ["Code format invalid", "Game not found", "User not found"]
 
 
 const transactionIdDetect = ref('')
@@ -141,8 +141,8 @@ const statusBank = ref()
     <v-select v-model="defaultGame" :items="games" item-value="gameType" item-title="name" variant="outlined"
       label="Loại Game" class="games" dense :clearable="false" return-object></v-select>
     <input v-model="nickname" class="input" type="text" placeholder="Nhập Nickname để kiểm tra" />
-    <v-select v-model="statusBank" :items="STATUS_BANK"  item-value="value" item-title="label" variant="outlined" label="Chọn cách tính kết quả"
-        class="row" dense :clearable="false" return-object></v-select>
+    <!-- <v-select v-model="statusBank" :items="STATUS_BANK"  item-value="value" item-title="label" variant="outlined" label="Chọn cách tính kết quả"
+        class="row" dense :clearable="false" return-object></v-select> -->
     <div class="content__item">
       <div class="content__item__title">Thời Gian Bắt Đầu</div>
       <div class="content__item__input">
@@ -203,7 +203,7 @@ const statusBank = ref()
               @click="callbackPayment(item)">Payment</v-btn>
           </td>
           <td class="cell">
-            <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus && item.status == contentDetected"
+            <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus && contentDetecteds.includes(item.status)"
               @click="detectTransactionAgain(item)">Detect</v-btn>
           </td>
         </tr>

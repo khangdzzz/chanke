@@ -7,7 +7,7 @@ import { BANKS, BANKS_MAP } from '~/utils/constants'
 const transactionStore = useTransactionStore()
 
 const page = ref(1)
-const limit = 10
+const limit = 50
 const condition = ref('')
 
 onMounted(async () => {
@@ -124,7 +124,7 @@ const handlePayment = async () => {
   snackbar.value = true
 }
 
-const contentDetected = 'Code format invalid'
+const contentDetecteds = ["Code format invalid", "Game not found", "User not found"]
 
 const transactionIdDetect = ref('')
 const detectTransactionAgain = (item: any) => {
@@ -286,7 +286,7 @@ const statusBank = ref({ value: 99, label: '' })
           </td>
           <td class="cell">
             <v-btn
-              v-if="!item.paymentStatus && item.status == contentDetected"
+              v-if="!item.paymentStatus && contentDetecteds.includes(item.status)"
               class="payment"
               variant="outlined"
               @click="detectTransactionAgain(item)"
