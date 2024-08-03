@@ -5,6 +5,31 @@ export interface IResponse {
   data?: any
 }
 
+export interface IGiftCode {
+  giftcodeText: string
+  sotien: number
+  trangthai: boolean
+  NguoiChoi: string
+  ThoiGianTao: string
+  ThoiGianSudung: string
+}
+
+export interface IGiftCodeLog {
+  NguoiChoi: string
+  giftcodeText: string
+  Ip: string
+  NgaySuDung: string
+  TrangThaiNhap: boolean
+}
+
+export interface IGiftCodeLogResponse extends IResponse {
+  data: IGiftCodeLog[]
+}
+
+export interface IGiftCodeResponse extends IResponse {
+  data: IGiftCode[]
+}
+
 export interface User {
   _id?: string
   username: string

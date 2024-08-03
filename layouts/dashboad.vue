@@ -61,6 +61,16 @@ const menuBars = [
     icon: 'mdi-gamepad-variant-outline',
   },
   {
+    url: '/dashboard/gift-code',
+    text: 'Gift-Code',
+    icon: 'mdi-gift',
+  },
+  {
+    url: '/dashboard/gift-code-manage',
+    text: 'Quản Lí Gift-Code',
+    icon: 'mdi-gift',
+  },
+  {
     url: '/dashboard/bank-user',
     text: 'Chuyển Khoản',
     icon: 'mdi-bank-transfer',
