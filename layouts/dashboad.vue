@@ -36,6 +36,11 @@ const menuBars = [
     icon: 'mdi-account-heart',
   },
   {
+    url: '/dashboard/rank',
+    text: 'Top Thắng Thua',
+    icon: 'mdi-chevron-triple-up',
+  },
+  {
     url: '/dashboard/transaction',
     text: 'Giao Dịch V1',
     icon: 'mdi-cash-marker',

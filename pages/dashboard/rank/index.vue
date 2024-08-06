@@ -37,22 +37,12 @@ const playerTableColumns = ref([
     text: 'Tổng Tiền Thua',
     width: '15%',
   },
-  {
-    id: 7,
-    text: 'Tiền Giới Thiệu',
-    width: '15%',
-  },
-  {
-    id: 68,
-    text: 'Payment',
-    width: '10%',
-  },
 ])
 
 const month = ref(new Date())
 
 onMounted(async () => {
-  await transactionStore.getCtvInfor()
+  await transactionStore.getRankInfor(month.value.getMonth() + 1)
 })
 
 const statusUpdate = ref(false)
@@ -61,15 +51,17 @@ const snackbar = ref(false)
 
 const transactionStore = useTransactionStore()
 
-const getCtvInfor = async () => {
-  await transactionStore.getCtvInfor()
+const getRankInfor = async () => {
+  const condition = month.value['month'] + 1
+
+  await transactionStore.getRankInfor(condition)
 }
 
 const formatNumber = (value?: number) => {
   return value ? Number(value).toLocaleString() : 0
 }
 
-const ctv = computed(() => transactionStore.ctvData)
+const rank = computed(() => transactionStore.rankData)
 const userName = ref('')
 const name = ref('')
 const money = ref(0)
@@ -99,7 +91,7 @@ const handlePayment = async () => {
     snackbar.value = true
     statusUpdate.value = true
     notification.value = 'Đã Thực thiện thanh toán'
-    await getCtvInfor()
+    await getRankInfor()
   } else {
     snackbar.value = true
     statusUpdate.value = false
@@ -109,6 +101,10 @@ const handlePayment = async () => {
 </script>
 <template>
   <div class="container-player">
+    <div class="search">
+      <VueDatePicker v-model="month" month-picker />
+      <v-btn class="see" @click="getRankInfor()">Xem</v-btn>
+    </div>
     <div class="table-manager">
       <table class="table">
         <thead class="header">
@@ -123,7 +119,7 @@ const handlePayment = async () => {
           </tr>
         </thead>
         <tbody class="body">
-          <tr v-for="item in ctv" :key="item._id" class="row">
+          <tr v-for="item in rank" :key="item._id" class="row">
             <td class="cell">{{ item._id }}</td>
             <td class="cell">{{ item.accountName }}</td>
             <td class="cell">{{ item.accountNumber }}</td>
@@ -131,19 +127,6 @@ const handlePayment = async () => {
             <td class="cell">{{ formatNumber(item.bonusSum) }}</td>
             <td class="cell">
               {{ formatNumber(item.bonusSum - item.amountSum) }}
-            </td>
-            <td class="cell">
-              {{ formatNumber(item.totalMoneyIntroNotPaymnent) }}
-            </td>
-            <td class="cell">
-              <v-btn
-                class="payment"
-                variant="outlined"
-                :disabled="!item.totalMoneyIntroNotPaymnent"
-                @click="callbackPayment(item)"
-              >
-                Payment
-              </v-btn>
             </td>
           </tr>
         </tbody>

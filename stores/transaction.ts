@@ -24,6 +24,7 @@ export const useTransactionStore = defineStore('transaction', () => {
   const isCallPaymentSuccess = ref<boolean>(false)
   const isDetectTransactionSuccess = ref<boolean>(false)
   const ctvData = ref<Ctv[]>()
+  const rankData = ref<Ctv[]>()
   const isPaymentIntro = ref(false)
 
   const getHistoryTransaction = async (
@@ -155,9 +156,18 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   }
 
-  const getCtvInfor = async (month: number | string) => {
+  const getRankInfor = async (month: number | string) => {
     const res = await apis
-      .chanle!.get(`transation/ctv?month=${month}`)
+      .chanle!.get(`transation/rank?month=${month}`)
+      .json<CtvResponse>()
+      .catch(() => null)
+
+    if (res?.success) rankData.value = res.data
+  }
+
+  const getCtvInfor = async () => {
+    const res = await apis
+      .chanle!.get(`transation/ctv`)
       .json<CtvResponse>()
       .catch(() => null)
 
@@ -173,6 +183,7 @@ export const useTransactionStore = defineStore('transaction', () => {
     historyTransactionAuth,
     isDetectTransactionSuccess,
     ctvData,
+    rankData,
     paymentIntro,
     getHistoryCashLatest,
     getHistoryTransaction,
@@ -182,6 +193,7 @@ export const useTransactionStore = defineStore('transaction', () => {
     getHistoryTransactionAuth,
     detectTransaction,
     getCtvInfor,
+    getRankInfor,
     isPaymentIntro,
   }
 })
