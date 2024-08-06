@@ -36,8 +36,8 @@ const listLogGiftCodes = computed(() => giftCodeStore.listLogsGiftCodes)
             :key="item.giftcodeText"
             class="row"
           >
+          <td class="cell">{{ item.NguoiChoi }}</td>
             <td class="cell">{{ item.giftcodeText }}</td>
-            <td class="cell">{{ item.NguoiChoi }}</td>
             <td class="cell">{{ item.Ip }}</td>
             <td class="cell">
               {{ item.NgaySuDung ? formatDate(item.NgaySuDung as string) : '' }}
