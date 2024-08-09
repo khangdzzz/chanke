@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate, getStartTime, endTimeDay } from "~/utils/formatters"
+import { formatDate, getStartTime, endTimeDay } from '~/utils/formatters'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { BANKS, BANKS_MAP } from '~/utils/constants'
@@ -8,28 +8,37 @@ const transactionStore = useTransactionStore()
 
 const page = ref(1)
 const limit = 50
-const condition = ref("")
+const condition = ref('')
 
 onMounted(async () => {
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
 })
 
 const gameStore = useGameStore()
 
-const defaultGame = ref({ gameType: "", name: "Tất cả" })
+const defaultGame = ref({ gameType: '', name: 'Tất cả' })
 
 const games = computed(() => {
   return [defaultGame.value, ...gameStore.listGamesDetail]
 })
 
-const transactions = computed(() => transactionStore.historyTransactionLatest?.transactions)
-const totalPage = computed(() => transactionStore.historyTransactionLatest?.totalPages)
+const transactions = computed(
+  () => transactionStore.historyTransactionLatest?.transactions
+)
+const totalPage = computed(
+  () => transactionStore.historyTransactionLatest?.totalPages
+)
 
 const isShowPagination = computed(() => {
   return totalPage.value ? totalPage.value > 1 : false
 })
 
-const nickname = ref("")
+const nickname = ref('')
+const transactionId = ref('')
 
 const startDate = ref(getStartTime())
 
@@ -40,7 +49,12 @@ const isSearchTime = ref(false)
 const searchHistoryPlayer = async () => {
   condition.value = ''
   condition.value += nickname.value ? `&nickname=${nickname.value}` : ''
-  condition.value += defaultGame.value.gameType ? `&gameName=${defaultGame.value.gameType}` : ''
+  condition.value += transactionId.value
+    ? `&transactionId=${transactionId.value}`
+    : ''
+  condition.value += defaultGame.value.gameType
+    ? `&gameName=${defaultGame.value.gameType}`
+    : ''
 
   if (isSearchTime.value) {
     condition.value += `&startDate=${startDate.value.toISOString()}`
@@ -49,21 +63,30 @@ const searchHistoryPlayer = async () => {
 
   page.value = 1
 
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
-};
+  await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
+}
 
-watch(page,
-  async () => {
-    await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
-  }
-)
+watch(page, async () => {
+  await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
+})
 
 const notification = ref('')
 const snackbar = ref(false)
 
-const isCallPaymentSuccess = computed(() => transactionStore.isCallPaymentSuccess)
-const isDetectTransactionSuccess = computed(() => transactionStore.isDetectTransactionSuccess)
-
+const isCallPaymentSuccess = computed(
+  () => transactionStore.isCallPaymentSuccess
+)
+const isDetectTransactionSuccess = computed(
+  () => transactionStore.isDetectTransactionSuccess
+)
 
 const dialogConfirmStore = useDialogConfirmStore()
 const action = ref('')
@@ -73,7 +96,7 @@ const nicknamePayment = ref('')
 const transactionIdPayment = ref('')
 const callbackPayment = async (item: any) => {
   dialogConfirmStore.isOpenConfirmHandleTransaction = true
-  action.value = "PAYMENT"
+  action.value = 'PAYMENT'
   content.value = `${item.nickname} (${item.bonus})`
 
   nicknamePayment.value = item.nickname
@@ -85,44 +108,59 @@ const handlePayment = async () => {
   const transactionId = transactionIdPayment.value
 
   await transactionStore.callBackPayment(nickname, transactionId)
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
 
   dialogConfirmStore.isOpenConfirmHandleTransaction = false
 
-  notification.value = transactionStore.isCallPaymentSuccess ? 'Thanh Toán Thành Công' : 'Thanh Toán Thất Bại, Số tiền quá nhỏ or user không tồn tại'
+  notification.value = transactionStore.isCallPaymentSuccess
+    ? 'Thanh Toán Thành Công'
+    : 'Thanh Toán Thất Bại, Số tiền quá nhỏ or user không tồn tại'
   snackbar.value = true
 }
 
-const contentDetecteds = ["Code format invalid", "Game not found", "User not found"]
-
+const contentDetecteds = [
+  'Code format invalid',
+  'Game not found',
+  'User not found',
+]
 
 const transactionIdDetect = ref('')
 const detectTransactionAgain = (item: any) => {
-
   dialogConfirmStore.isOpenConfirmHandleTransaction = true
-  action.value = "DETECT"
-  content.value = item.nickname ? `${item.nickname} (${item.bonus})` : item.betValue
+  action.value = 'DETECT'
+  content.value = item.nickname
+    ? `${item.nickname} (${item.bonus})`
+    : item.betValue
 
   transactionIdDetect.value = item.transId
-
 }
 
 const handleDetectTransaction = async () => {
   const body = {
-    transaction_id: transactionIdDetect.value
+    transaction_id: transactionIdDetect.value,
   }
 
   await transactionStore.detectTransaction(body)
-  await transactionStore.getHistoryTransactionLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
 
   dialogConfirmStore.isOpenConfirmHandleTransaction = false
 
-  notification.value = transactionStore.isDetectTransactionSuccess ? 'Detect Thành Công' : 'Detect Thành Thất Bại'
+  notification.value = transactionStore.isDetectTransactionSuccess
+    ? 'Detect Thành Công'
+    : 'Detect Thành Thất Bại'
   snackbar.value = true
 }
 
 const getBankUser = (code: string) => {
-  return BANKS.find(bank => bank.value == code)?.label ?? ""
+  return BANKS.find(bank => bank.value == code)?.label ?? ''
 }
 
 const STATUS_BANK = [
@@ -131,16 +169,34 @@ const STATUS_BANK = [
   { value: 0, label: 'Chưa Thanh Toán' },
 ]
 
-
 const statusBank = ref()
-
-
 </script>
 <template>
   <div class="search-user">
-    <v-select v-model="defaultGame" :items="games" item-value="gameType" item-title="name" variant="outlined"
-      label="Loại Game" class="games" dense :clearable="false" return-object></v-select>
-    <input v-model="nickname" class="input" type="text" placeholder="Nhập Nickname để kiểm tra" />
+    <v-select
+      v-model="defaultGame"
+      :items="games"
+      item-value="gameType"
+      item-title="name"
+      variant="outlined"
+      label="Loại Game"
+      class="games"
+      dense
+      :clearable="false"
+      return-object
+    ></v-select>
+    <input
+      v-model="nickname"
+      class="input"
+      type="text"
+      placeholder="Nhập Nickname để kiểm tra"
+    />
+    <input
+      v-model="transactionId"
+      class="input"
+      type="text"
+      placeholder="Nhập mã giao dịch để kiểm tra"
+    />
     <!-- <v-select v-model="statusBank" :items="STATUS_BANK"  item-value="value" item-title="label" variant="outlined" label="Chọn cách tính kết quả"
         class="row" dense :clearable="false" return-object></v-select> -->
     <div class="content__item">
@@ -155,8 +211,17 @@ const statusBank = ref()
         <VueDatePicker v-model="endDate"></VueDatePicker>
       </div>
     </div>
-    <v-checkbox v-model="isSearchTime" label="Chọn để tìm kiếm theo thời gian"></v-checkbox>
-    <v-btn class="icon" append-icon="mdi-magnify" @click="searchHistoryPlayer()">Tìm Kiếm</v-btn>
+    <v-checkbox
+      v-model="isSearchTime"
+      label="Chọn để tìm kiếm theo thời gian"
+    ></v-checkbox>
+    <v-btn
+      class="icon"
+      append-icon="mdi-magnify"
+      @click="searchHistoryPlayer()"
+    >
+      Tìm Kiếm
+    </v-btn>
   </div>
   <div class="container-search">
     <table class="table">
@@ -179,11 +244,13 @@ const statusBank = ref()
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row" v-for="item in transactions" :key="item._id">
+        <tr v-for="item in transactions" :key="item._id" class="row">
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
           <td class="cell">{{ item.accountNumberClient }}</td>
-          <td class="cell">{{ item.bankClient ? getBankUser(item.bankClient) : '' }}</td>
+          <td class="cell">
+            {{ item.bankClient ? getBankUser(item.bankClient) : '' }}
+          </td>
           <td class="cell">{{ item.transId }}</td>
           <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
@@ -195,35 +262,73 @@ const statusBank = ref()
             <span class="betName">{{ item.betValue }}</span>
           </td>
           <td class="cell">
-            <span class="result -lose" :class="{ '-win': item.status === 'win' }">{{ item.status }}</span>
+            <span
+              class="result -lose"
+              :class="{ '-win': item.status === 'win' }"
+            >
+              {{ item.status }}
+            </span>
           </td>
-          <td class="cell">{{ item.paymentStatus ? "Đã Thanh Toán " : "Chưa Thanh Toán" }}</td>
           <td class="cell">
-            <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus"
-              @click="callbackPayment(item)">Payment</v-btn>
+            {{ item.paymentStatus ? 'Đã Thanh Toán ' : 'Chưa Thanh Toán' }}
           </td>
           <td class="cell">
-            <v-btn class="payment" variant="outlined" v-if="!item.paymentStatus && contentDetecteds.includes(item.status)"
-              @click="detectTransactionAgain(item)">Detect</v-btn>
+            <v-btn
+              v-if="!item.paymentStatus"
+              class="payment"
+              variant="outlined"
+              @click="callbackPayment(item)"
+            >
+              Payment
+            </v-btn>
+          </td>
+          <td class="cell">
+            <v-btn
+              v-if="
+                !item.paymentStatus && contentDetecteds.includes(item.status)
+              "
+              class="payment"
+              variant="outlined"
+              @click="detectTransactionAgain(item)"
+            >
+              Detect
+            </v-btn>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="text-center">
-      <v-pagination v-if="isShowPagination" v-model="page" :length="totalPage" rounded="circle" prev-icon="mdi-menu-left"
-        next-icon="mdi-menu-right"></v-pagination>
+      <v-pagination
+        v-if="isShowPagination"
+        v-model="page"
+        :length="totalPage"
+        rounded="circle"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+      ></v-pagination>
     </div>
   </div>
-  <v-snackbar v-model="snackbar" :timeout="1000" rounded="pill" location="top"
-    :color="isCallPaymentSuccess || isDetectTransactionSuccess ? 'success' : 'red'" elevation="24"
-    transition="fade-transition">
-    <div style="width: 100%; text-align: center;">
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="1000"
+    rounded="pill"
+    location="top"
+    :color="
+      isCallPaymentSuccess || isDetectTransactionSuccess ? 'success' : 'red'
+    "
+    elevation="24"
+    transition="fade-transition"
+  >
+    <div style="width: 100%; text-align: center">
       {{ notification }}
     </div>
   </v-snackbar>
-  <DialogConfirmHandleTransaction :action="action" :content="content" @payment="handlePayment"
-    @detect="handleDetectTransaction">
-  </DialogConfirmHandleTransaction>
+  <DialogConfirmHandleTransaction
+    :action="action"
+    :content="content"
+    @payment="handlePayment"
+    @detect="handleDetectTransaction"
+  ></DialogConfirmHandleTransaction>
 </template>
 
 <style lang="scss" scoped>
@@ -235,11 +340,11 @@ const statusBank = ref()
   width: 50%;
   color: #000;
 
-  >.games {
+  > .games {
     width: 100%;
   }
 
-  >.input {
+  > .input {
     display: block;
     width: 100%;
     padding: 0.375rem 0.75rem;
@@ -253,7 +358,7 @@ const statusBank = ref()
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
-  >.icon {
+  > .icon {
     background-color: $primary-color;
     color: #fff;
     padding: 20px 26px;
@@ -268,7 +373,7 @@ const statusBank = ref()
   overflow-x: auto;
   color: #000;
 
-  >.table {
+  > .table {
     width: 100%;
     margin-bottom: 12px;
     border-collapse: collapse;
@@ -276,12 +381,12 @@ const statusBank = ref()
     border: 1px solid #e0e0e0;
   }
 
-  >.table>.head {
+  > .table > .head {
     background-color: $primary-color;
     color: white;
   }
 
-  >.table>.head>.row>.cell {
+  > .table > .head > .row > .cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 900;
@@ -291,15 +396,15 @@ const statusBank = ref()
     white-space: nowrap;
   }
 
-  >.table tbody>.row:nth-child(odd) {
+  > .table tbody > .row:nth-child(odd) {
     background-color: #fff;
   }
 
-  >.table tbody>.row:nth-child(even) {
+  > .table tbody > .row:nth-child(even) {
     background-color: #f6f6f6;
   }
 
-  >.table tbody>.row>.cell {
+  > .table tbody > .row > .cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 400;
@@ -309,13 +414,13 @@ const statusBank = ref()
     white-space: nowrap;
   }
 
-  >.table tbody>.row>.cell>.payment {
+  > .table tbody > .row > .cell > .payment {
     background-color: $primary-color;
     color: #fff !important;
     padding: 0 8px !important;
   }
 
-  >.table tbody>.row>.cell>.betName {
+  > .table tbody > .row > .cell > .betName {
     cursor: pointer;
     background-color: $primary-color;
     color: #fff;
@@ -323,18 +428,18 @@ const statusBank = ref()
     border-radius: 1px;
   }
 
-  >.table tbody>.row>.cell {
-    &>.result {
+  > .table tbody > .row > .cell {
+    & > .result {
       padding: 3px 6px;
       color: #fff;
       border-radius: 3px;
     }
 
-    &>.-lose {
+    & > .-lose {
       background: #343a40;
     }
 
-    &>.-win {
+    & > .-win {
       background: linear-gradient(to bottom right, #62fb62, #21a544) !important;
     }
   }

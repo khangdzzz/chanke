@@ -124,7 +124,11 @@ const handlePayment = async () => {
   snackbar.value = true
 }
 
-const contentDetecteds = ["Code format invalid", "Game not found", "User not found"]
+const contentDetecteds = [
+  'Code format invalid',
+  'Game not found',
+  'User not found',
+]
 
 const transactionIdDetect = ref('')
 const detectTransactionAgain = (item: any) => {
@@ -165,6 +169,9 @@ const STATUS_BANK = [
   { value: 99, label: '' },
   { value: 1, label: 'Đã Thanh Toán ' },
   { value: 0, label: 'Chưa Thanh Toán' },
+  { value: 2, label: 'User not found' },
+  { value: 4, label: 'Pending' },
+  { value: 5, label: 'Deposit not found' },
 ]
 
 const statusBank = ref({ value: 99, label: '' })
@@ -286,7 +293,9 @@ const statusBank = ref({ value: 99, label: '' })
           </td>
           <td class="cell">
             <v-btn
-              v-if="!item.paymentStatus && contentDetecteds.includes(item.status)"
+              v-if="
+                !item.paymentStatus && contentDetecteds.includes(item.status)
+              "
               class="payment"
               variant="outlined"
               @click="detectTransactionAgain(item)"
