@@ -1,0 +1,1 @@
+import{p,aj as c,v as m,ah as l}from"./entry.75e5da12.js";const f=p({transition:{type:[Boolean,String,Object],default:"fade-transition",validator:o=>o!==!0}},"transition"),y=(o,a)=>{let{slots:n}=a;const{transition:t,disabled:s,...r}=o,{component:e=l,...i}=typeof t=="object"?t:{};return c(e,m(typeof t=="string"?{name:s?"":t}:i,r,{disabled:s}),n)};export{y as M,f as m};
