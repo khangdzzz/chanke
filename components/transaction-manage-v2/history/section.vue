@@ -238,8 +238,8 @@ const statusBank = ref({ value: 99, label: '' })
         <tr class="row">
           <th class="cell">THỜI GIAN</th>
           <th class="cell">Nick Name</th>
-          <th class="cell">Số Tài Khoản</th>
-          <th class="cell">Ngân Hàng</th>
+          <!-- <th class="cell">Số Tài Khoản</th> -->
+          <th class="cell">Ngân Hàng Nhận</th>
           <th class="cell">MGD</th>
           <th class="cell">TIỀN CƯỢC</th>
           <th class="cell">TIỀN THẮNG</th>
@@ -256,10 +256,11 @@ const statusBank = ref({ value: 99, label: '' })
         <tr v-for="item in transactions" :key="item._id" class="row">
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
-          <td class="cell">{{ item.accountNumberClient }}</td>
+          <td class="cell">{{ item.bankGet }}</td>
+          <!-- <td class="cell">{{ item.accountNumberClient }}</td>
           <td class="cell">
             {{ item.bankClient ? getBankUser(item.bankClient) : '' }}
-          </td>
+          </td> -->
           <td class="cell">{{ item.transId }}</td>
           <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
