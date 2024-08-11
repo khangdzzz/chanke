@@ -1,0 +1,1 @@
+import{aR as r,aQ as a}from"./entry.f87afcde.js";import{u as t}from"./useAuth.bbeab365.js";const n=r(()=>{const{checkTokenValid:e,permission:o}=t(),s=a();if(e()&&o.value==="admin"){s.push("/dashboard");return}});export{n as default};
