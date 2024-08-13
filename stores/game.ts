@@ -48,8 +48,14 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const createNewGame = async (body: Game[]) => {
+    const token = useCookie('accessToken')
     const res: IResponse | null = await apis
-      .chanle!.post(`game/createReward`, { json: body })
+      .chanle!.post(`game/createReward`, {
+        json: body,
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
       .json<IResponse>()
       .catch(() => null)
 
@@ -59,8 +65,14 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const createNewGameDetail = async (body: Game) => {
+    const token = useCookie('accessToken')
     const res: IResponse | null = await apis
-      .chanle!.post(`game/createGame`, { json: body })
+      .chanle!.post(`game/createGame`, {
+        json: body,
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
       .json<IResponse>()
       .catch(() => null)
 
@@ -94,8 +106,14 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const updateGame = async (id: string, body: Game) => {
+    const token = useCookie('accessToken')
     const res: IResponse | null = await apis
-      .chanle!.put(`game/updateGame/${id}`, { json: body })
+      .chanle!.put(`game/updateGame/${id}`, {
+        json: body,
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
       .json<IResponse>()
       .catch(() => null)
 
@@ -105,8 +123,13 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const deleteGame = async (id: string) => {
+    const token = useCookie('accessToken')
     const res: IResponse | null = await apis
-      .chanle!.delete(`game/deleteGame/${id}`)
+      .chanle!.delete(`game/deleteGame/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
       .json<IResponse>()
       .catch(() => null)
 
@@ -116,8 +139,14 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const updateStatusGame = async (id: string, body: { status: boolean }) => {
+    const token = useCookie('accessToken')
     await apis
-      .chanle!.put(`game/updateStatusGame/${id}`, { json: body })
+      .chanle!.put(`game/updateStatusGame/${id}`, {
+        json: body,
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
       .json<IResponse>()
       .catch(() => null)
   }
@@ -140,6 +169,6 @@ export const useGameStore = defineStore('game', () => {
     checkContentExit,
     createNewGameDetail,
     getListGameDetail,
-    updateStatusGame
+    updateStatusGame,
   }
 })
