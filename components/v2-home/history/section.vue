@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate } from "~/utils/formatters"
+import { formatDate } from '~/utils/formatters'
 const { checkTokenValid, getUserName } = useAuth()
 
 const username = computed(() => getUserName())
@@ -10,19 +10,24 @@ const transactionStore = useTransactionStore()
 
 const page = ref(1)
 const limit = 10
-const condition = ref("")
+const condition = ref('')
 
 onMounted(async () => {
-  if(!isLogin.value) return
+  if (!isLogin.value) return
   condition.value = `&nickname=${username.value}`
-  await transactionStore.getHistoryTransactionAuth(condition.value, page.value, limit)
+  await transactionStore.getHistoryTransactionAuth(
+    condition.value,
+    page.value,
+    limit
+  )
 })
 
-const transactions = computed(() => transactionStore.historyTransactionAuth?.transactions)
-
+const transactions = computed(
+  () => transactionStore.historyTransactionAuth?.transactions
+)
 </script>
 <template>
-  <div class="container-history" v-if="isLogin">
+  <div v-if="isLogin" class="container-history">
     <h3 class="title">
       <v-icon class="icon" icon="mdi-clock-time-eight-outline"></v-icon>
       LỊCH SỬ CHƠI GẦN ĐÂY
@@ -43,7 +48,7 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row" v-for="item in transactions" :key="item._id">
+        <tr v-for="item in transactions" :key="item._id" class="row">
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
           <td class="cell">{{ item.accountNumberClient }}</td>
@@ -58,7 +63,12 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
             <span class="betName">{{ item.betValue }}</span>
           </td>
           <td class="cell">
-            <span class="result -lose" :class="{ '-win': item.status === 'win' }">{{ item.status }}</span>
+            <span
+              class="result -lose"
+              :class="{ '-win': item.status === 'win' }"
+            >
+              {{ item.status }}
+            </span>
           </td>
         </tr>
       </tbody>
@@ -74,7 +84,7 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 
-  >.title {
+  > .title {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -92,23 +102,23 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
     gap: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
-    >.icon {
+    > .icon {
       -webkit-text-fill-color: #fe5b09;
     }
   }
 
-  >.table {
+  > .table {
     display: block;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
   }
 
-  >.table>.head {
+  > .table > .head {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  >.table>.head>.row>.cell {
+  > .table > .head > .row > .cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 900;
@@ -116,11 +126,11 @@ const transactions = computed(() => transactionStore.historyTransactionAuth?.tra
     text-align: center;
   }
 
-  >.table tbody>.row {
+  > .table tbody > .row {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  >.table tbody>.row>.cell {
+  > .table tbody > .row > .cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 400;

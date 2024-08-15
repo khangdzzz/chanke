@@ -244,12 +244,12 @@ const statusBank = ref({ value: 99, label: '' })
           <th class="cell">TIỀN CƯỢC</th>
           <th class="cell">TIỀN THẮNG</th>
           <th class="cell">TRÒ CHƠI</th>
-          <th class="cell">MESSAGE</th>
           <th class="cell">CƯỢC</th>
           <th class="cell">KẾT QUẢ</th>
           <th class="cell">TRẠNG THÁI THANH TOÁN TIỀN</th>
           <th class="cell">CALLBACK</th>
           <th class="cell">DETECT</th>
+          <th class="cell">MESSAGE</th>
         </tr>
       </thead>
       <tbody class="body">
@@ -265,9 +265,6 @@ const statusBank = ref({ value: 99, label: '' })
           <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
           <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
           <td class="cell">{{ item.detailGameName }}</td>
-          <td class="cell">
-            <span class="betName">{{ item.code }}</span>
-          </td>
           <td class="cell">
             <span class="betName">{{ item.betValue }}</span>
           </td>
@@ -303,6 +300,9 @@ const statusBank = ref({ value: 99, label: '' })
             >
               Detect
             </v-btn>
+          </td>
+          <td class="cell">
+            <span class="betName">{{ item.code }}</span>
           </td>
         </tr>
       </tbody>
