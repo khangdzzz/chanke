@@ -169,9 +169,8 @@ const STATUS_BANK = [
   { value: 99, label: '' },
   { value: 1, label: 'Đã Thanh Toán ' },
   { value: 0, label: 'Chưa Thanh Toán' },
-  { value: 2, label: 'User not found' },
-  { value: 4, label: 'Pending' },
-  { value: 5, label: 'Deposit not found' },
+  { value: 2, label: 'Pending' },
+  { value: 3, label: 'Các Trường Hợp Còn Lại' },
 ]
 
 const statusBank = ref({ value: 99, label: '' })
