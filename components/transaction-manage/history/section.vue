@@ -253,8 +253,12 @@ const statusBank = ref()
             {{ item.bankClient ? getBankUser(item.bankClient) : '' }}
           </td> -->
           <td class="cell">{{ item.transId }}</td>
-          <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
-          <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
+          <td class="cell">
+            {{ item.amount ? Number(item.amount).toLocaleString() : 0 }}
+          </td>
+          <td class="cell">
+            {{ item.bonus ? Number(item.bonus).toLocaleString() : 0 }}
+          </td>
           <td class="cell">{{ item.detailGameName }}</td>
 
           <td class="cell">
