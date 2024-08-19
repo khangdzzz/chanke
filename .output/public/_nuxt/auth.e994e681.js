@@ -1,1 +1,0 @@
-import{aR as o,aS as s}from"./entry.bc34ec36.js";import{u as i}from"./useAuth.f5af1746.js";const r=o(()=>{const{checkTokenValid:e}=i();if(e())console.log("Token is valid.");else return console.log("Token has expired."),s("/user/login")});export{r as default};
