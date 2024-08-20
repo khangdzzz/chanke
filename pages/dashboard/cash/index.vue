@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate, getStartTime, endTimeDay } from "~/utils/formatters"
+import { formatDate, getStartTime, endTimeDay } from '~/utils/formatters'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
@@ -12,28 +12,34 @@ const transactionStore = useTransactionStore()
 
 const page = ref(1)
 const limit = 10
-const condition = ref("")
+const condition = ref('')
 
 onMounted(async () => {
-  await transactionStore.getHistoryCashLatest(condition.value, page.value, limit)
+  await transactionStore.getHistoryCashLatest(
+    condition.value,
+    page.value,
+    limit
+  )
 })
 
 const gameStore = useGameStore()
 
-const defaultGame = ref({ gameType: "", name: "Tất cả" })
+const defaultGame = ref({ gameType: '', name: 'Tất cả' })
 
 const games = computed(() => {
   return [defaultGame.value, ...gameStore.listGamesDetail]
 })
 
-const transactions = computed(() => transactionStore.historyCashLatest?.transactions)
+const transactions = computed(
+  () => transactionStore.historyCashLatest?.transactions
+)
 const totalPage = computed(() => transactionStore.historyCashLatest?.totalPages)
 
 const isShowPagination = computed(() => {
   return totalPage.value ? totalPage.value > 1 : false
 })
 
-const nickname = ref("")
+const nickname = ref('')
 
 const startDate = ref(getStartTime())
 
@@ -44,7 +50,9 @@ const isSearchTime = ref(false)
 const searchHistoryCash = async () => {
   condition.value = ''
   condition.value += nickname.value ? `&nickname=${nickname.value}` : ''
-  condition.value += defaultGame.value.gameType ? `&gameName=${defaultGame.value.gameType}` : ''
+  condition.value += defaultGame.value.gameType
+    ? `&gameName=${defaultGame.value.gameType}`
+    : ''
 
   if (isSearchTime.value) {
     condition.value += `&startDate=${startDate.value.toISOString()}`
@@ -53,22 +61,41 @@ const searchHistoryCash = async () => {
 
   page.value = 1
 
-  await transactionStore.getHistoryCashLatest(condition.value, page.value, limit)
-};
+  await transactionStore.getHistoryCashLatest(
+    condition.value,
+    page.value,
+    limit
+  )
+}
 
-watch(page,
-  async () => {
-    await transactionStore.getHistoryCashLatest(condition.value, page.value, limit)
-  }
-)
-
-
+watch(page, async () => {
+  await transactionStore.getHistoryCashLatest(
+    condition.value,
+    page.value,
+    limit
+  )
+})
 </script>
 <template>
   <div class="search-user">
-    <v-select v-model="defaultGame" :items="games" item-value="gameType" item-title="name" variant="outlined"
-      label="Loại Game" class="games" dense :clearable="false" return-object></v-select>
-    <input v-model="nickname" class="input" type="text" placeholder="Nhập Nickname để kiểm tra" />
+    <v-select
+      v-model="defaultGame"
+      :items="games"
+      item-value="gameType"
+      item-title="name"
+      variant="outlined"
+      label="Loại Game"
+      class="games"
+      dense
+      :clearable="false"
+      return-object
+    ></v-select>
+    <input
+      v-model="nickname"
+      class="input"
+      type="text"
+      placeholder="Nhập Nickname để kiểm tra"
+    />
     <div class="content__item">
       <div class="content__item__title">Thời Gian Bắt Đầu</div>
       <div class="content__item__input">
@@ -81,8 +108,13 @@ watch(page,
         <VueDatePicker v-model="endDate"></VueDatePicker>
       </div>
     </div>
-    <v-checkbox v-model="isSearchTime" label="Chọn để tìm kiếm theo thời gian"></v-checkbox>
-    <v-btn class="icon" append-icon="mdi-magnify" @click="searchHistoryCash()">Tìm Kiếm</v-btn>
+    <v-checkbox
+      v-model="isSearchTime"
+      label="Chọn để tìm kiếm theo thời gian"
+    ></v-checkbox>
+    <v-btn class="icon" append-icon="mdi-magnify" @click="searchHistoryCash()">
+      Tìm Kiếm
+    </v-btn>
   </div>
   <div class="container-search">
     <table class="table">
@@ -100,26 +132,41 @@ watch(page,
         </tr>
       </thead>
       <tbody class="body">
-        <tr class="row" v-for="item in transactions" :key="item._id">
+        <tr v-for="item in transactions" :key="item._id" class="row">
           <td class="cell">{{ formatDate(item.createdAt as string) }}</td>
           <td class="cell">{{ item.nickname }}</td>
           <td class="cell">{{ item.accountNumberClient }}</td>
           <td class="cell">{{ item.depositId }}</td>
-          <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
-          <td class="cell">{{ Number(item.bonus).toLocaleString() }}</td>
+          <td class="cell">
+            {{ item.amount ? Number(item.amount).toLocaleString() : 0 }}
+          </td>
+          <td class="cell">
+            {{ item.bonus ? Number(item.bonus).toLocaleString() : 0 }}
+          </td>
           <td class="cell">{{ item.detailGameName }}</td>
           <td class="cell">
             <span class="betName">{{ item.betValue }}</span>
           </td>
           <td class="cell">
-            <span class="result -lose" :class="{ '-win': item.status === 'win' }">{{ item.status }}</span>
+            <span
+              class="result -lose"
+              :class="{ '-win': item.status === 'win' }"
+            >
+              {{ item.status }}
+            </span>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="text-center">
-      <v-pagination v-if="isShowPagination" v-model="page" :length="totalPage" rounded="circle" prev-icon="mdi-menu-left"
-        next-icon="mdi-menu-right"></v-pagination>
+      <v-pagination
+        v-if="isShowPagination"
+        v-model="page"
+        :length="totalPage"
+        rounded="circle"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+      ></v-pagination>
     </div>
   </div>
 </template>
@@ -133,11 +180,11 @@ watch(page,
   width: 50%;
   color: #000;
 
-  >.games {
+  > .games {
     width: 100%;
   }
 
-  >.input {
+  > .input {
     display: block;
     width: 100%;
     padding: 0.375rem 0.75rem;
@@ -151,7 +198,7 @@ watch(page,
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
-  >.icon {
+  > .icon {
     background-color: $primary-color;
     color: #fff;
     border-radius: 4px;
@@ -165,7 +212,7 @@ watch(page,
   overflow-x: auto;
   color: #000;
 
-  >.table {
+  > .table {
     width: 100%;
     margin-bottom: 12px;
     border-collapse: collapse;
@@ -173,12 +220,12 @@ watch(page,
     border: 1px solid #e0e0e0;
   }
 
-  >.table>.head {
+  > .table > .head {
     background-color: $primary-color;
     color: white;
   }
 
-  >.table>.head>.row>.cell {
+  > .table > .head > .row > .cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 900;
@@ -188,15 +235,15 @@ watch(page,
     white-space: nowrap;
   }
 
-  >.table tbody>.row:nth-child(odd) {
+  > .table tbody > .row:nth-child(odd) {
     background-color: #fff;
   }
 
-  >.table tbody>.row:nth-child(even) {
+  > .table tbody > .row:nth-child(even) {
     background-color: #f6f6f6;
   }
 
-  >.table tbody>.row>.cell {
+  > .table tbody > .row > .cell {
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 400;
@@ -206,7 +253,7 @@ watch(page,
     white-space: nowrap;
   }
 
-  >.table tbody>.row>.cell>.betName {
+  > .table tbody > .row > .cell > .betName {
     cursor: pointer;
     background-color: $primary-color;
     color: #fff;
@@ -214,18 +261,18 @@ watch(page,
     border-radius: 1px;
   }
 
-  >.table tbody>.row>.cell {
-    &>.result {
+  > .table tbody > .row > .cell {
+    & > .result {
       padding: 3px 6px;
       color: #fff;
       border-radius: 3px;
     }
 
-    &>.-lose {
+    & > .-lose {
       background: #343a40;
     }
 
-    &>.-win {
+    & > .-win {
       background: linear-gradient(to bottom right, #62fb62, #21a544) !important;
     }
   }
