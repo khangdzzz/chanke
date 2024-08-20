@@ -74,54 +74,54 @@ const client_manifest = {
     "file": "VToolbar.44bbb01f.css",
     "src": "VToolbar.css"
   },
-  "_VAvatar.c2b9794c.js": {
+  "_VAvatar.07cbce3d.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VAvatar.25696c1d.css"
     ],
-    "file": "VAvatar.c2b9794c.js",
+    "file": "VAvatar.07cbce3d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VBtn.7d50387c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_VIcon.6b741b5e.js"
+      "_VBtn.1eb63591.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_VIcon.242b6d78.js"
     ]
   },
   "VAvatar.25696c1d.css": {
     "file": "VAvatar.25696c1d.css",
     "resourceType": "style"
   },
-  "_VBtn.7d50387c.js": {
+  "_VBtn.1eb63591.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VBtn.b54eb994.css"
     ],
-    "file": "VBtn.7d50387c.js",
+    "file": "VBtn.1eb63591.js",
     "imports": [
-      "_rounded.34e53503.js",
+      "_rounded.a16d2333.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js"
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js"
     ]
   },
   "VBtn.b54eb994.css": {
     "file": "VBtn.b54eb994.css",
     "resourceType": "style"
   },
-  "_VCheckbox.9c207650.js": {
+  "_VCheckbox.811f811b.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VCheckbox.c4b5563c.css"
     ],
-    "file": "VCheckbox.9c207650.js",
+    "file": "VCheckbox.811f811b.js",
     "imports": [
-      "_VTextField.5909b56e.js",
-      "_VSelect.8c72a42d.js",
+      "_VTextField.9e8a44d8.js",
+      "_VSelect.961c0b37.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -129,58 +129,58 @@ const client_manifest = {
     "file": "VCheckbox.c4b5563c.css",
     "resourceType": "style"
   },
-  "_VChip.c5262487.js": {
+  "_VChip.849a7f7d.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VChip.2085c0e0.css"
     ],
-    "file": "VChip.c5262487.js",
+    "file": "VChip.849a7f7d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VBtn.7d50387c.js",
-      "_index.053574ca.js",
-      "_rounded.34e53503.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js",
-      "_dimensions.c0c98817.js",
-      "_VAvatar.c2b9794c.js"
+      "_VBtn.1eb63591.js",
+      "_index.77805fa6.js",
+      "_rounded.a16d2333.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js",
+      "_dimensions.a2683e17.js",
+      "_VAvatar.07cbce3d.js"
     ]
   },
   "VChip.2085c0e0.css": {
     "file": "VChip.2085c0e0.css",
     "resourceType": "style"
   },
-  "_VDialog.6a7b4ff7.js": {
+  "_VDialog.fe46aefc.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VDialog.8985f2e5.css"
     ],
-    "file": "VDialog.6a7b4ff7.js",
+    "file": "VDialog.fe46aefc.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VAvatar.c2b9794c.js",
-      "_VBtn.7d50387c.js",
-      "_dimensions.c0c98817.js",
-      "_rounded.34e53503.js",
-      "_router.b5edfc66.js",
-      "_VImg.146409ca.js",
-      "_VOverlay.f714ca8c.js",
-      "_dialog-transition.f8d5277e.js"
+      "_VAvatar.07cbce3d.js",
+      "_VBtn.1eb63591.js",
+      "_dimensions.a2683e17.js",
+      "_rounded.a16d2333.js",
+      "_router.c1646952.js",
+      "_VImg.29189b0e.js",
+      "_VOverlay.fde145c5.js",
+      "_dialog-transition.2379331d.js"
     ]
   },
   "VDialog.8985f2e5.css": {
     "file": "VDialog.8985f2e5.css",
     "resourceType": "style"
   },
-  "_VIcon.6b741b5e.js": {
+  "_VIcon.242b6d78.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VIcon.f78c0722.css"
     ],
-    "file": "VIcon.6b741b5e.js",
+    "file": "VIcon.242b6d78.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -189,213 +189,213 @@ const client_manifest = {
     "file": "VIcon.f78c0722.css",
     "resourceType": "style"
   },
-  "_VImg.146409ca.js": {
+  "_VImg.29189b0e.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VImg.83edf237.css"
     ],
-    "file": "VImg.146409ca.js",
+    "file": "VImg.29189b0e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js"
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js"
     ]
   },
   "VImg.83edf237.css": {
     "file": "VImg.83edf237.css",
     "resourceType": "style"
   },
-  "_VList.d920b5ea.js": {
+  "_VList.c4e6bec9.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VList.66f50d23.css"
     ],
-    "file": "VList.d920b5ea.js",
+    "file": "VList.c4e6bec9.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_index.053574ca.js",
-      "_transition.2ad83d13.js",
-      "_ssrBoot.5e877c46.js",
-      "_dimensions.c0c98817.js",
-      "_VAvatar.c2b9794c.js",
-      "_VBtn.7d50387c.js",
-      "_rounded.34e53503.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js"
+      "_index.77805fa6.js",
+      "_transition.2c3ab0ac.js",
+      "_ssrBoot.ce7deca4.js",
+      "_dimensions.a2683e17.js",
+      "_VAvatar.07cbce3d.js",
+      "_VBtn.1eb63591.js",
+      "_rounded.a16d2333.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js"
     ]
   },
   "VList.66f50d23.css": {
     "file": "VList.66f50d23.css",
     "resourceType": "style"
   },
-  "_VNavigationDrawer.ac4621ef.js": {
+  "_VNavigationDrawer.6c0f2a5c.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VNavigationDrawer.bb8bc0cd.css"
     ],
-    "file": "VNavigationDrawer.ac4621ef.js",
+    "file": "VNavigationDrawer.6c0f2a5c.js",
     "imports": [
-      "_layout.3dcbba1c.js",
+      "_layout.bea2ddfd.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_ssrBoot.5e877c46.js",
-      "_rounded.34e53503.js",
-      "_router.b5edfc66.js"
+      "_ssrBoot.ce7deca4.js",
+      "_rounded.a16d2333.js",
+      "_router.c1646952.js"
     ]
   },
   "VNavigationDrawer.bb8bc0cd.css": {
     "file": "VNavigationDrawer.bb8bc0cd.css",
     "resourceType": "style"
   },
-  "_VOverlay.f714ca8c.js": {
+  "_VOverlay.fde145c5.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VOverlay.dd9b3a81.css"
     ],
-    "file": "VOverlay.f714ca8c.js",
+    "file": "VOverlay.fde145c5.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js"
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js"
     ]
   },
   "VOverlay.dd9b3a81.css": {
     "file": "VOverlay.dd9b3a81.css",
     "resourceType": "style"
   },
-  "_VPagination.bfe740af.js": {
+  "_VPagination.885c1a92.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VPagination.4f8c3f1a.css"
     ],
-    "file": "VPagination.bfe740af.js",
+    "file": "VPagination.885c1a92.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_rounded.34e53503.js",
-      "_VBtn.7d50387c.js"
+      "_rounded.a16d2333.js",
+      "_VBtn.1eb63591.js"
     ]
   },
   "VPagination.4f8c3f1a.css": {
     "file": "VPagination.4f8c3f1a.css",
     "resourceType": "style"
   },
-  "_VSelect.8c72a42d.js": {
+  "_VSelect.961c0b37.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VSelect.fbbdf8fe.css"
     ],
-    "file": "VSelect.8c72a42d.js",
+    "file": "VSelect.961c0b37.js",
     "imports": [
-      "_VTextField.5909b56e.js",
-      "_VOverlay.f714ca8c.js",
+      "_VTextField.9e8a44d8.js",
+      "_VOverlay.fde145c5.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_VList.d920b5ea.js",
-      "_transition.2ad83d13.js",
-      "_dialog-transition.f8d5277e.js",
-      "_dimensions.c0c98817.js",
-      "_VBtn.7d50387c.js",
-      "_VIcon.6b741b5e.js",
-      "_VChip.c5262487.js"
+      "_VList.c4e6bec9.js",
+      "_transition.2c3ab0ac.js",
+      "_dialog-transition.2379331d.js",
+      "_dimensions.a2683e17.js",
+      "_VBtn.1eb63591.js",
+      "_VIcon.242b6d78.js",
+      "_VChip.849a7f7d.js"
     ]
   },
   "VSelect.fbbdf8fe.css": {
     "file": "VSelect.fbbdf8fe.css",
     "resourceType": "style"
   },
-  "_VSnackbar.d61516ba.js": {
+  "_VSnackbar.3c2171ae.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VSnackbar.6d0218f9.css"
     ],
-    "file": "VSnackbar.d61516ba.js",
+    "file": "VSnackbar.3c2171ae.js",
     "imports": [
-      "_VBtn.7d50387c.js",
-      "_rounded.34e53503.js",
+      "_VBtn.1eb63591.js",
+      "_rounded.a16d2333.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js"
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js"
     ]
   },
   "VSnackbar.6d0218f9.css": {
     "file": "VSnackbar.6d0218f9.css",
     "resourceType": "style"
   },
-  "_VTextField.5909b56e.js": {
+  "_VTextField.9e8a44d8.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VTextField.e5a72241.css"
     ],
-    "file": "VTextField.5909b56e.js",
+    "file": "VTextField.9e8a44d8.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_index.053574ca.js",
-      "_VIcon.6b741b5e.js",
-      "_VBtn.7d50387c.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js"
+      "_index.77805fa6.js",
+      "_VIcon.242b6d78.js",
+      "_VBtn.1eb63591.js",
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js"
     ]
   },
   "VTextField.e5a72241.css": {
     "file": "VTextField.e5a72241.css",
     "resourceType": "style"
   },
-  "_VToolbar.4ed60c42.js": {
+  "_VToolbar.a678396e.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "VToolbar.44bbb01f.css"
     ],
-    "file": "VToolbar.4ed60c42.js",
+    "file": "VToolbar.a678396e.js",
     "imports": [
-      "_index.053574ca.js",
+      "_index.77805fa6.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_dimensions.c0c98817.js"
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_dimensions.a2683e17.js"
     ]
   },
   "VToolbar.44bbb01f.css": {
     "file": "VToolbar.44bbb01f.css",
     "resourceType": "style"
   },
-  "_admin.7060811a.js": {
+  "_admin.74c760c2.js": {
     "resourceType": "script",
     "module": true,
-    "file": "admin.7060811a.js",
+    "file": "admin.74c760c2.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_app.35682e35.js": {
+  "_app.f863b846.js": {
     "resourceType": "script",
     "module": true,
-    "file": "app.35682e35.js",
+    "file": "app.f863b846.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_confirm-handle-transaction.2e8aa723.js": {
+  "_confirm-handle-transaction.5dc5688b.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "confirm-handle-transaction.53507f21.css"
     ],
-    "file": "confirm-handle-transaction.2e8aa723.js",
+    "file": "confirm-handle-transaction.5dc5688b.js",
     "imports": [
-      "_app.35682e35.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VBtn.7d50387c.js",
+      "_app.f863b846.js",
+      "_VDialog.fe46aefc.js",
+      "_VBtn.1eb63591.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -403,17 +403,17 @@ const client_manifest = {
     "file": "confirm-handle-transaction.53507f21.css",
     "resourceType": "style"
   },
-  "_confirm-payment-intro.7f051264.js": {
+  "_confirm-payment-intro.3ca39062.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "confirm-payment-intro.6ea4fbc1.css"
     ],
-    "file": "confirm-payment-intro.7f051264.js",
+    "file": "confirm-payment-intro.3ca39062.js",
     "imports": [
-      "_app.35682e35.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VBtn.7d50387c.js",
+      "_app.f863b846.js",
+      "_VDialog.fe46aefc.js",
+      "_VBtn.1eb63591.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -426,19 +426,19 @@ const client_manifest = {
     "module": true,
     "file": "constants.d690964f.js"
   },
-  "_dialog-transition.f8d5277e.js": {
+  "_dialog-transition.2379331d.js": {
     "resourceType": "script",
     "module": true,
-    "file": "dialog-transition.f8d5277e.js",
+    "file": "dialog-transition.2379331d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VOverlay.f714ca8c.js"
+      "_VOverlay.fde145c5.js"
     ]
   },
-  "_dimensions.c0c98817.js": {
+  "_dimensions.a2683e17.js": {
     "resourceType": "script",
     "module": true,
-    "file": "dimensions.c0c98817.js",
+    "file": "dimensions.a2683e17.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -448,34 +448,34 @@ const client_manifest = {
     "module": true,
     "file": "formatters.df209382.js"
   },
-  "_game.47c7a824.js": {
+  "_game.82b1eb03.js": {
     "resourceType": "script",
     "module": true,
-    "file": "game.47c7a824.js",
+    "file": "game.82b1eb03.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_giftcode.355bd5b1.js": {
+  "_giftcode.a9997de0.js": {
     "resourceType": "script",
     "module": true,
-    "file": "giftcode.355bd5b1.js",
+    "file": "giftcode.a9997de0.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_index.053574ca.js": {
+  "_index.574be835.js": {
     "resourceType": "script",
     "module": true,
-    "file": "index.053574ca.js",
+    "file": "index.574be835.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_index.2ee0e5ae.js": {
+  "_index.77805fa6.js": {
     "resourceType": "script",
     "module": true,
-    "file": "index.2ee0e5ae.js",
+    "file": "index.77805fa6.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -485,21 +485,21 @@ const client_manifest = {
     "module": true,
     "file": "index.a35aaa61.js"
   },
-  "_layout.3dcbba1c.js": {
+  "_layout.bea2ddfd.js": {
     "resourceType": "script",
     "module": true,
-    "file": "layout.3dcbba1c.js",
+    "file": "layout.bea2ddfd.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_logo_chanlebank1.ed5801a5.js": {
+  "_logo_chanlebank1.2e07d2a0.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
       "logo_chanlebank1.a99aafa5.png"
     ],
-    "file": "logo_chanlebank1.ed5801a5.js",
+    "file": "logo_chanlebank1.2e07d2a0.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -509,47 +509,47 @@ const client_manifest = {
     "resourceType": "image",
     "mimeType": "image/png"
   },
-  "_maintain.06b3dad0.js": {
+  "_maintain.d556f990.js": {
     "resourceType": "script",
     "module": true,
-    "file": "maintain.06b3dad0.js",
+    "file": "maintain.d556f990.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_nuxt-link.88eb5731.js": {
+  "_nuxt-link.2d41bf4a.js": {
     "resourceType": "script",
     "module": true,
-    "file": "nuxt-link.88eb5731.js",
+    "file": "nuxt-link.2d41bf4a.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_rounded.34e53503.js": {
+  "_rounded.a16d2333.js": {
     "resourceType": "script",
     "module": true,
-    "file": "rounded.34e53503.js",
+    "file": "rounded.a16d2333.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_router.b5edfc66.js": {
+  "_router.c1646952.js": {
     "resourceType": "script",
     "module": true,
-    "file": "router.b5edfc66.js",
+    "file": "router.c1646952.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_section.73f9f980.js": {
+  "_section.3cdec48f.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "section.335f4968.css"
     ],
-    "file": "section.73f9f980.js",
+    "file": "section.3cdec48f.js",
     "imports": [
-      "_game.47c7a824.js",
+      "_game.82b1eb03.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -557,58 +557,58 @@ const client_manifest = {
     "file": "section.335f4968.css",
     "resourceType": "style"
   },
-  "_ssrBoot.5e877c46.js": {
+  "_ssrBoot.ce7deca4.js": {
     "resourceType": "script",
     "module": true,
-    "file": "ssrBoot.5e877c46.js",
+    "file": "ssrBoot.ce7deca4.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_task.008a1d98.js": {
+  "_task.fb5dca6d.js": {
     "resourceType": "script",
     "module": true,
-    "file": "task.008a1d98.js",
+    "file": "task.fb5dca6d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_transaction.10674388.js": {
+  "_transaction.47031768.js": {
     "resourceType": "script",
     "module": true,
-    "file": "transaction.10674388.js",
+    "file": "transaction.47031768.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_transition.2ad83d13.js": {
+  "_transition.2c3ab0ac.js": {
     "resourceType": "script",
     "module": true,
-    "file": "transition.2ad83d13.js",
+    "file": "transition.2c3ab0ac.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_useAuth.1b23fc6a.js": {
+  "_useAuth.2f023004.js": {
     "resourceType": "script",
     "module": true,
-    "file": "useAuth.1b23fc6a.js",
+    "file": "useAuth.2f023004.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_user.8cf43079.js": {
+  "_user.022af95a.js": {
     "resourceType": "script",
     "module": true,
-    "file": "user.8cf43079.js",
+    "file": "user.022af95a.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_vue-datepicker.b170c28d.js": {
+  "_vue-datepicker.7fa0ade8.js": {
     "resourceType": "script",
     "module": true,
-    "file": "vue-datepicker.b170c28d.js",
+    "file": "vue-datepicker.7fa0ade8.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -655,18 +655,18 @@ const client_manifest = {
     "css": [
       "blank.d688c071.css"
     ],
-    "file": "blank.c8316fb9.js",
+    "file": "blank.3823627c.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VToolbar.4ed60c42.js",
-      "_layout.3dcbba1c.js",
-      "_ssrBoot.5e877c46.js",
-      "_index.053574ca.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js"
+      "_VToolbar.a678396e.js",
+      "_layout.bea2ddfd.js",
+      "_ssrBoot.ce7deca4.js",
+      "_index.77805fa6.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js"
     ],
     "isDynamicEntry": true,
     "src": "layouts/blank.vue"
@@ -691,26 +691,26 @@ const client_manifest = {
     "css": [
       "dashboad.79220aa7.css"
     ],
-    "file": "dashboad.56396224.js",
+    "file": "dashboad.6ca156f7.js",
     "imports": [
-      "_nuxt-link.88eb5731.js",
+      "_nuxt-link.2d41bf4a.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_game.47c7a824.js",
-      "_VNavigationDrawer.ac4621ef.js",
-      "_VList.d920b5ea.js",
-      "_VToolbar.4ed60c42.js",
-      "_VBtn.7d50387c.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_VIcon.6b741b5e.js",
-      "_layout.3dcbba1c.js",
-      "_ssrBoot.5e877c46.js",
-      "_rounded.34e53503.js",
-      "_router.b5edfc66.js",
-      "_index.053574ca.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js",
-      "_index.2ee0e5ae.js"
+      "_game.82b1eb03.js",
+      "_VNavigationDrawer.6c0f2a5c.js",
+      "_VList.c4e6bec9.js",
+      "_VToolbar.a678396e.js",
+      "_VBtn.1eb63591.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_VIcon.242b6d78.js",
+      "_layout.bea2ddfd.js",
+      "_ssrBoot.ce7deca4.js",
+      "_rounded.a16d2333.js",
+      "_router.c1646952.js",
+      "_index.77805fa6.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js",
+      "_index.574be835.js"
     ],
     "isDynamicEntry": true,
     "src": "layouts/dashboad.vue"
@@ -733,20 +733,20 @@ const client_manifest = {
     "css": [
       "default.34f0346e.css"
     ],
-    "file": "default.6ae36cbc.js",
+    "file": "default.aa1d25f0.js",
     "imports": [
-      "_nuxt-link.88eb5731.js",
+      "_nuxt-link.2d41bf4a.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_maintain.06b3dad0.js",
-      "_app.35682e35.js",
-      "_useAuth.1b23fc6a.js",
-      "_logo_chanlebank1.ed5801a5.js",
-      "_VIcon.6b741b5e.js",
-      "_VNavigationDrawer.ac4621ef.js",
-      "_layout.3dcbba1c.js",
-      "_ssrBoot.5e877c46.js",
-      "_rounded.34e53503.js",
-      "_router.b5edfc66.js"
+      "_maintain.d556f990.js",
+      "_app.f863b846.js",
+      "_useAuth.2f023004.js",
+      "_logo_chanlebank1.2e07d2a0.js",
+      "_VIcon.242b6d78.js",
+      "_VNavigationDrawer.6c0f2a5c.js",
+      "_layout.bea2ddfd.js",
+      "_ssrBoot.ce7deca4.js",
+      "_rounded.a16d2333.js",
+      "_router.c1646952.js"
     ],
     "isDynamicEntry": true,
     "src": "layouts/default.vue"
@@ -768,10 +768,10 @@ const client_manifest = {
   "middleware/auth.ts": {
     "resourceType": "script",
     "module": true,
-    "file": "auth.e4bcf75d.js",
+    "file": "auth.4914c276.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_useAuth.1b23fc6a.js"
+      "_useAuth.2f023004.js"
     ],
     "isDynamicEntry": true,
     "src": "middleware/auth.ts"
@@ -779,10 +779,10 @@ const client_manifest = {
   "middleware/permission.ts": {
     "resourceType": "script",
     "module": true,
-    "file": "permission.4155cdd5.js",
+    "file": "permission.a9e03914.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_useAuth.1b23fc6a.js"
+      "_useAuth.2f023004.js"
     ],
     "isDynamicEntry": true,
     "src": "middleware/permission.ts"
@@ -822,9 +822,9 @@ const client_manifest = {
     "css": [
       "error-404.23f2309d.css"
     ],
-    "file": "error-404.e32e1556.js",
+    "file": "error-404.7d3e73bc.js",
     "imports": [
-      "_nuxt-link.88eb5731.js",
+      "_nuxt-link.2d41bf4a.js",
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "isDynamicEntry": true,
@@ -845,7 +845,7 @@ const client_manifest = {
     "css": [
       "error-500.aa16ed4d.css"
     ],
-    "file": "error-500.ef58d778.js",
+    "file": "error-500.4b528c70.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -881,7 +881,7 @@ const client_manifest = {
       "layouts/default.vue",
       "virtual:nuxt:/Users/azoom/Desktop/remote/chanke/.nuxt/error-component.mjs"
     ],
-    "file": "entry.9f02f9aa.js",
+    "file": "entry.a57eb05d.js",
     "isEntry": true,
     "src": "node_modules/nuxt/dist/app/entry.js"
   },
@@ -920,33 +920,33 @@ const client_manifest = {
     "css": [
       "index.271e1bba.css"
     ],
-    "file": "index.133ad3ed.js",
+    "file": "index.c512bc52.js",
     "imports": [
-      "_section.73f9f980.js",
-      "_user.8cf43079.js",
-      "_useAuth.1b23fc6a.js",
+      "_section.3cdec48f.js",
+      "_user.022af95a.js",
+      "_useAuth.2f023004.js",
       "_constants.d690964f.js",
       "_formatters.df209382.js",
-      "_VIcon.6b741b5e.js",
-      "_VSnackbar.d61516ba.js",
-      "_VSelect.8c72a42d.js",
-      "_VOverlay.f714ca8c.js",
+      "_VIcon.242b6d78.js",
+      "_VSnackbar.3c2171ae.js",
+      "_VSelect.961c0b37.js",
+      "_VOverlay.fde145c5.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_transition.2ad83d13.js",
-      "_VList.d920b5ea.js",
-      "_VTextField.5909b56e.js",
-      "_VChip.c5262487.js",
-      "_dimensions.c0c98817.js",
-      "_VBtn.7d50387c.js",
-      "_game.47c7a824.js",
-      "_rounded.34e53503.js",
-      "_dialog-transition.f8d5277e.js",
-      "_router.b5edfc66.js",
-      "_index.053574ca.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js"
+      "_transition.2c3ab0ac.js",
+      "_VList.c4e6bec9.js",
+      "_VTextField.9e8a44d8.js",
+      "_VChip.849a7f7d.js",
+      "_dimensions.a2683e17.js",
+      "_VBtn.1eb63591.js",
+      "_game.82b1eb03.js",
+      "_rounded.a16d2333.js",
+      "_dialog-transition.2379331d.js",
+      "_router.c1646952.js",
+      "_index.77805fa6.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/bank-setting/index.vue"
@@ -957,38 +957,38 @@ const client_manifest = {
   },
   "pages/dashboard/bank-user/index.css": {
     "resourceType": "style",
-    "file": "index.21370709.css",
+    "file": "index.a3372782.css",
     "src": "pages/dashboard/bank-user/index.css"
   },
   "pages/dashboard/bank-user/index.vue": {
     "resourceType": "script",
     "module": true,
     "css": [
-      "index.21370709.css",
+      "index.a3372782.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.eeb2c9fe.js",
+    "file": "index.08c93245.js",
     "imports": [
-      "_transaction.10674388.js",
+      "_transaction.47031768.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_user.8cf43079.js",
+      "_user.022af95a.js",
       "_formatters.df209382.js",
       "_constants.d690964f.js",
-      "_VBtn.7d50387c.js",
-      "_VPagination.bfe740af.js",
-      "_VSnackbar.d61516ba.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js",
-      "_VOverlay.f714ca8c.js",
-      "_transition.2ad83d13.js"
+      "_VBtn.1eb63591.js",
+      "_VPagination.885c1a92.js",
+      "_VSnackbar.3c2171ae.js",
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js",
+      "_VOverlay.fde145c5.js",
+      "_transition.2c3ab0ac.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/bank-user/index.vue"
   },
-  "index.21370709.css": {
-    "file": "index.21370709.css",
+  "index.a3372782.css": {
+    "file": "index.a3372782.css",
     "resourceType": "style"
   },
   "main.55b3eb54.css": {
@@ -1007,17 +1007,17 @@ const client_manifest = {
       "index.076e6d9a.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.4dd92b05.js",
+    "file": "index.1e9202a0.js",
     "imports": [
-      "_admin.7060811a.js",
+      "_admin.74c760c2.js",
       "_constants.d690964f.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VBtn.7d50387c.js",
+      "_vue-datepicker.7fa0ade8.js",
+      "_VBtn.1eb63591.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js"
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/bank/index.vue"
@@ -1038,32 +1038,32 @@ const client_manifest = {
       "index.46128806.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.b59416b6.js",
+    "file": "index.761ff84f.js",
     "imports": [
-      "_transaction.10674388.js",
+      "_transaction.47031768.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_game.47c7a824.js",
+      "_game.82b1eb03.js",
       "_formatters.df209382.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VSelect.8c72a42d.js",
-      "_VCheckbox.9c207650.js",
-      "_VBtn.7d50387c.js",
-      "_VPagination.bfe740af.js",
-      "_VTextField.5909b56e.js",
-      "_index.053574ca.js",
-      "_VIcon.6b741b5e.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VChip.c5262487.js"
+      "_vue-datepicker.7fa0ade8.js",
+      "_VSelect.961c0b37.js",
+      "_VCheckbox.811f811b.js",
+      "_VBtn.1eb63591.js",
+      "_VPagination.885c1a92.js",
+      "_VTextField.9e8a44d8.js",
+      "_index.77805fa6.js",
+      "_VIcon.242b6d78.js",
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/cash/index.vue"
@@ -1084,25 +1084,25 @@ const client_manifest = {
       "index.b138af41.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.66638258.js",
+    "file": "index.f65b39b8.js",
     "imports": [
-      "_confirm-payment-intro.7f051264.js",
-      "_transaction.10674388.js",
-      "_app.35682e35.js",
-      "_VSnackbar.d61516ba.js",
-      "_VBtn.7d50387c.js",
+      "_confirm-payment-intro.3ca39062.js",
+      "_transaction.47031768.js",
+      "_app.f863b846.js",
+      "_VSnackbar.3c2171ae.js",
+      "_VBtn.1eb63591.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VAvatar.c2b9794c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js",
-      "_VIcon.6b741b5e.js",
-      "_router.b5edfc66.js",
-      "_VOverlay.f714ca8c.js",
-      "_dialog-transition.f8d5277e.js"
+      "_VDialog.fe46aefc.js",
+      "_VAvatar.07cbce3d.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js",
+      "_VIcon.242b6d78.js",
+      "_router.c1646952.js",
+      "_VOverlay.fde145c5.js",
+      "_dialog-transition.2379331d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/ctv/index.vue"
@@ -1123,28 +1123,28 @@ const client_manifest = {
       "index.c90b5196.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.380343ad.js",
+    "file": "index.f7b5e98e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_user.8cf43079.js",
-      "_VSelect.8c72a42d.js",
-      "_VBtn.7d50387c.js",
-      "_VSnackbar.d61516ba.js",
-      "_VTextField.5909b56e.js",
-      "_index.053574ca.js",
-      "_VIcon.6b741b5e.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VChip.c5262487.js"
+      "_user.022af95a.js",
+      "_VSelect.961c0b37.js",
+      "_VBtn.1eb63591.js",
+      "_VSnackbar.3c2171ae.js",
+      "_VTextField.9e8a44d8.js",
+      "_index.77805fa6.js",
+      "_VIcon.242b6d78.js",
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/deposit-manual/index.vue"
@@ -1164,28 +1164,28 @@ const client_manifest = {
     "css": [
       "index.b161bacd.css"
     ],
-    "file": "index.e816877b.js",
+    "file": "index.a6d3add3.js",
     "imports": [
-      "_nuxt-link.88eb5731.js",
-      "_game.47c7a824.js",
-      "_VSelect.8c72a42d.js",
-      "_VBtn.7d50387c.js",
-      "_VTextField.5909b56e.js",
+      "_nuxt-link.2d41bf4a.js",
+      "_game.82b1eb03.js",
+      "_VSelect.961c0b37.js",
+      "_VBtn.1eb63591.js",
+      "_VTextField.9e8a44d8.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_VList.d920b5ea.js",
-      "_index.053574ca.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_VIcon.6b741b5e.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VChip.c5262487.js"
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_VList.c4e6bec9.js",
+      "_index.77805fa6.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_VIcon.242b6d78.js",
+      "_dialog-transition.2379331d.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/games/detail/index.vue"
@@ -1205,27 +1205,27 @@ const client_manifest = {
     "css": [
       "index.5548a336.css"
     ],
-    "file": "index.b2f0fd73.js",
+    "file": "index.2c40b955.js",
     "imports": [
-      "_game.47c7a824.js",
-      "_VBtn.7d50387c.js",
-      "_VTextField.5909b56e.js",
-      "_VSelect.8c72a42d.js",
-      "_VChip.c5262487.js",
+      "_game.82b1eb03.js",
+      "_VBtn.1eb63591.js",
+      "_VTextField.9e8a44d8.js",
+      "_VSelect.961c0b37.js",
+      "_VChip.849a7f7d.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js",
-      "_index.053574ca.js",
-      "_VOverlay.f714ca8c.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js"
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js",
+      "_index.77805fa6.js",
+      "_VOverlay.fde145c5.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/games/index.vue"
@@ -1246,9 +1246,9 @@ const client_manifest = {
       "index.16225156.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.a9f74eaf.js",
+    "file": "index.21ae6c22.js",
     "imports": [
-      "_giftcode.355bd5b1.js",
+      "_giftcode.a9997de0.js",
       "_formatters.df209382.js",
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -1271,19 +1271,19 @@ const client_manifest = {
       "index.be6eaaab.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.ce0f8a20.js",
+    "file": "index.f91c02c7.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_giftcode.355bd5b1.js",
+      "_giftcode.a9997de0.js",
       "_formatters.df209382.js",
-      "_VBtn.7d50387c.js",
-      "_VSnackbar.d61516ba.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js",
-      "_VOverlay.f714ca8c.js",
-      "_transition.2ad83d13.js"
+      "_VBtn.1eb63591.js",
+      "_VSnackbar.3c2171ae.js",
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js",
+      "_VOverlay.fde145c5.js",
+      "_transition.2c3ab0ac.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/gift-code/index.vue"
@@ -1303,29 +1303,29 @@ const client_manifest = {
     "css": [
       "index.e9708e1e.css"
     ],
-    "file": "index.1e92c4ef.js",
+    "file": "index.66bfad14.js",
     "imports": [
-      "_admin.7060811a.js",
+      "_admin.74c760c2.js",
       "_formatters.df209382.js",
       "_constants.d690964f.js",
-      "_VBtn.7d50387c.js",
-      "_VTextField.5909b56e.js",
-      "_VSelect.8c72a42d.js",
-      "_VChip.c5262487.js",
+      "_VBtn.1eb63591.js",
+      "_VTextField.9e8a44d8.js",
+      "_VSelect.961c0b37.js",
+      "_VChip.849a7f7d.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js",
-      "_index.053574ca.js",
-      "_VOverlay.f714ca8c.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js"
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js",
+      "_index.77805fa6.js",
+      "_VOverlay.fde145c5.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/index.vue"
@@ -1346,28 +1346,28 @@ const client_manifest = {
       "index.38d31f7d.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.59aa6411.js",
+    "file": "index.5d1f98cd.js",
     "imports": [
-      "_maintain.06b3dad0.js",
+      "_maintain.d556f990.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VSelect.8c72a42d.js",
-      "_VBtn.7d50387c.js",
-      "_VTextField.5909b56e.js",
-      "_index.053574ca.js",
-      "_VIcon.6b741b5e.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VChip.c5262487.js"
+      "_vue-datepicker.7fa0ade8.js",
+      "_VSelect.961c0b37.js",
+      "_VBtn.1eb63591.js",
+      "_VTextField.9e8a44d8.js",
+      "_index.77805fa6.js",
+      "_VIcon.242b6d78.js",
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/maintain/index.vue"
@@ -1387,32 +1387,32 @@ const client_manifest = {
     "css": [
       "index.767488f3.css"
     ],
-    "file": "index.5cc7ecb5.js",
+    "file": "index.6f7af5f6.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_user.8cf43079.js",
+      "_user.022af95a.js",
       "_constants.d690964f.js",
       "_formatters.df209382.js",
       "_index.a35aaa61.js",
-      "_VIcon.6b741b5e.js",
-      "_VPagination.bfe740af.js",
-      "_VSnackbar.d61516ba.js",
-      "_VBtn.7d50387c.js",
-      "_VTextField.5909b56e.js",
-      "_VSelect.8c72a42d.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_index.053574ca.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VChip.c5262487.js"
+      "_VIcon.242b6d78.js",
+      "_VPagination.885c1a92.js",
+      "_VSnackbar.3c2171ae.js",
+      "_VBtn.1eb63591.js",
+      "_VTextField.9e8a44d8.js",
+      "_VSelect.961c0b37.js",
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_index.77805fa6.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/player/index.vue"
@@ -1433,26 +1433,26 @@ const client_manifest = {
       "index.38317ca1.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.95cb4b25.js",
+    "file": "index.8620b676.js",
     "imports": [
-      "_confirm-payment-intro.7f051264.js",
-      "_transaction.10674388.js",
-      "_app.35682e35.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VBtn.7d50387c.js",
-      "_VSnackbar.d61516ba.js",
+      "_confirm-payment-intro.3ca39062.js",
+      "_transaction.47031768.js",
+      "_app.f863b846.js",
+      "_vue-datepicker.7fa0ade8.js",
+      "_VBtn.1eb63591.js",
+      "_VSnackbar.3c2171ae.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VAvatar.c2b9794c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js",
-      "_VIcon.6b741b5e.js",
-      "_router.b5edfc66.js",
-      "_VOverlay.f714ca8c.js",
-      "_dialog-transition.f8d5277e.js"
+      "_VDialog.fe46aefc.js",
+      "_VAvatar.07cbce3d.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js",
+      "_VIcon.242b6d78.js",
+      "_router.c1646952.js",
+      "_VOverlay.fde145c5.js",
+      "_dialog-transition.2379331d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/rank/index.vue"
@@ -1473,29 +1473,29 @@ const client_manifest = {
       "index.d11c9b6b.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.7c5cdf20.js",
+    "file": "index.d28434d5.js",
     "imports": [
-      "_game.47c7a824.js",
+      "_game.82b1eb03.js",
       "node_modules/nuxt/dist/app/entry.js",
       "_formatters.df209382.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VSelect.8c72a42d.js",
-      "_VBtn.7d50387c.js",
-      "_VTextField.5909b56e.js",
-      "_index.053574ca.js",
-      "_VIcon.6b741b5e.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_index.2ee0e5ae.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VAvatar.c2b9794c.js",
-      "_VImg.146409ca.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VChip.c5262487.js"
+      "_vue-datepicker.7fa0ade8.js",
+      "_VSelect.961c0b37.js",
+      "_VBtn.1eb63591.js",
+      "_VTextField.9e8a44d8.js",
+      "_index.77805fa6.js",
+      "_VIcon.242b6d78.js",
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_index.574be835.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VAvatar.07cbce3d.js",
+      "_VImg.29189b0e.js",
+      "_dialog-transition.2379331d.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/statistical/index.vue"
@@ -1515,18 +1515,18 @@ const client_manifest = {
     "css": [
       "index.7540e611.css"
     ],
-    "file": "index.5cfcbfba.js",
+    "file": "index.99a3f5f6.js",
     "imports": [
-      "_task.008a1d98.js",
+      "_task.fb5dca6d.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_VBtn.7d50387c.js",
-      "_VSnackbar.d61516ba.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js",
-      "_VOverlay.f714ca8c.js",
-      "_transition.2ad83d13.js"
+      "_VBtn.1eb63591.js",
+      "_VSnackbar.3c2171ae.js",
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js",
+      "_VOverlay.fde145c5.js",
+      "_transition.2c3ab0ac.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/task/index.vue"
@@ -1547,37 +1547,37 @@ const client_manifest = {
       "index.50f6f01e.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.28f6d1e7.js",
+    "file": "index.d5ee78c2.js",
     "imports": [
-      "_confirm-handle-transaction.2e8aa723.js",
-      "_transaction.10674388.js",
+      "_confirm-handle-transaction.5dc5688b.js",
+      "_transaction.47031768.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_game.47c7a824.js",
-      "_app.35682e35.js",
+      "_game.82b1eb03.js",
+      "_app.f863b846.js",
       "_formatters.df209382.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VSelect.8c72a42d.js",
-      "_VCheckbox.9c207650.js",
-      "_VBtn.7d50387c.js",
-      "_VPagination.bfe740af.js",
-      "_VSnackbar.d61516ba.js",
-      "_admin.7060811a.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VAvatar.c2b9794c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js",
-      "_VIcon.6b741b5e.js",
-      "_router.b5edfc66.js",
-      "_VOverlay.f714ca8c.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VTextField.5909b56e.js",
-      "_index.053574ca.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VChip.c5262487.js"
+      "_vue-datepicker.7fa0ade8.js",
+      "_VSelect.961c0b37.js",
+      "_VCheckbox.811f811b.js",
+      "_VBtn.1eb63591.js",
+      "_VPagination.885c1a92.js",
+      "_VSnackbar.3c2171ae.js",
+      "_admin.74c760c2.js",
+      "_VDialog.fe46aefc.js",
+      "_VAvatar.07cbce3d.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js",
+      "_VIcon.242b6d78.js",
+      "_router.c1646952.js",
+      "_VOverlay.fde145c5.js",
+      "_dialog-transition.2379331d.js",
+      "_VTextField.9e8a44d8.js",
+      "_index.77805fa6.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/transaction-v2/index.vue"
@@ -1598,37 +1598,37 @@ const client_manifest = {
       "index.f9f4fe84.css",
       "main.55b3eb54.css"
     ],
-    "file": "index.e7fca70e.js",
+    "file": "index.fe01db38.js",
     "imports": [
-      "_confirm-handle-transaction.2e8aa723.js",
-      "_transaction.10674388.js",
+      "_confirm-handle-transaction.5dc5688b.js",
+      "_transaction.47031768.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_game.47c7a824.js",
-      "_app.35682e35.js",
+      "_game.82b1eb03.js",
+      "_app.f863b846.js",
       "_formatters.df209382.js",
-      "_vue-datepicker.b170c28d.js",
-      "_VSelect.8c72a42d.js",
-      "_VCheckbox.9c207650.js",
-      "_VBtn.7d50387c.js",
-      "_VPagination.bfe740af.js",
-      "_VSnackbar.d61516ba.js",
-      "_admin.7060811a.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VAvatar.c2b9794c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js",
-      "_VIcon.6b741b5e.js",
-      "_router.b5edfc66.js",
-      "_VOverlay.f714ca8c.js",
-      "_dialog-transition.f8d5277e.js",
-      "_VTextField.5909b56e.js",
-      "_index.053574ca.js",
-      "_VList.d920b5ea.js",
-      "_ssrBoot.5e877c46.js",
-      "_VChip.c5262487.js"
+      "_vue-datepicker.7fa0ade8.js",
+      "_VSelect.961c0b37.js",
+      "_VCheckbox.811f811b.js",
+      "_VBtn.1eb63591.js",
+      "_VPagination.885c1a92.js",
+      "_VSnackbar.3c2171ae.js",
+      "_admin.74c760c2.js",
+      "_VDialog.fe46aefc.js",
+      "_VAvatar.07cbce3d.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js",
+      "_VIcon.242b6d78.js",
+      "_router.c1646952.js",
+      "_VOverlay.fde145c5.js",
+      "_dialog-transition.2379331d.js",
+      "_VTextField.9e8a44d8.js",
+      "_index.77805fa6.js",
+      "_VList.c4e6bec9.js",
+      "_ssrBoot.ce7deca4.js",
+      "_VChip.849a7f7d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/dashboard/transaction/index.vue"
@@ -1648,34 +1648,34 @@ const client_manifest = {
     "css": [
       "index.e4c2a7ec.css"
     ],
-    "file": "index.838001af.js",
+    "file": "index.ec2d040a.js",
     "imports": [
-      "_section.73f9f980.js",
-      "_game.47c7a824.js",
-      "_useAuth.1b23fc6a.js",
-      "_VIcon.6b741b5e.js",
+      "_section.3cdec48f.js",
+      "_game.82b1eb03.js",
+      "_useAuth.2f023004.js",
+      "_VIcon.242b6d78.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_nuxt-link.88eb5731.js",
-      "_app.35682e35.js",
-      "_VDialog.6a7b4ff7.js",
-      "_VBtn.7d50387c.js",
-      "_admin.7060811a.js",
+      "_nuxt-link.2d41bf4a.js",
+      "_app.f863b846.js",
+      "_VDialog.fe46aefc.js",
+      "_VBtn.1eb63591.js",
+      "_admin.74c760c2.js",
       "_constants.d690964f.js",
-      "_VChip.c5262487.js",
-      "_VSnackbar.d61516ba.js",
-      "_transaction.10674388.js",
+      "_VChip.849a7f7d.js",
+      "_VSnackbar.3c2171ae.js",
+      "_transaction.47031768.js",
       "_formatters.df209382.js",
-      "_task.008a1d98.js",
-      "_VAvatar.c2b9794c.js",
-      "_rounded.34e53503.js",
-      "_VImg.146409ca.js",
-      "_index.2ee0e5ae.js",
-      "_transition.2ad83d13.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VOverlay.f714ca8c.js",
-      "_dialog-transition.f8d5277e.js",
-      "_index.053574ca.js"
+      "_task.fb5dca6d.js",
+      "_VAvatar.07cbce3d.js",
+      "_rounded.a16d2333.js",
+      "_VImg.29189b0e.js",
+      "_index.574be835.js",
+      "_transition.2c3ab0ac.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VOverlay.fde145c5.js",
+      "_dialog-transition.2379331d.js",
+      "_index.77805fa6.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/index.vue"
@@ -1695,10 +1695,10 @@ const client_manifest = {
     "css": [
       "chanel.34d390bf.css"
     ],
-    "file": "chanel.18cea30a.js",
+    "file": "chanel.5b26b7cc.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VIcon.6b741b5e.js"
+      "_VIcon.242b6d78.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/tele/chanel.vue"
@@ -1718,10 +1718,10 @@ const client_manifest = {
     "css": [
       "group.8ff2c0be.css"
     ],
-    "file": "group.1e65ee40.js",
+    "file": "group.ee4e7985.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_VIcon.6b741b5e.js"
+      "_VIcon.242b6d78.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/tele/group.vue"
@@ -1741,22 +1741,22 @@ const client_manifest = {
     "css": [
       "change-password.8dee5678.css"
     ],
-    "file": "change-password.3773add0.js",
+    "file": "change-password.67780cbd.js",
     "imports": [
-      "_user.8cf43079.js",
-      "_useAuth.1b23fc6a.js",
-      "_VIcon.6b741b5e.js",
-      "_VSnackbar.d61516ba.js",
-      "_VTextField.5909b56e.js",
-      "_VBtn.7d50387c.js",
+      "_user.022af95a.js",
+      "_useAuth.2f023004.js",
+      "_VIcon.242b6d78.js",
+      "_VSnackbar.3c2171ae.js",
+      "_VTextField.9e8a44d8.js",
+      "_VBtn.1eb63591.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_rounded.34e53503.js",
-      "_VOverlay.f714ca8c.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_transition.2ad83d13.js",
-      "_index.053574ca.js",
-      "_index.2ee0e5ae.js"
+      "_rounded.a16d2333.js",
+      "_VOverlay.fde145c5.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_transition.2c3ab0ac.js",
+      "_index.77805fa6.js",
+      "_index.574be835.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/user/change-password.vue"
@@ -1776,19 +1776,19 @@ const client_manifest = {
     "css": [
       "login.88526e0c.css"
     ],
-    "file": "login.d8d2a62b.js",
+    "file": "login.6abafd4a.js",
     "imports": [
-      "_nuxt-link.88eb5731.js",
+      "_nuxt-link.2d41bf4a.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_user.8cf43079.js",
-      "_app.35682e35.js",
-      "_useAuth.1b23fc6a.js",
-      "_logo_chanlebank1.ed5801a5.js",
-      "_VBtn.7d50387c.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js"
+      "_user.022af95a.js",
+      "_app.f863b846.js",
+      "_useAuth.2f023004.js",
+      "_logo_chanlebank1.2e07d2a0.js",
+      "_VBtn.1eb63591.js",
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/user/login.vue"
@@ -1808,19 +1808,19 @@ const client_manifest = {
     "css": [
       "register.34cd2963.css"
     ],
-    "file": "register.6a760de6.js",
+    "file": "register.5a9d4be6.js",
     "imports": [
-      "_nuxt-link.88eb5731.js",
+      "_nuxt-link.2d41bf4a.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_user.8cf43079.js",
-      "_useAuth.1b23fc6a.js",
-      "_logo_chanlebank1.ed5801a5.js",
+      "_user.022af95a.js",
+      "_useAuth.2f023004.js",
+      "_logo_chanlebank1.2e07d2a0.js",
       "_index.a35aaa61.js",
-      "_VBtn.7d50387c.js",
-      "_rounded.34e53503.js",
-      "_dimensions.c0c98817.js",
-      "_router.b5edfc66.js",
-      "_VIcon.6b741b5e.js"
+      "_VBtn.1eb63591.js",
+      "_rounded.a16d2333.js",
+      "_dimensions.a2683e17.js",
+      "_router.c1646952.js",
+      "_VIcon.242b6d78.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/user/register.vue"
@@ -1841,7 +1841,7 @@ const client_manifest = {
       "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
       "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
     ],
-    "file": "error-component.33b15c8f.js",
+    "file": "error-component.5581cddd.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],

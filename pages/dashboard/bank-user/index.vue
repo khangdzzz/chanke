@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '@vuepic/vue-datepicker/dist/main.css'
 import { formatDate } from '~/utils/formatters'
-import { BANKS } from "../../../utils/constants"
+import { BANKS } from '../../../utils/constants'
 
 definePageMeta({
   middleware: 'auth',
@@ -22,15 +22,13 @@ onMounted(async () => {
   )
 })
 
-watch(page,
-  async () => {
-    await transactionStore.getHistoryTransactionLatest(
+watch(page, async () => {
+  await transactionStore.getHistoryTransactionLatest(
     condition.value,
     page.value,
     limit
   )
-  }
-)
+})
 
 const nickname = ref('')
 const userStore = useUserStore()
@@ -48,7 +46,8 @@ const loading = ref(false)
 watch(user, () => {
   accountName.value = user.value?.accountName ?? ''
   accountNumber.value = user.value?.accountNumber ?? ''
-  bankType.value = BANKS.find(item => item.value == user.value?.bankcode)?.label ?? ''
+  bankType.value =
+    BANKS.find(item => item.value == user.value?.bankcode)?.label ?? ''
 })
 
 const transactions = computed(
@@ -88,7 +87,7 @@ const snackbar = ref(false)
 const notification = ref('')
 
 const refundUser = async () => {
-  loading.value = true;
+  loading.value = true
   const body = {
     username: nickname.value,
     money: money.value,
@@ -102,7 +101,7 @@ const refundUser = async () => {
     notification.value = 'Thanh Toán Thành Công'
     isRefund.value = true
     await searchHistoryPlayer()
-    loading.value = false;
+    loading.value = false
   }
 }
 
@@ -113,7 +112,7 @@ const timers = setInterval(async () => {
 onUnmounted(() => clearInterval(timers))
 
 const getBankUser = (code: string) => {
-  return BANKS.find(bank => bank.value == code)?.label ?? ""
+  return BANKS.find(bank => bank.value == code)?.label ?? ''
 }
 </script>
 <template>
@@ -144,7 +143,7 @@ const getBankUser = (code: string) => {
         placeholder="Tên Tài Khoản"
       />
     </div>
-     <div class="nickname">
+    <div class="nickname">
       <input
         v-model="bankType"
         class="input"
@@ -162,7 +161,7 @@ const getBankUser = (code: string) => {
         type="text"
         placeholder="Nội Dung"
       />
-      <v-btn @click="refundUser()" :loading="loading">Chuyển khoản</v-btn>
+      <v-btn :loading="loading" @click="refundUser()">Chuyển khoản</v-btn>
     </div>
 
     <div class="container-search">
@@ -187,7 +186,9 @@ const getBankUser = (code: string) => {
             <td class="cell">{{ item.accountNumberClient }}</td>
             <td class="cell">{{ getBankUser(item.bankClient) }}</td>
             <td class="cell">{{ item.transId }}</td>
-            <td class="cell">{{ Number(item.amount).toLocaleString() }}</td>
+            <td class="cell">
+              {{ item.bonus ? Number(item.bonus).toLocaleString() : 0 }}
+            </td>
             <td class="cell">
               <span class="betName">{{ item.code }}</span>
             </td>

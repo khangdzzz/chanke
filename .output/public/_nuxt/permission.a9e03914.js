@@ -1,0 +1,1 @@
+import{aR as r,aQ as a}from"./entry.a57eb05d.js";import{u as t}from"./useAuth.2f023004.js";const n=r(()=>{const{checkTokenValid:e,permission:o}=t(),s=a();if(e()&&o.value==="admin"){s.push("/dashboard");return}});export{n as default};
