@@ -10,14 +10,6 @@ const page = ref(1)
 const limit = 50
 const condition = ref('')
 
-onMounted(async () => {
-  await transactionStore.getHistoryTransactionLatest(
-    condition.value,
-    page.value,
-    limit
-  )
-})
-
 const gameStore = useGameStore()
 
 const defaultGame = ref({ gameType: '', name: 'Tất cả' })
@@ -43,7 +35,23 @@ const startDate = ref(getStartTime())
 
 const endDate = ref(endTimeDay())
 
-const isSearchTime = ref(false)
+const isSearchTime = ref(true)
+
+onMounted(async () => {
+  if (isSearchTime.value) {
+    condition.value += `&startDate=${startDate.value.toISOString()}`
+    condition.value += `&endDate=${endDate.value.toISOString()}`
+  }
+
+  if (statusBank.value.value !== 99) {
+    condition.value += `&statusBank=${statusBank.value.value}`
+  }
+  await transactionStore.getHistoryTransactionLatest(
+    condition.value,
+    page.value,
+    limit
+  )
+})
 
 const searchHistoryPlayer = async () => {
   console.log(statusBank.value)
@@ -173,7 +181,7 @@ const STATUS_BANK = [
   { value: 3, label: 'Các Trường Hợp Còn Lại' },
 ]
 
-const statusBank = ref({ value: 99, label: '' })
+const statusBank = ref({ value: 0, label: 'Chưa Thanh Toán' })
 </script>
 <template>
   <div class="search-user">

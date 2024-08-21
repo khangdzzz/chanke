@@ -12,8 +12,12 @@ const amount = ref(100000)
 const content = ref('hongha T')
 
 const adminStore = useAdminStore()
-const isHandleTransactionSuccess = computed(() => adminStore.isHandleTransactionSuccess)
-const isHandleTransactionFail = computed(() => adminStore.isHandleTransactionFail)
+const isHandleTransactionSuccess = computed(
+  () => adminStore.isHandleTransactionSuccess
+)
+const isHandleTransactionFail = computed(
+  () => adminStore.isHandleTransactionFail
+)
 const isLoading = ref(false)
 
 const transactionStore = useTransactionStore()
@@ -32,21 +36,29 @@ const handleFakeTransaction = async () => {
   setTimeout(() => {
     adminStore.isHandleTransactionSuccess = false
     adminStore.isHandleTransactionFail = false
-  }, 1000);
+  }, 1000)
 }
 
 const isOpenHistory = ref(false)
 
-const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-arrow-up')
-
+const iconArrow = computed(() =>
+  isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-arrow-up'
+)
 </script>
 <template>
   <div class="transaction-container">
     <div class="history">
-      <v-btn class="label" :append-icon="iconArrow" variant="text" @click="() => isOpenHistory = !isOpenHistory">
+      <v-btn
+        class="label"
+        :append-icon="iconArrow"
+        variant="text"
+        @click="() => (isOpenHistory = !isOpenHistory)"
+      >
         Lịch sử giao dịch
       </v-btn>
-      <TransactionManageV2HistorySection v-if="!isOpenHistory"></TransactionManageV2HistorySection>
+      <TransactionManageV2HistorySection
+        v-if="!isOpenHistory"
+      ></TransactionManageV2HistorySection>
     </div>
   </div>
 </template>
@@ -56,25 +68,24 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
   padding: 12px;
   color: #000;
 
-
-  >.form {
+  > .form {
     display: flex;
     flex-direction: column;
     align-items: left;
     margin-bottom: 12px;
     width: 50%;
 
-    >.row {
+    > .row {
       width: 100%;
       margin-bottom: 12px;
       border-radius: 4px;
     }
 
-    >.add {
+    > .add {
       width: 150px;
     }
 
-    >.success {
+    > .success {
       color: green;
       font-size: 0.9rem;
       font-weight: 900;
@@ -82,7 +93,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
       margin: 12px 0;
     }
 
-    >.fail {
+    > .fail {
       color: red;
       font-size: 0.9rem;
       font-weight: 900;
@@ -91,7 +102,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
     }
   }
 
-  >.history {
+  > .history {
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -99,7 +110,7 @@ const iconArrow = computed(() => isOpenHistory.value ? 'mdi-arrow-down' : 'mdi-a
     width: 100%;
   }
 
-  >.history>.label {
+  > .history > .label {
     width: 100%;
     margin-bottom: 12px;
     border-radius: 4px;
